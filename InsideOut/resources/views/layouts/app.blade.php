@@ -19,7 +19,11 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+    <link href="{{ asset('css/login.css') }}" rel="stylesheet">
+
     <link href="{{ asset('css/register.css') }}" type="text/css" rel="stylesheet" />
+
 </head>
 <body>
     @yield('content')
