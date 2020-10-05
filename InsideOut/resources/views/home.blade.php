@@ -16,6 +16,9 @@
 
                     You are logged in!
                 </div>
+                <div class="card-footer">
+                    <a  class="btn" href="{{ route('logout') }}">Logout</a>
+                </div>
             </div>
         </div>
     </div>

@@ -20,13 +20,7 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/login.css') }}" rel="stylesheet">
-    <style>
-        body{
-            background-image: url("{{asset('img/sfondo.png')}}");
-            background-size: cover;
-            background-repeat: no-repeat;
-        }
-    </style>
+
 </head>
 <body>
     @yield('content')
