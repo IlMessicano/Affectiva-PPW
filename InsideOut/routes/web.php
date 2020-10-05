@@ -21,3 +21,8 @@ Route::get('/', function () {
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/logout','Auth\LoginController@logout')->name('logout');
+
+Route::get('live', function () {
+    return view('/live/live');
+});
+
