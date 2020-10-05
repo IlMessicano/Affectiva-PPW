@@ -1,25 +1,18 @@
 @extends('layouts.app')
 
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+@section('content')
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <title>Affectiva RMX - Live Mode</title>
-
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script type="text/javascript" src="https://download.affectiva.com/js/3.2.1/affdex.js"></script>
 </head>
 
 <body>
-
-<br>
 <div class="container-fluid" >
     <div class="row" style="display: flex">
         <div class="col-md-7" id="affdex_elements" style="width:700px;height:500px;"></div>
         <div class="col-md-5">
-            <div style="height:20em;">
+            <div style="height:25em;">
                 <strong>RISULTATO DELL'ANALISI IN TEMPO REALE:</strong>
                 <br>
                 <br>
@@ -28,7 +21,7 @@
         <div>
             <button id="start" onclick="onStart()">Start</button>
             <button id="stop" onclick="onStop()">Stop</button>
-            <button id="reset" onclick="onReset()">Reset</button>
+            <!--<button id="reset" onclick="onReset()">Reset</button> -->
         </div>
         <br>
         <div>
@@ -76,12 +69,12 @@
             $("#logs").html("");
             detector.start();
         }
-        log('#logs', "Clicked the start button");
+        //log('#logs', "Clicked the start button");
     }
 
     //function executes when the Stop button is pushed.
     function onStop() {
-        log('#logs', "Clicked the stop button");
+        //log('#logs', "Clicked the stop button");
         if (detector && detector.isRunning) {
             detector.removeEventListener();
             detector.stop();
@@ -89,14 +82,14 @@
     };
 
     //function executes when the Reset button is pushed.
-    function onReset() {
-        log('#logs', "Clicked the reset button");
-        if (detector && detector.isRunning) {
-            detector.reset();
+    //function onReset() {
+       // log('#logs', "Clicked the reset button");
+       // if (detector && detector.isRunning) {
+      //      detector.reset();
 
-            $('#results').html("");
-        }
-    };
+       //     $('#results').html("");
+      //  }
+   // };
 
     //Add a callback to notify when camera access is allowed
     detector.addEventListener("onWebcamConnectSuccess", function() {
@@ -105,13 +98,13 @@
 
     //Add a callback to notify when camera access is denied
     detector.addEventListener("onWebcamConnectFailure", function() {
-        log('#logs', "webcam denied");
-        console.log("Accesso alla webcam negato");
+        log('#logs', "Accesso alla webcam negato");
+       // console.log("Accesso alla webcam negato");
     });
 
     //Add a callback to notify when detector is stopped
     detector.addEventListener("onStopSuccess", function() {
-        log('#logs', "Analisi fermata");
+        log('#logs', "Analisi arrestata");
         $("#results").html("");
     });
 
@@ -154,12 +147,12 @@
             //log('#results', "Expressions: " + JSON.stringify(faces[0].expressions, function(key, val) {
                 //return val.toFixed ? Number(val.toFixed(0)) : val;
             //}));
-            //log('#results', "Emoji: " + faces[0].emojis.dominantEmoji);
+            log('#results', "Emoji: " + faces[0].emojis.dominantEmoji);
             if($('#face_video_canvas')[0] != null)
                 drawFeaturePoints(image, faces[0].featurePoints);
 
         } else
-            log('#results', "Volto non rilevato");
+            log('#results', "VOLTO NON RILEVATO!");
     });
 
     //Draw the detected facial feature points on the image
@@ -170,7 +163,7 @@
         var vRatio = contxt.canvas.height / img.height;
         var ratio = Math.min(hRatio, vRatio);
 
-        contxt.strokeStyle = "#FFFFFF";
+        contxt.strokeStyle = "#ffffff";
         for (var id in featurePoints) {
             contxt.beginPath();
             contxt.arc(featurePoints[id].x,
@@ -196,4 +189,4 @@
 </script>
 
 </body>
-</html>
+@endsection
