@@ -17,10 +17,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('live', function () {
-    return view('/live/live');
-});
-
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
