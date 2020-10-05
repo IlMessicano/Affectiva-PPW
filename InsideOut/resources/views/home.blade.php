@@ -20,4 +20,5 @@
         </div>
     </div>
 </div>
+<a href="{{URL::to('logout')}}" class="btn btn-danger btn-sm">Logout</a>
 @endsection
