@@ -21,6 +21,8 @@ form{
 
 .form-reg{
     margin-top:6rem;
+    max-width: 380px;
+    padding: 30px 8%;
 }
 .form-reg .form-group{
 
