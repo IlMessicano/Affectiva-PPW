@@ -1,5 +1,4 @@
-<?php
-{{$user->name}}
-
-
+@foreach ($user as $users)
+    {{ $users->name }}
+@endforeach
 
