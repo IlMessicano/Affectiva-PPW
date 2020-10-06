@@ -8,7 +8,7 @@
     }
 }
 
-.container form{
+form{
     border: 1px solid #8d8b8b;
     border-radius:5%;
     display:block;
@@ -17,6 +17,33 @@
     height: 80%;
     background-color:#f2f3f2;
     padding:30px 40px;
+}
+
+.form-reg{
+    margin-top:6rem;
+}
+.form-reg .form-group{
+
+    margin-top:1rem!important;
+}
+.h2 {
+    font-size:25px;
+    line-height:1.5;
+    margin-bottom:2rem;
+    text-align: center;
+}
+
+.avatar-preview-reg{
+    margin:auto;
+    position:absolute;
+    width: 150px;
+    height: 150px;
+    border-radius: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    align-content: center;
+    left:40%;
 }
 
 .avatar-preview{
@@ -34,7 +61,6 @@
      position:relative;
      background-color: #90a8b3 !important;
      font-weight: bold !important;
-     top:-20px;
  }
 
  .btn:hover{
@@ -79,6 +105,7 @@
 
 .form-group{
     margin-bottom:0.65rem!important;
+    margin-top:0.65rem!important;
 }
 
 img{

@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'InsideOut') }}</title>
+    <title>InsideOut</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -20,12 +20,31 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
-    <link href="{{ asset('css/login.css') }}" rel="stylesheet">
-
-    <link href="{{ asset('css/register.css') }}" type="text/css" rel="stylesheet" />
+    <link href="{{ asset('css/login_register.css') }}" rel="stylesheet">
 
 </head>
 <body>
+        @if (Route::has('login'))
+            <div class="row justify-content-end" style="margin:0.5rem 0.8rem auto">
+                <div class="col-1 links">
+                    @auth
+                        <a href="{{ url('/home') }}">Home</a>
+                    </div>
+                    <div class="col-1 links">
+                        <a href="{{ url('/') }}">Profilo</a>
+                    </div>
+                    @else
+                        <a href="{{ route('login') }}">Login</a>
+                    </div>
+                        @if (Route::has('register'))
+                        <div class="col-1 links">
+                            <a href="{{ route('register') }}">Register</a>
+                        </div>
+                        @endif
+                    @endauth
+                </div>
+            </div>
+        @endif
     @yield('content')
 </body>
 </html>
