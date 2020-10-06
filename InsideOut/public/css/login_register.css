@@ -20,9 +20,10 @@ form{
 }
 
 .form-reg{
-    margin-top:6rem;
+    margin-top:5rem;
     max-width: 380px;
     padding: 30px 8%;
+    height: 85%;
 }
 .form-reg .form-group{
 
@@ -31,12 +32,13 @@ form{
 .h2 {
     font-size:25px;
     line-height:1.5;
-    margin-bottom:2rem;
+    margin-bottom:1rem;
     text-align: center;
 }
 
 .avatar-preview-reg{
     margin:auto;
+    top:-4%;
     position:absolute;
     width: 150px;
     height: 150px;

@@ -9,10 +9,25 @@
             </div>
                     <form class="form-reg" method="POST" action="{{ route('register') }}">
                         @csrf
-                        <div class="row mb-5"></div>
+                        <div class="avatar-preview-reg" style="background-image: url('{{asset('img/avatar/avatar01.png')}}')">
+                        </div>
+                        <div class="row mb-4"></div>
                         <h2 class="h2">Registrati ora!</h2>
+
                         <div class="form-group">
-                                <input id="name" type="text" placeholder="Nome e Cognome*" class="input form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+
+                            <input id="email" type="email" placeholder="Email*" class="input form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+
+                            @error('email')
+                            <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                            @enderror
+
+                        </div>
+
+                        <div class="form-group">
+                                <input id="nome" type="text" placeholder="Nome*" class="input form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
 
                                 @error('name')
                                     <span class="invalid-feedback" role="alert">
@@ -22,15 +37,23 @@
                         </div>
 
                         <div class="form-group">
+                            <input id="cognome" type="text" placeholder="Cognome*" class="input form-control @error('cognome') is-invalid @enderror" name="cognome" value="{{ old('cognome') }}" required autocomplete="cognome" autofocus>
 
-                                <input id="email" type="email" placeholder="Email*" class="input form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+                            @error('name')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
 
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                        <div class="form-group">
+                            <input id="data" type="date" placeholder="Cognome*" class="input form-control data @error('cognome') is-invalid @enderror" name="cognome" value="{{ old('cognome') }}" required autocomplete="cognome" autofocus>
 
+                            @error('name')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
                         </div>
 
                         <div class="form-group">
