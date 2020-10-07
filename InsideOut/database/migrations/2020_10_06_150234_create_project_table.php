@@ -15,7 +15,7 @@ class CreateProjectTable extends Migration
     {
         Schema::create('progetto', function (Blueprint $table) {
             $table->id();
-            $table->string('utente')->references('id')->on('users');
+            $table->string('utente')->references('id')->on('users')->onDelete('cascade');
             $table->dateTime('dataCreazione');
             $table->timestamps();
         });

@@ -16,7 +16,4 @@ class Share extends Model
         'nomeProgetto', 'proprietario','collaboratore','progetto'
     ];
 
-    public function progetto(){
-        return $this->hasMany('App\Progetto');
-    }
 }

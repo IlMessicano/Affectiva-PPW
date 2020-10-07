@@ -16,7 +16,7 @@ class Task extends Model
         'progetto', 'nomeTask','descrizione'
     ];
 
-    public function progetto(){
+    public function video(){
         return $this->hasMany('App\Video');
     }
 }

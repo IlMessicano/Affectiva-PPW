@@ -42,7 +42,7 @@ class User extends Authenticatable
     }
 
     public function condivisione(){
-        return $this->hasMany('App\Share');
+        return $this->belongsToMany('App\Share');
     }
 
 }

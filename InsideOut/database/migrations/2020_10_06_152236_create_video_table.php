@@ -15,7 +15,7 @@ class CreateVideoTable extends Migration
     {
         Schema::create('video', function (Blueprint $table) {
             $table->id();
-            $table->string('task')->references('id')->on('task');
+            $table->string('task')->references('id')->on('task')->onDelete('cascade');
             $table->string('nomeVideo');
             $table->string('risultatiAnalisi');
             $table->timestamps();
