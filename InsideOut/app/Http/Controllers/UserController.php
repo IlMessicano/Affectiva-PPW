@@ -6,9 +6,8 @@ use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
-
     public function getUserDetails($id){
-        $users = DB::table('users')->find($id);
-        return view('profile')->with('user', $users);
+        $user = DB::table('users')->where('id',$id)->get();
+        return view('profile',compact('user'));
         }
-    }
+}
