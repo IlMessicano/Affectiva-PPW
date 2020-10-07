@@ -24,3 +24,4 @@ Route::get('/live', function () {
     return view('/live/live');
 })->name('live');
 
+Route::get('/user/{id}', [ 'as' => 'userDetail', 'uses' => 'UserController@getUserDetails']);
