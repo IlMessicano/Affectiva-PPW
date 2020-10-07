@@ -70,7 +70,7 @@
 
                         <div class="form-group">
                             <div class="input-group" id="picker" style="cursor:pointer;">
-                                <input placeholder="Data di nascita*" style="cursor:pointer;  background-color:white;" readonly type="text" id="datepicker" class="input form-control data @error('data') is-invalid @enderror" name="data" value="{{ old('data') }}" required autocomplete="data">
+                                <input placeholder="Data di nascita*" style="cursor:pointer;  background-color:white;" readonly type="text" id="datepicker" class="input form-control data @error('data') is-invalid @enderror" name="dataNascita" value="{{ old('data') }}" required autocomplete="data">
                                 <div class="input-group-append">
                                     <div class="input-group-text btn"><i class="fa fa-calendar" aria-hidden="true"></i></div>
                                 </div>
@@ -146,8 +146,7 @@
                                         </button>
                                     </div>
                                     <div class="modal-body">
-                                        <input type="text" hidden id="imageUpload" value="{{asset('img/avatar/Avatar01.png')}}">
-{{--                                        <input class="avatar-input" type="file" id="imageUpload" accept=".png, .jpg, jpeg" name="profileimg"/>--}}
+                                        <input type="text" hidden id="imageUpload" name="imgProfilo" value="{{asset('img/avatar/Avatar01.png')}}">
                                         <div class="row">
                                             <div class="col-3 center">
                                                 <img src="{{asset('img/avatar/Avatar01.png')}}" onclick="select(this)">
