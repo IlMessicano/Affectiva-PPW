@@ -1,76 +1,244 @@
 @extends('layouts.app')
 
 @section('content')
+
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Register') }}</div>
+            <script>
+                function select(img) {
+                    var ProfileImg = document.getElementById("imageUpload");
+                    ProfileImg.value = img.src;
+                    console.log(ProfileImg.value);
+                    $('#imagePreview').attr('style', 'background-image: url('+ProfileImg.value+')');
+                }
 
-                <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
+                function unset(){
+                    var ProfileImg = document.getElementById("imageUpload");
+                    ProfileImg.value = '{{asset('img/avatar/Avatar01.png')}}';
+                    console.log(ProfileImg.value);
+                }
+
+            </script>
+                    <form class="form-reg" method="POST" action="{{ route('register') }}">
                         @csrf
 
-                        <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
+                        <div class="avatar-upload">
+                            <div class="avatar-edit">
+                                <span data-toggle="modal" data-target="#exampleModal" class="fas"></span>
+                            </div>
+                            <div class="avatar-preview-reg">
+                                <div id="imagePreview" style="background-image: url('{{asset('img/avatar/Avatar01.png')}}')"></div>
+                            </div>
 
-                            <div class="col-md-6">
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                        </div>
+
+                        <div class="row mb-4"></div>
+                        <h2 class="h2">Registrati ora!</h2>
+
+                        <div class="form-group">
+
+                            <input id="email" type="email" placeholder="Email*" class="input form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+
+                            @error('email')
+                            <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                            @enderror
+
+                        </div>
+
+                        <div class="form-group">
+                                <input id="nome" type="text" placeholder="Nome*" class="input form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" >
 
                                 @error('name')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
-                            </div>
                         </div>
 
-                        <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+                        <div class="form-group">
+                            <input id="cognome" type="text" placeholder="Cognome*" class="input form-control @error('cognome') is-invalid @enderror" name="cognome" value="{{ old('cognome') }}" required autocomplete="cognome">
 
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
-
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
+                            @error('name')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
                         </div>
 
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+                        <div class="form-group">
+                            <div class="input-group" id="picker" style="cursor:pointer;">
+                                <input placeholder="Data di nascita*" style="cursor:pointer;  background-color:white;" readonly type="text" id="datepicker" class="input form-control data @error('data') is-invalid @enderror" name="data" value="{{ old('data') }}" required autocomplete="data">
+                                <div class="input-group-append">
+                                    <div class="input-group-text btn"><i class="fa fa-calendar" aria-hidden="true"></i></div>
+                                </div>
+                                    <script>
+                                        var picker = new Pikaday({
+                                            field: document.getElementById('datepicker'),
+                                            trigger: document.getElementById('picker'),
+                                            firstDay: 1,
+                                            bound: true,
+                                            i18n: {
+                                                previousMonth : 'Mese precedente',
+                                                nextMonth     : 'Mese successivo',
+                                                months        : ['Gennaio','Febbraio','Marzo','Aprile','Maggio','Giugno','Luglio','Agosto','Settembre','Ottobre','Novembre','Dicembre'],
+                                                weekdays      : ['Domenica','Lunedì','Martedì','Mercoledì','Giovedì','Venerdì','Sabato'],
+                                                weekdaysShort : ['Dom','Lun','Mar','Mer','Gio','Ven','Sab']
+                                            },
+                                            format: 'DD/MM/YYYY',
+                                            toString(date, format) {
+                                                // you should do formatting based on the passed format,
+                                                // but we will just return 'D/M/YYYY' for simplicity
+                                                const day = date.getDate();
+                                                const month = date.getMonth() + 1;
+                                                const year = date.getFullYear();
+                                                return `${day}/${month}/${year}`;
+                                            },
+                                            position: 'top right',
+                                            yearRange: [1940, moment().get('year')],
+                                            minDate: new Date(1920, 0, 1),
+                                            maxDate: moment().toDate()
 
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                                        });
+
+                                    </script>
+                            </div>
+
+                            @error('data')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+
+                        </div>
+
+                        <div class="form-group">
+
+                                <input id="password" type="password" placeholder="Password*" class="input form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
 
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
-                            </div>
+
                         </div>
 
-                        <div class="form-group row">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                        <div class="form-group">
+                                <input id="password-confirm" type="password" placeholder="Conferma password*" class="input form-control" name="password_confirmation" required autocomplete="new-password">
                             </div>
-                        </div>
 
-                        <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Register') }}
+                        <div class="form-group">
+                                <button type="submit" class="btn btn-block">
+                                    {{ __('Registrati') }}
                                 </button>
+                        </div>
+
+                        <div class="modal fade" id="exampleModal" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Scegli il tuo avatar</h5>
+                                        <button type="button" class="close" onclick="unset()" data-dismiss="modal" aria-label="Close" >
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <input type="text" hidden id="imageUpload" value="{{asset('img/avatar/Avatar01.png')}}">
+{{--                                        <input class="avatar-input" type="file" id="imageUpload" accept=".png, .jpg, jpeg" name="profileimg"/>--}}
+                                        <div class="row">
+                                            <div class="col-3 center">
+                                                <img src="{{asset('img/avatar/Avatar01.png')}}" onclick="select(this)">
+                                            </div>
+                                            <div class="col-3">
+                                                <img src="{{asset('img/avatar/Avatar02.png')}}" onclick="select(this)">
+                                            </div>
+                                            <div class="col-3">
+                                                <img src="{{asset('img/avatar/Avatar03.png')}}" onclick="select(this)">
+                                            </div>
+                                            <div class="col-3">
+                                                <img src="{{asset('img/avatar/Avatar04.png')}}" onclick="select(this)">
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-3">
+                                                <img src="{{asset('img/avatar/Avatar05.png')}}" onclick="select(this)">
+                                            </div>
+                                            <div class="col-3">
+                                                <img src="{{asset('img/avatar/Avatar06.png')}}" onclick="select(this)">
+                                            </div>
+                                            <div class="col-3">
+                                                <img src="{{asset('img/avatar/Avatar07.png')}}" onclick="select(this)">
+                                            </div>
+                                            <div class="col-3">
+                                                <img src="{{asset('img/avatar/Avatar08.png')}}" onclick="select(this)">
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-3">
+                                                <img src="{{asset('img/avatar/Avatar09.png')}}" onclick="select(this)">
+                                            </div>
+                                            <div class="col-3">
+                                                <img src="{{asset('img/avatar/Avatar10.png')}}" onclick="select(this)">
+                                            </div>
+                                            <div class="col-3">
+                                                <img src="{{asset('img/avatar/Avatar11.png')}}" onclick="select(this)">
+                                            </div>
+                                            <div class="col-3">
+                                                <img src="{{asset('img/avatar/Avatar12.png')}}" onclick="select(this)">
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-3">
+                                                <img src="{{asset('img/avatar/Avatar13.png')}}" onclick="select(this)">
+                                            </div>
+                                            <div class="col-3">
+                                                <img src="{{asset('img/avatar/Avatar14.png')}}" onclick="select(this)">
+                                            </div>
+                                            <div class="col-3">
+                                                <img src="{{asset('img/avatar/Avatar15.png')}}" onclick="select(this)">
+                                            </div>
+                                            <div class="col-3">
+                                                <img src="{{asset('img/avatar/Avatar16.png')}}" onclick="select(this)">
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-3">
+                                                <img src="{{asset('img/avatar/Avatar17.png')}}" onclick="select(this)">
+                                            </div>
+                                            <div class="col-3">
+                                                <img src="{{asset('img/avatar/Avatar18.png')}}" onclick="select(this)">
+                                            </div>
+                                            <div class="col-3">
+                                                <img src="{{asset('img/avatar/Avatar19.png')}}" onclick="select(this)">
+                                            </div>
+                                            <div class="col-3">
+                                                <img src="{{asset('img/avatar/Avatar20.png')}}" onclick="select(this)">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <script>
+                                        $(document).ready(function() {
+                                            $(".col-3").click(function () {
+
+                                                $(".col-3").removeClass('active');
+                                                $(this).addClass('active');
+
+                                            });
+                                        });
+                                    </script>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="unset()">Close</button>
+                                        <button type="button" class="btn" data-dismiss="modal">Save changes</button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
+
                     </form>
-                </div>
-            </div>
+
         </div>
     </div>
 </div>
