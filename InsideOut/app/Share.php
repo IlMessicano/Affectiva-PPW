@@ -15,4 +15,8 @@ class Share extends Model
     protected $fillable = [
         'nomeProgetto', 'proprietario','collaboratore','progetto'
     ];
+
+    public function progetto(){
+        return $this->hasMany('App\Progetto');
+    }
 }

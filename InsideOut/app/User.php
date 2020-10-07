@@ -36,4 +36,13 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function progetto(){
+        return $this->hasMany('App\Progetto');
+    }
+
+    public function condivisione(){
+        return $this->hasMany('App\Share');
+    }
+
 }

@@ -15,4 +15,8 @@ class Task extends Model
     protected $fillable = [
         'progetto', 'nomeTask','descrizione'
     ];
+
+    public function progetto(){
+        return $this->hasMany('App\Video');
+    }
 }

@@ -16,4 +16,12 @@ class Progetto extends Model
     protected $fillable = [
         'utente', 'dataCreazione',
     ];
+
+    public function task(){
+        return $this->hasMany('App\Task');
+    }
+
+    public function condivisione(){
+        return $this->hasMany('App\Share');
+    }
 }
