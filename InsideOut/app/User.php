@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password','dataNascita','password','imgProfilo'
     ];
 
     /**
@@ -36,4 +36,13 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function progetto(){
+        return $this->hasMany('App\Progetto');
+    }
+
+    public function condivisione(){
+        return $this->belongsToMany('App\Share');
+    }
+
 }
