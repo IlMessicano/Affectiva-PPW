@@ -5,14 +5,27 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
+            <script>
+                function select(img) {
+                    var ProfileImg = document.getElementById("imageUpload");
+                    ProfileImg.value = img.src;
+                    console.log(ProfileImg.value);
+                    $('#imagePreview').attr('style', 'background-image: url('+ProfileImg.value+')');
+                }
 
+                function unset(){
+                    var ProfileImg = document.getElementById("imageUpload");
+                    ProfileImg.value = '{{asset('img/avatar/Avatar01.png')}}';
+                    console.log(ProfileImg.value);
+                }
+
+            </script>
                     <form class="form-reg" method="POST" action="{{ route('register') }}">
                         @csrf
 
                         <div class="avatar-upload">
                             <div class="avatar-edit">
-                                <input class="avatar-input" type="file" id="imageUpload" accept=".png, .jpg, jpeg" name="profileimg"/>
-                                <label for="imageUpload" class="fas"></label>
+                                <span data-toggle="modal" data-target="#exampleModal" class="fas"></span>
                             </div>
                             <div class="avatar-preview-reg">
                                 <div id="imagePreview" style="background-image: url('{{asset('img/avatar/Avatar01.png')}}')"></div>
@@ -122,6 +135,108 @@
                                     {{ __('Registrati') }}
                                 </button>
                         </div>
+
+                        <div class="modal fade" id="exampleModal" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Scegli il tuo avatar</h5>
+                                        <button type="button" class="close" onclick="unset()" data-dismiss="modal" aria-label="Close" >
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <input type="text" hidden id="imageUpload" value="{{asset('img/avatar/Avatar01.png')}}">
+{{--                                        <input class="avatar-input" type="file" id="imageUpload" accept=".png, .jpg, jpeg" name="profileimg"/>--}}
+                                        <div class="row">
+                                            <div class="col-3 center">
+                                                <img src="{{asset('img/avatar/Avatar01.png')}}" onclick="select(this)">
+                                            </div>
+                                            <div class="col-3">
+                                                <img src="{{asset('img/avatar/Avatar02.png')}}" onclick="select(this)">
+                                            </div>
+                                            <div class="col-3">
+                                                <img src="{{asset('img/avatar/Avatar03.png')}}" onclick="select(this)">
+                                            </div>
+                                            <div class="col-3">
+                                                <img src="{{asset('img/avatar/Avatar04.png')}}" onclick="select(this)">
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-3">
+                                                <img src="{{asset('img/avatar/Avatar05.png')}}" onclick="select(this)">
+                                            </div>
+                                            <div class="col-3">
+                                                <img src="{{asset('img/avatar/Avatar06.png')}}" onclick="select(this)">
+                                            </div>
+                                            <div class="col-3">
+                                                <img src="{{asset('img/avatar/Avatar07.png')}}" onclick="select(this)">
+                                            </div>
+                                            <div class="col-3">
+                                                <img src="{{asset('img/avatar/Avatar08.png')}}" onclick="select(this)">
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-3">
+                                                <img src="{{asset('img/avatar/Avatar09.png')}}" onclick="select(this)">
+                                            </div>
+                                            <div class="col-3">
+                                                <img src="{{asset('img/avatar/Avatar10.png')}}" onclick="select(this)">
+                                            </div>
+                                            <div class="col-3">
+                                                <img src="{{asset('img/avatar/Avatar11.png')}}" onclick="select(this)">
+                                            </div>
+                                            <div class="col-3">
+                                                <img src="{{asset('img/avatar/Avatar12.png')}}" onclick="select(this)">
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-3">
+                                                <img src="{{asset('img/avatar/Avatar13.png')}}" onclick="select(this)">
+                                            </div>
+                                            <div class="col-3">
+                                                <img src="{{asset('img/avatar/Avatar14.png')}}" onclick="select(this)">
+                                            </div>
+                                            <div class="col-3">
+                                                <img src="{{asset('img/avatar/Avatar15.png')}}" onclick="select(this)">
+                                            </div>
+                                            <div class="col-3">
+                                                <img src="{{asset('img/avatar/Avatar16.png')}}" onclick="select(this)">
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-3">
+                                                <img src="{{asset('img/avatar/Avatar17.png')}}" onclick="select(this)">
+                                            </div>
+                                            <div class="col-3">
+                                                <img src="{{asset('img/avatar/Avatar18.png')}}" onclick="select(this)">
+                                            </div>
+                                            <div class="col-3">
+                                                <img src="{{asset('img/avatar/Avatar19.png')}}" onclick="select(this)">
+                                            </div>
+                                            <div class="col-3">
+                                                <img src="{{asset('img/avatar/Avatar20.png')}}" onclick="select(this)">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <script>
+                                        $(document).ready(function() {
+                                            $(".col-3").click(function () {
+
+                                                $(".col-3").removeClass('active');
+                                                $(this).addClass('active');
+
+                                            });
+                                        });
+                                    </script>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="unset()">Close</button>
+                                        <button type="button" class="btn" data-dismiss="modal">Save changes</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                     </form>
 
         </div>

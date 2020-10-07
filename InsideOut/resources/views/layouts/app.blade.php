@@ -39,14 +39,12 @@
                     @else
                         <a href="{{ route('login') }}">Login</a>
                     </div>
-                        @if (Route::has('register'))
-                        <div class="col-1 links">
-                            <a href="{{ route('register') }}">Registrati</a>
-                        </div>
-                        @endif
+                    @if (Route::has('register'))
+                    <div class="col-1 links">
+                        <a href="{{ route('register') }}">Registrati</a>
+                    </div>
+                    @endif
                     @endauth
-                </div>
-            </div>
         @endif
     @yield('content')
 </body>
