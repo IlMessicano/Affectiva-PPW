@@ -8,7 +8,7 @@ class UserController extends Controller
 {
 
     public function getUserDetails($id){
-        $users = DB::table('users')->get();
+        $users = DB::table('users')->find($id);
         return view('profile')->with('user', $users);
+        }
     }
-}
