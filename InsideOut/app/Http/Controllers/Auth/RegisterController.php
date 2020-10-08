@@ -53,9 +53,9 @@ class RegisterController extends Controller
             'nome' => ['required', 'string', 'max:255'],
             'cognome' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'dataNascita' => ['nullable', 'string', 'max:255'],
+            'dataNascita' => ['required', 'string', 'max:255'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'imgProfilo' => ['nullable','string'],
+            'imgProfilo' => ['required','string'],
         ]);
     }
 
