@@ -24,4 +24,9 @@ Route::get('/live', function () {
     return view('/live/live');
 })->name('live');
 
-Route::get('/user/{id}', [ 'as' => 'userDetail', 'uses' => 'UserController@getUserDetails']);
+Route::get('/user/{id}', 'UserController@showUser')->name('profile');
+Route::get('/user', function() {
+    if(Auth::user()->id){
+        $id=Auth::user()->id;
+    return redirect()->route('profile', ['id' => $id]);}
+else return view('/home');});

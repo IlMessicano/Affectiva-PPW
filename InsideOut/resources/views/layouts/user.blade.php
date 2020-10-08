@@ -1,9 +1,6 @@
 @extends('layouts.app')
 
-
-<div class="container-fluid">
-    <h1>PROFILO UTENTE</h1>
-</div>
+<link href="{{ asset('css/profile.css') }}" rel="stylesheet">
 
 <div class="container-fluid">
     <div class="row">
@@ -13,16 +10,20 @@
 
         <div class="col-3">
             <div class="row">
-                <button type="button" onclick="{{ route('login') }}">LOGOUT</button>
+                <a  class="btn btn-block btn-profile" href="{{ route('logout') }}">Logout</a>
             </div>
+
             <div class="row">
-                <button type="button" onclick="{{ route('login') }}">INDIETRO</button>
+                <a class="btn btn-block btn-profile" onclick="goBack()">Indietro</a>
             </div>
         </div>
     </div>
 
-    @if(Auth::user()->id == $user->id)
+    @if($user->id !=null )
+        @if(Auth::user()->id == $user->id)
                 @yield('EliminaAccount')
+        @endif
+
     @endif
 
 </div>

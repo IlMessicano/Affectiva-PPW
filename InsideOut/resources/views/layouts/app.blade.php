@@ -34,7 +34,7 @@
                         <a href="{{ url('/home') }}">Home</a>
                     </div>
                     <div class="col-1 links">
-                        <a href="{{ url('/') }}">Profilo</a>
+                        <a href="{{ url('/user') }}">Profilo</a>
                     </div>
                     @else
                         <a href="{{ route('login') }}">Login</a>

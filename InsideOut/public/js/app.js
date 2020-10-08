@@ -37126,3 +37126,7 @@ module.exports = __webpack_require__(/*! C:\Users\emidi\Desktop\InsideOut\resour
 /***/ })
 
 /******/ });
+
+function goBack() {
+    window.history.back();
+}
