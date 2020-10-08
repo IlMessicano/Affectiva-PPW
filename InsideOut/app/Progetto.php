@@ -14,7 +14,7 @@ class Progetto extends Model
     protected $primaryKey ="id";
 
     protected $fillable = [
-        'utente', 'dataCreazione',
+        'utente', 'dataCreazione', 'nome', 'descrizione'
     ];
 
     public function task(){
