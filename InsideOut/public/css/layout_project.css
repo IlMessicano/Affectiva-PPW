@@ -13,17 +13,25 @@ html, body{
     width:50px;
     height: 50px;
 }
-.top_nav{
+
+.top_nav {
     background-color: #cbcbcb;
     height: 3rem;
-    margin-right: 0!important;
-    margin-left: 0!important;
+    margin-right: 0 !important;
+    margin-left: 0 !important;
 }
+
+.top_nav + #small{
+    height: 5rem;
+}
+
+#normal>.collapse_left_bar{
+        padding-top: 0.7rem;
+    }
 
 .collapse_left_bar{
     position:absolute;
     cursor: pointer;
-    padding-top: 0.7rem;
 }
 
 .col_left{
@@ -31,9 +39,17 @@ html, body{
     height: 100%;
 }
 
-@media (max-width:900px){
+@media (max-width:768px){
     .col_left{
         display:none;
+    }
+
+    #normal{
+        display:none;
+    }
+
+    #small{
+        display:block;
     }
 
     .btn_new{
@@ -41,15 +57,25 @@ html, body{
     }
 }
 
-@media (min-width:900px) {
+@media (min-width:768px) {
     .col_left {
         display: block;
 
     }
+
     .new_things{
         margin-top: 5%;
     }
+
+    #normal{
+        display:block;
+    }
+
+    #small{
+        display:none;
+    }
 }
+
 .new_things{
     border-bottom: 4px ridge #bbb9b9;
     height: 12%;
@@ -64,14 +90,28 @@ html, body{
 .profile{
     position:absolute;
     right:0.5rem;
+    top:0.1rem;
     border-radius: 100%;
     height:40px;
     width:40px;
     cursor:pointer;
-    /*background-color: black;*/
     margin-top: 0.2rem;
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
 
 }
+
+.project{
+    border-bottom: 4px ridge #bbb9b9;
+    height: 40%;
+    padding:5% 10%;
+}
+
+.video{
+    border-bottom: 4px ridge #bbb9b9;
+    height: 40%;
+    padding:5% 10%;
+}
+
+
