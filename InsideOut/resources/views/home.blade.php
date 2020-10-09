@@ -5,10 +5,10 @@
         <button class="btn btn-block btn_new">
             <div class="row">
                 <div class="col-12 text-center">
-                    Project
+                    <i class="fas fa-plus"></i>
                 </div>
                 <div class="col-12 text-center">
-                    <i class="fas fa-plus"></i>
+                    Project
                 </div>
             </div>
         </button>
@@ -18,10 +18,10 @@
         <button class="btn btn-block  btn_new">
             <div class="row">
                 <div class="col-12 text-center">
-                    Task
+                    <i class="fas fa-plus"></i>
                 </div>
                 <div class="col-12 text-center">
-                    <i class="fas fa-plus"></i>
+                    Task
                 </div>
             </div>
         </button>
@@ -30,10 +30,10 @@
         <button class="btn btn-block btn_new">
             <div class="row">
                 <div class="col-12 text-center">
-                    Video
+                    <i class="fas fa-plus"></i>
                 </div>
                 <div class="col-12 text-center">
-                    <i class="fas fa-plus"></i>
+                    Video
                 </div>
             </div>
         </button>
