@@ -29,25 +29,6 @@
 
 </head>
 <body>
-        @if (Route::has('login'))
-            <div class="row justify-content-end" style="margin:0.5rem 0.8rem auto">
-                <div class="col-1 links">
-                    @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                    </div>
-                    <div class="col-1 links">
-                        <a href="{{ url('/') }}">Profilo</a>
-                    </div>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
-                    </div>
-                    @if (Route::has('register'))
-                    <div class="col-1 links">
-                        <a href="{{ route('register') }}">Registrati</a>
-                    </div>
-                    @endif
-                    @endauth
-        @endif
     @yield('content')
 </body>
 </html>
