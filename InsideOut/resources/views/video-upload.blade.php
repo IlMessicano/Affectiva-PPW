@@ -35,16 +35,19 @@
                         <input type="file" class="form-control-file" name="nomeVideo[]" id="nomeVideo" multiple="">
 
                     </div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" class="btn btn-primary">Carica</button>
                 </form>
 
             </div>
         </div>
     </div>
-    <p>Video:</p>
-    @foreach ($video as $video)
-        <div class="row"><div class="col-9"><p>{{ $video->nomeVideo }} </p></div></div>
-    @endforeach
+    <form method="POST" action="{{ action('VideoController@destroy') }}">
+        @csrf
+        @foreach($video as $video)
+            <label><input type="checkbox" name="checked[]" value="{{$video->id}}">{{$video->nomeVideo}}</label>
+        @endforeach
+        <button type="submit">Elimina</button>
+    </form>
 </div>
 
 @endsection

@@ -17,6 +17,7 @@ class CreateVideoTable extends Migration
             $table->id();
             $table->string('task')->references('id')->on('task')->onDelete('cascade')->nullable();
             $table->string('nomeVideo');
+            $table->string('pathVideo');
             $table->string('risultatiAnalisi')->nullable();
             $table->timestamps();
         });

@@ -6,6 +6,7 @@ use App\Video;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Storage;
 
 class VideoController extends Controller
 {
@@ -32,7 +33,8 @@ class VideoController extends Controller
                     $destinationPath = 'public/video/';
                     $fileName = $request->file('nomeVideo')[$key]->getClientOriginalName();
                     $files->move($destinationPath, $fileName);
-                    $save[]['nomeVideo'] = "$fileName";
+                    $save[$key]['nomeVideo'] = "$fileName";
+                    $save[$key]['pathVideo'] = "$destinationPath$fileName";
                 }
             }
 
@@ -48,5 +50,14 @@ class VideoController extends Controller
     public function getVideo(){
         $video = DB::table('video')->get();
         return view('/video-upload',compact('video'));
+    }
+
+    public function destroy(Request $request)
+    {
+        $checked = $request->input('checked');
+        //$path = DB::table('video')->select('pathVideo')->where('id','=',$checked);
+        Video::destroy($checked);
+        return Redirect::to("video-upload")
+            ->withSuccess('Eliminato!');
     }
 }
