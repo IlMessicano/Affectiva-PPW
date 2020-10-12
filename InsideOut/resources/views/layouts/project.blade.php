@@ -20,16 +20,6 @@
             $(".collapse_left_bar").click(function(){
                 $(".col_left").toggle();
             });
-
-            // $(window).bind("resize", function () {
-            //         if ($(this).width() < 576) {
-            //             $('#normal').attr('hidden','true');
-            //             $('#small').attr('hidden','false');
-            //         } else if($(this).width() > 576){
-            //             $('#normal').attr('hidden','false');
-            //             $('#small').attr('hidden','true');
-            //         }
-            //     }).resize();
         });
     </script>
 
@@ -52,7 +42,7 @@
         <div class="col-4 offset-lg-3 offset-md-4 h-100 align-content-center" style="padding-top: 1.5rem;">
             <a href="#">Progetto</a> < <a href="#">Task</a> < <a href="#">Video</a>
         </div>
-        <div class="profile" style="background-image: url('{{Auth::user()->imgProfilo}}')">
+        <div class="profile" style="background-image: url('{{Auth::user()->imgProfilo}}')" onclick="">
         </div>
     </div>
     <div class="row w-100 top_nav align-content-center" id="small">
@@ -75,7 +65,9 @@
                 @include('button')
             </div>
             <div class="row project">
-                @yield('project')
+                <div class="container-fluid">
+                    @yield('project')
+                </div>
             </div>
             <div class="row video">
                 @yield('video')
