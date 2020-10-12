@@ -162,7 +162,7 @@ html, body{
 }
 
 .task{
-    height: 10%;
+    height: 35%;
 }
 
 .col-1 .trash{
@@ -187,4 +187,9 @@ html, body{
 
 .rotate{
     transform:rotate(90deg);
+}
+
+.task_name:hover{
+    font-weight: bold;
+    cursor:pointer;
 }

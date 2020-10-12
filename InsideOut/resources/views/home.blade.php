@@ -10,13 +10,19 @@ $i=0
 @section('head')
     <script>
         $(document).ready(function(){
+
             $(".p_title").click(function(){
                 var id = this.id;
-                $('#task_of_'+id).toggle();
+                $('.all_task').hide();
+                $('.fa-chevron-right').removeClass('rotate');
 
+                $('#task_of_'+id).toggle();
                 $('#label_project_'+id).toggleClass('rotate');
             });
-
+            $(".task_name").click(function(){
+                $(".task_name").removeClass("font-weight-bold");
+                $(this).addClass("font-weight-bold");
+            });
         });
     </script>
 @endsection
@@ -45,11 +51,11 @@ $i=0
             </div>
             <div class="row w-100 all_task" id="task_of_{{$i}}">
             @forelse($task as $task)
-                <div class="row task w-100 h-25">
+                <div class="row task w-100">
                         <div class="col-1 offset-3">
                             <i class="fas fa-minus"></i>
                         </div>
-                        <div class="col-4">
+                        <div class="col-4 task_name">
                             {{$task->nomeTask}}
                         </div>
                         <div class="col-1 offset-2 trash">

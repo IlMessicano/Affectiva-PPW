@@ -73,6 +73,7 @@
                 @yield('video')
             </div>
         </div>
+        <p style="color:#dcdcdc">asdasdasdsa</p>
     </div>
 </div>
 </body>
