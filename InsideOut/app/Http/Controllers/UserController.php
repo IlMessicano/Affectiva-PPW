@@ -32,8 +32,26 @@ class UserController extends Controller
         if (Auth::user()->id == $id) {
             return view('profile')->with('user', $user);
         } else {
-            if ($user=='[]')
+            if ($user == '[]')
                 return view('home');
+            else return view('profile')->with('user', $user);
         }
+    }
+
+    public function destroy(){
+        $id = Auth::user()->id;
+        $user = DB::table('users')->where('id', $id)->delete();
+        return $user;
+    }
+
+    public function editUser()
+    {
+        $id = auth()->user()->id;
+        $column = $_POST['column'];
+        $data = $_POST['data'];
+        DB::table('users')->where('id', $id)->update([$column => $data]);
+        $user = DB::table('users')->where('id', $id)->get();
+       // return UserController::showUser($id);
+        return view('profile')->with('user', $user);
     }
 }

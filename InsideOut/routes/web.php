@@ -30,3 +30,17 @@ Route::get('/user', function() {
         $id=Auth::user()->id;
     return redirect()->route('profile', ['id' => $id]);}
 else return view('/home');});
+
+Route::post('/user/updated', 'UserController@editUser')->name('editUser');
+
+Route::get('/delete', 'UserController@destroy')->name('deleteUser');
+
+/*
+Route::get('/user/{id}/edit', function(){
+    if(Auth::user()->id){
+        $id=Auth::user()->id;
+        return
+    }
+}
+*/
+

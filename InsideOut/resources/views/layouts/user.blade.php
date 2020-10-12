@@ -21,7 +21,7 @@
 
     @if($user->id !=null )
         @if(Auth::user()->id == $user->id)
-                @yield('EliminaAccount')
+            @yield('EliminaAccount')
         @endif
 
     @endif
