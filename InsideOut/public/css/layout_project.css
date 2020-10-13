@@ -1,6 +1,6 @@
 html, body{
     height: 100%;
-    background-color: #727272;
+    background-color: #cccccc;
     overflow-x:hidden;
     overflow-y:hidden;
 }
@@ -15,7 +15,8 @@ html, body{
 }
 
 .top_nav {
-    background-color: #cbcbcb;
+    background-color: #666666;
+    color: #cccccc;
     height: 3rem;
     margin-right: 0 !important;
     margin-left: 0 !important;
@@ -35,8 +36,13 @@ html, body{
 }
 
 .col_left{
-    background-color: #cbcbcb;
+    background-color: #666666;
+    color: #cccccc!important;
     height: 100%;
+}
+
+.col_left  .container-fluid{
+    color: #cccccc!important;
 }
 
 @media (max-width:768px){
@@ -143,7 +149,7 @@ html, body{
 }
 
 .p_title:hover, .trash:hover{
-    background-color: #b4b4b4;
+    background-color: #7a7a7a;
 }
 
 .trash{
@@ -192,4 +198,11 @@ html, body{
 .task_name:hover{
     font-weight: bold;
     cursor:pointer;
+}
+
+iframe{
+    border-top: 4px ridge #bbb9b9;
+    border-left: 4px ridge #bbb9b9;
+    height: 100%;
+    width: 100%;
 }

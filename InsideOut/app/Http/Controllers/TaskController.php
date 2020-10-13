@@ -10,4 +10,9 @@ class TaskController extends Controller
         $task=DB::table('task')->where('progetto','=',$id)->get();
         return $task;
     }
+
+    public static function getTaskbyId($id){
+        $content=DB::table('task')->find($id);
+        return view('viewTask')->with('content',$content);
+    }
 }

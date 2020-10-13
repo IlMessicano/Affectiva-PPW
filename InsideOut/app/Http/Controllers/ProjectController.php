@@ -10,4 +10,9 @@ class ProjectController extends Controller
         $project=DB::table('progetto')->where('utente','=',$id)->get();
         return $project;
     }
+
+    public static function getProjectbyId($id){
+        $content=DB::table('progetto')->find($id);
+        return view('viewProject')->with('content',$content);
+    }
 }

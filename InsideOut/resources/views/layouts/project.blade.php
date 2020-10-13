@@ -19,6 +19,7 @@
         $(document).ready(function(){
             $(".collapse_left_bar").click(function(){
                 $(".col_left").toggle();
+                $("iframe").toggleClass('col-lg-12').toggleClass('col-md-12');
             });
         });
     </script>
@@ -73,7 +74,9 @@
                 @yield('video')
             </div>
         </div>
-        <p style="color:#dcdcdc">asdasdasdsa</p>
+        <div class="col h-100" style="padding:0">
+            @yield('content_center')
+        </div>
     </div>
 </div>
 </body>
