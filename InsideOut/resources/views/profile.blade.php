@@ -5,9 +5,10 @@
     @foreach ($user as $user)
     @if(Auth::user()->id == $user->id)
 
-            <div class="avatar-preview-profile" style="background-image: url('{{asset('img/avatar/avatar01.png')}}')"></div>
-
             <div class="container-fluid userDetails">
+
+                {{-- AVATAR UTENTE INSERIRE MODIFICA --}}
+                <div class="avatar-preview-profile" style="background-image: url('{{asset('img/avatar/avatar01.png')}}')"></div>
 
 
                 {{-- NOME UTENTE --}}
@@ -70,51 +71,107 @@
                             <button type="submit" class="btn btn-block">
                                 SALVA
                             </button>
+                        </div>
                             <button type="button" class="btn btn-block" onclick="javascript:editCognomeCancel()">
                                 ANNULLA
                             </button>
-                        </div>
-
+                    </form>
                 </div>
 
 
                 {{-- EMAIL UTENTE --}}
                 <div id="userEmail">
-                    <div class="row"><div class="col-9"><label><b>Email: </b>{{ $user->email }}</label></div>
-                        <div id="editIcon"><i class="fa fa-edit" style="font-size:20px" data-toggle="tooltip" data-placement="right" title="Modifica Email" onclick="javascript:editEmail()"></i></div>
+                    <div class="row"><div class="col-9"><label><b>Email: </b>{{ $user->email }}</label></div></div>
+                </div>
+
+
+{{-- DATA NASCITA UTENTE --}}
+                <div id="userDataNascita">
+                    <div class="row"><div class="col-9"><label><b>Data di nascita: </b>{{ $user->dataNascita }}</label></div>
+                        <div id="editIcon"><i class="fa fa-edit" style="font-size:20px" data-toggle="tooltip" data-placement="right" title="Modifica Data Nascita" onclick="javascript:editDataNascita()"></i></div>
                     </div>
                 </div>
 
-                {{-- FORM A COMPARSA EMAIL --}}
-                <div id="formEmail">
+                {{-- FORM A COMPARSA DATA NASCITA --}}
+                <div id="formDataNascita">
                     <form method="POST" action="{{ route('editUser') }}">
                         @csrf
                         <div class="form-group">
-                            <input type="text" id="column" name="column" value="email" readonly>
-                            <label><b>Email: </b></label>
-                            <input id="data" type="text" class="input form-control @error('email') is-invalid @enderror" name="data" required autocomplete="email" >
+                            <input type="text" id="column" name="column" value="dataNascita" readonly>
+                            <label><b>Data di nascita: </b></label>
 
-                            @error('email')
-                            <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                            @enderror
+                        {{--   INSERIRE INPUT DATA DI NASCITA --}}
+
                         </div>
                         <div class="form-group">
                             <button type="submit" class="btn btn-block">
                                 SALVA
                             </button>
                         </div>
-                        <button type="button" class="btn btn-block" onclick="javascript:editEmailCancel()">
+                    </form>
+                        <button type="button" class="btn btn-block" onclick="javascript:editDataNascitaCancel()">
                             ANNULLA
                         </button>
-                    </form>
                 </div>
 
-
-{{-- DATA NASCITA UTENTE --}}
-                <div class="row"><div class="col-9"><label><b>Data di nascita: </b><label id="dataNascita"> {{ $user->dataNascita }} </label></label></div></div>
+            {{-- PASSWORD UTENTE --}}
+            <div id="userPassword">
+                <div class="row"><div class="col-9"><label><b>Password: </b>********</label></div>
+                    <div id="editIcon"><i class="fa fa-edit" style="font-size:20px" data-toggle="tooltip" data-placement="right" title="Modifica Password" onclick="javascript:editPassword()"></i></div>
+                </div>
             </div>
+
+            {{-- FORM A COMPARSA NOME --}}
+            <div id="formPassword">
+                <form method="POST" action="{{ route('editUser') }}">
+                    @csrf
+
+                    <div class="form-group">
+                        <input type="text" id="column" name="column" value="password" readonly>
+                        <label><b>Vecchia password: </b></label>
+                        <input id="password" type="password" placeholder="Password*" class="input form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+
+                        @error('password')
+                        <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                        @enderror
+                    </div>
+
+                    <div class="form-group">
+                        <label><b>Nuova password: </b></label>
+                        <input id="password" type="password" placeholder="Password*" class="input form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+
+                        @error('password')
+                        <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                        @enderror
+                    </div>
+
+                <div class="form-group"
+                        <label><b>Conferma password: </b></label>
+                        <input id="data" type="text" class="input form-control @error('password') is-invalid @enderror" name="data" required autocomplete="nome" >
+
+                        @error('password')
+                        <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                        @enderror
+                </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-block">
+                            SALVA
+                        </button>
+                    </div>
+                    <button type="button" class="btn btn-block" onclick="javascript:editPasswordCancel()">
+                        ANNULLA
+                    </button>
+                </form>
+            </div>
+
+            </div>
+
         @else
             <div class="avatar-preview-profile" style="background-image: url('{{asset('img/avatar/avatar01.png')}}')"></div>
         <div class="container-fluid userDetails">
@@ -131,7 +188,7 @@
 
 
 @section('EliminaAccount')
-    <div class="row" style="display: block; margin-top:3%">
+    <div class="row eliminaAccount" style="display: block; margin-top:3%">
         <h2 style="color:#ff0000; margin-left: 2%">Elimina Account</h2>
         <div style="background-color:#ff0000; margin-left: 2%; height:1px; width:60%;"></div>
         <div id="deleteConfirm">

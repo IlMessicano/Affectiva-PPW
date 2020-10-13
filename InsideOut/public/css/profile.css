@@ -80,10 +80,10 @@
     display: none;
 }
 
-#userNome, #userCognome, #userEmail, #userDataNascita {
+#userNome, #userCognome, #userEmail, #userDataNascita, #userPassword {
     display: block;
 }
-#formNome, #formCognome, #formEmail, #formDataNascita {
+#formNome, #formCognome, #formEmail, #formDataNascita, #formPassword{
     display: none;
 }
 
@@ -93,4 +93,10 @@
 
 #deleteConfirm{
     display: none;
+}
+
+.eliminaAccount{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
 }
