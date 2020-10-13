@@ -22,14 +22,11 @@ class VideoController extends Controller
             'nomeVideo.*' => 'mimes:doc,docx,pdf,txt,jpeg,png,jpg,gif,svg'
         ]);
 
-        if($request->hasfile('nomeVideo'))
-        {
+        if ($request->hasfile('nomeVideo')) {
 
-            foreach ($request->file('nomeVideo') as $key => $value)
-            {
+            foreach ($request->file('nomeVideo') as $key => $value) {
 
-                if ($files = $value)
-                {
+                if ($files = $value) {
                     $destinationPath = 'public/video/';
                     $fileName = $request->file('nomeVideo')[$key]->getClientOriginalName();
                     $files->move($destinationPath, $fileName);
@@ -47,17 +44,36 @@ class VideoController extends Controller
 
     }
 
-    public function getVideo(){
+    public function getVideo()
+    {
         $video = DB::table('video')->get();
-        return view('/video-upload',compact('video'));
+        return view('/video-upload', compact('video'));
     }
 
     public function destroy(Request $request)
     {
+
         $checked = $request->input('checked');
-        //$path = DB::table('video')->select('pathVideo')->where('id','=',$checked);
+        $video = DB::table('video')->select('pathVideo')->where('id', '=', $checked)->get();
+
+
+        $video = str_replace('/', '', $video);
+        $video = str_replace('{', '', $video);
+        $video = str_replace('}', '', $video);
+        $video = str_replace('(', '', $video);
+        $video = str_replace(')', '', $video);
+        $video = str_replace('[', '', $video);
+        $video = str_replace(']', '', $video);
+        $video = str_replace(':', '', $video);
+        $video = str_replace('"', '', $video);
+        $video = str_replace('pathVideo', '', $video);
+
+        unlink($video);
         Video::destroy($checked);
+
+
         return Redirect::to("video-upload")
-            ->withSuccess('Eliminato!');
+            ->withSuccess('Video eliminato!');
+
     }
 }

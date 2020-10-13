@@ -44,7 +44,7 @@
     <form method="POST" action="{{ action('VideoController@destroy') }}">
         @csrf
         @foreach($video as $video)
-            <label><input type="checkbox" name="checked[]" value="{{$video->id}}">{{$video->nomeVideo}}</label>
+            <label><input type="radio" name="checked" value="{{$video->id}}">{{$video->nomeVideo}}</label>
         @endforeach
         <button type="submit">Elimina</button>
     </form>
