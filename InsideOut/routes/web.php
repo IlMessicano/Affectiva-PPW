@@ -30,3 +30,7 @@ Route::get('/project/{id}','ProjectController@ViewProjectbyId')->name('project')
 
 Route::get('/task/{id}','TaskController@ViewTaskbyId')->name('task');
 
+Route::post('/createproject','ProjectController@insertProject')->name('insert_project');
+
+Route::post('/createtask','TaskController@insertTask')->name('insert_task');
+

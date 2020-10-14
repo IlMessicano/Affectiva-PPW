@@ -46,27 +46,9 @@
     height: 20%;
 }
 
-
-.fix_breadcrumb{
-    height: 3rem;
-    font-size: small;
-    position:fixed;
-    top:1%;
-    left:5%;
-    z-index: 1;
-    ;
-}
-.fix_breadcrumb a{
+.breadcrumb a{
     color: #566bac;
     text-decoration: underline;
  }
 
-.fix_breadcrumb a:hover{
-    font-weight: bold;
-}
 
-.last_breadcrumb{
-    pointer-events: none;
-    text-decoration: none!important;
-    font-weight: bold;
-}

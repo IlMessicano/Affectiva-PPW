@@ -18,15 +18,19 @@ $share=\App\Http\Controllers\ShareController::getShareWithMe($id);
                 $('#task_of_'+id).show();
                 $('#label_project_'+id).addClass('rotate');
                 $('#content').attr('src','http://127.0.0.1:8000/project/'+id);
-                $('#new_task').removeClass('disabled');
-                $('#new_video').addClass('disabled');
+                $('#new_task').removeClass('disabled').attr('disabled',false);
+                $('#new_video').addClass('disabled').attr('disabled',true);
+                $('#progetto').attr('value', id);
+                console.log()
+
             });
             $(".task_name").click(function(){
                 var id = this.id;
                 $(".task_name").removeClass("font-weight-bold");
                 $(this).addClass("font-weight-bold");
                 $('#content').attr('src','http://127.0.0.1:8000/task/'+id);
-                $('#new_video').removeClass('disabled');
+                $('#new_video').removeClass('disabled').attr('disabled',false);
+                $('#task').attr('value', id);
             });
         });
     </script>
@@ -118,4 +122,110 @@ $share=\App\Http\Controllers\ShareController::getShareWithMe($id);
 @section('content_center')
     <iframe src="" id="content">
     </iframe>
+@endsection
+
+@section('modals')
+    <div class="modal fade" id="modal_new_project">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title font-weight-bold">Crea un nuovo progetto</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" >
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="container-fluid h-100">
+                        <form method="post" action="{{route('insert_project')}}">
+                            @csrf
+                            <div class="modal_form">
+                                <div class="form-group row">
+                                    <label for="nome" class="col-sm-4 col-form-label font-weight-bold">Nome Progetto</label>
+                                    <div class="col-sm-8">
+                                        <input id="nome" type="text" class="input form-control @error('nome') is-invalid @enderror" name="nome" value="{{ old('nome') }}" required autocomplete="nome" >
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="descrizione" class="col-sm-4 col-form-label font-weight-bold">Descrizione</label>
+                                    <div class="col-sm-8">
+                                        <textarea id="descrizione" type="text-area" rows="3" class="input form-control @error('nome') is-invalid @enderror" name="descrizione" value="{{ old('descrizione') }}" required autocomplete="descrizione"></textarea>
+                                    </div>
+                                </div>
+                                <input type="hidden" name="utente" id="utente" value="{{$id}}">
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                <button class="btn" type="submit">Salva Progetto</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modal_new_task">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title font-weight-bold">Crea un nuovo Task</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" >
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="container-fluid h-100">
+                        <form method="post" action="{{route('insert_task')}}">
+                            @csrf
+                            <div class="modal_form">
+                                <div class="form-group row">
+                                    <label for="nome" class="col-sm-4 col-form-label font-weight-bold">Nome Task</label>
+                                    <div class="col-sm-8">
+                                        <input id="nome" type="text" class="input form-control @error('nome') is-invalid @enderror" name="nome" value="{{ old('nome') }}" required autocomplete="nome" >
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="descrizione" class="col-sm-4 col-form-label font-weight-bold">Descrizione</label>
+                                    <div class="col-sm-8">
+                                        <textarea id="descrizione" type="text-area" rows="3" class="input form-control @error('nome') is-invalid @enderror" name="descrizione" value="{{ old('descrizione') }}" required autocomplete="descrizione"></textarea>
+                                    </div>
+                                </div>
+                                <input type="hidden" name="progetto" id="progetto" value="">
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                <button class="btn" type="submit">Salva Task</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modal_new_video">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title font-weight-bold">Aggiungi Video</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" >
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="container-fluid h-100">
+                        <form method="post" action="#">
+                            @csrf
+
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                <button class="btn" type="submit">Salva Video</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection

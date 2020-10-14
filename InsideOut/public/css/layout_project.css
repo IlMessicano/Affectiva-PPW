@@ -99,6 +99,10 @@ html, body{
     margin:auto;
 }
 
+.disabled{
+    cursor: not-allowed!important;
+}
+
 .profile{
     position:absolute;
     right:0.5rem;
@@ -211,9 +215,43 @@ html, body{
 }
 
 iframe{
-    border-top: 4px ridge #bbb9b9;
     border-left: 4px ridge #bbb9b9;
+    border-top: 4px ridge #bbb9b9;
     height: 100%;
     width: 100%;
 }
 
+.breadcrumb{
+    position: absolute;
+    border-radius: 0;
+    height: 2rem;
+    padding-bottom: 0.4rem;
+    /*margin-top:-2rem;*/
+    z-index: 1;
+    background: transparent;
+}
+
+.modal-header, .modal-footer{
+    background: #666666;
+    color: #cccccc;
+}
+
+.close{
+    text-shadow: none!important;
+}
+
+.modal-body{
+    background: #cccccc;
+    color:#666666;
+    border-bottom-right-radius:.3rem;
+    border-bottom-left-radius:.3rem;
+    padding:0;
+}
+
+.modal_form{
+    padding:10%;
+}
+
+.input{
+    border: 1px solid #666666;
+}

@@ -22,7 +22,7 @@ $sharedWith=\App\Http\Controllers\ShareController::getSharebyProject($content->i
             <div class="row w-100 top2_project">
                 <div class="col-6 text-center">
                     <div class="row">
-                        <p class="font-weight-bold">Descrizione:</p><span class="modify" style="left:7rem"><i class="fas fa-pencil-alt"></i></span>
+                        <p class="font-weight-bold">Descrizione:</p>
                     </div>
                     <div class="row">
                         <p class="text-left">{{$content->descrizione}}{{$content->descrizione}}{{$content->descrizione}}{{$content->descrizione}}{{$content->descrizione}}{{$content->descrizione}}</p>
@@ -40,7 +40,7 @@ $sharedWith=\App\Http\Controllers\ShareController::getSharebyProject($content->i
                         </div>
                     @empty
                         <div class="col-12 text-center">Non hai condiviso il progetto con nessun utente</div>
-                        <div class="col-12 text-center"><a class="btn" style="margin-top:0.7rem;color: #cccccc">Codividi ora! <i class="fas fa-plus"></i></a></div>
+                        <div class="col-12 text-center"><a class="btn" style="margin-top:0.7rem;color: #212529;">Codividi ora! <i class="fas fa-user-plus"></i></a></div>
                     @endforelse
                     </div>
                 </div>

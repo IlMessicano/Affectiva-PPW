@@ -30,9 +30,9 @@
 
 </head>
 <body>
-    <div class="fix_breadcrumb">
+    <nav aria-label="breadcrumb">
         @yield('breadcrumb')
-    </div>
+    </nav>
     @yield('content')
 </body>
 </html>

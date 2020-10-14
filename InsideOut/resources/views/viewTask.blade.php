@@ -6,7 +6,10 @@
 
 @section('breadcrumb')
     <?php $TaskProject= \App\Http\Controllers\ProjectController::getProjectbyId($content->progetto);$TaskId=$TaskProject->id?>
-    <a href="{{route('project', ['id' => $TaskId ])}}">{{$TaskProject->nome}}</a> < <a href="" class="last_breadcrumb">{{$content->nomeTask}}</a>
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{{route('project', ['id' => $TaskId ])}}">{{$TaskProject->nome}}</a></li>
+        <li class="breadcrumb-item active" aria-current="page">{{$content->nomeTask}}</li>
+    </ol>
 @endsection
 
 @section('content')
@@ -16,13 +19,13 @@
                 {{$content->nomeTask}}<span class="modify"><i class="fas fa-pencil-alt"></i></span>
             </div>
 
-            <div class="col-4 text-center">
+            <div class="col-sm-5 text-center">
                 <div class="row justify-content-center description">
-                    <div class="col-7">
+                    <div class="col-sm-12">
                         <p class="font-weight-bold">Descrizione:</p>
                     </div>
                     <div class="w-100"></div>
-                    <div class="col-5">
+                    <div class="col-sm-12">
                         <p>
                             {{$content->descrizione}}
                         </p>
