@@ -40,25 +40,7 @@
 <div class="container-fluid h-100 w-100" >
     <div class="row w-100 top_nav" id="normal">
         <i class="fas fa-bars fa-2x text-center collapse_left_bar"></i>
-        <div class="col-4 offset-lg-3 offset-md-4 h-100 align-content-center" style="padding-top: 1.5rem;">
-            <a href="#">Progetto</a> < <a href="#">Task</a> < <a href="#">Video</a>
-        </div>
-        <a class="profile" style="background-image: url('{{Auth::user()->imgProfilo}}')" href="{{route('logout')}}">
-        </a>
-    </div>
-    <div class="row w-100 top_nav align-content-center" id="small">
-        <div class="row w-100 align-content-center" style="height:3rem">
-            <div class="col-2">
-                <i class="fas fa-bars fa-2x text-center collapse_left_bar"></i>
-            </div>
-            <div class="profile" style="background-image: url('{{Auth::user()->imgProfilo}}');top:0.5rem">
-            </div>
-        </div>
-        <div class="row w-100" style="height:2rem;">
-            <div class="col-8 offset-2" id="breadcrumb">
-                <a href="#">Progetto</a> < <a href="#">Task</a> < <a href="#">Video</a>
-            </div>
-        </div>
+        <a class="profile" style="background-image: url('{{Auth::user()->imgProfilo}}')" href="{{route('logout')}}"></a>
     </div>
     <div class="row h-100" >
         <div class="col-lg-3 col-md-4 col-sm-12 h-100 col_left">

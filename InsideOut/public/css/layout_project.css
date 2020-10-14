@@ -95,6 +95,8 @@ html, body{
     font-size: smaller;
     max-width:4.5rem;
     max-height: 3rem;
+    padding:0;
+    margin:auto;
 }
 
 .profile{
@@ -113,7 +115,7 @@ html, body{
 }
 
 .profile:hover{
-    box-shadow: 0px 0px 5px 1px rgba(114,114,114,1);
+    box-shadow: 0px 0px 5px 1px rgb(200, 200, 200);
 }
 
 .project{
@@ -125,7 +127,6 @@ html, body{
 }
 
 .video{
-    border-bottom: 4px ridge #bbb9b9;
     height: 40%;
     padding:5% 10%;
 }
@@ -133,6 +134,13 @@ html, body{
 .all_project{
     height: 60%;
     margin:0;
+}
+
+.my_project_title{
+    font-size: medium;
+    padding-left:10%;
+    margin:0;
+    color: #90a8b3;
 }
 
 .project_n{
@@ -183,12 +191,14 @@ html, body{
 .project_shared{
     height: 40%;
     margin: 5% 0 0 0;
+
 }
 
 .shared_title{
     font-size: medium;
     padding-left:10%;
     margin:0;
+    color: #90a8b3;
 }
 
 .rotate{
@@ -206,3 +216,4 @@ iframe{
     height: 100%;
     width: 100%;
 }
+

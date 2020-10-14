@@ -10,4 +10,10 @@ class ShareController extends Controller
         $share=DB::table('condivisione')->where('collaboratore','=',$id)->get();
         return $share;
     }
+
+    public static function getSharebyProject($id){
+        $share=DB::table('condivisione')->select('collaboratore')->where('progetto','=',$id)->get();
+        return $share;
+    }
+
 }

@@ -11,8 +11,14 @@ class TaskController extends Controller
         return $task;
     }
 
-    public static function getTaskbyId($id){
+    public static function ViewTaskbyId($id){
         $content=DB::table('task')->find($id);
         return view('viewTask')->with('content',$content);
     }
+
+    public static function getTaskbyId($id){
+        $content=DB::table('task')->find($id);
+        return $content;
+    }
+
 }

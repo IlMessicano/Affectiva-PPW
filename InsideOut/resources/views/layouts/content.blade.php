@@ -30,6 +30,9 @@
 
 </head>
 <body>
-@yield('content')
+    <div class="fix_breadcrumb">
+        @yield('breadcrumb')
+    </div>
+    @yield('content')
 </body>
 </html>

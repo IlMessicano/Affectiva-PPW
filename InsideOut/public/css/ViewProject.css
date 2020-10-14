@@ -1,0 +1,55 @@
+.container-fluid{
+    color:#666666;
+}
+
+.title {
+    font-size: 2.5rem;
+    padding-top:1%;
+}
+
+.created_at{
+    font-size:1rem;
+}
+
+.top_project{
+    height: 40%;
+}
+
+.top1_project{
+    height: 45%;
+}
+
+.top2_project{
+    height: 55%;
+}
+
+.modify{
+    position:absolute;
+    display: inline-block;
+    width: 1.5rem;
+    height: 1.5rem;
+    cursor: pointer;
+    font-size:1rem;
+    border-radius:100%;
+    background: #90a8b3;
+}
+
+.row{
+    margin:auto;
+}
+
+.shared_name{
+    margin:0;
+    margin-block-start: 0;
+    margin-block-end: 0;
+    padding-left:1rem;
+    display: inline-block;
+}
+
+.bottom_nav{
+    position: fixed;
+    bottom: 5%;
+    height: 4rem;
+    padding-right: 5%;
+
+}

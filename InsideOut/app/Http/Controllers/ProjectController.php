@@ -11,8 +11,14 @@ class ProjectController extends Controller
         return $project;
     }
 
-    public static function getProjectbyId($id){
+    public static function ViewProjectbyId($id){
         $content=DB::table('progetto')->find($id);
         return view('viewProject')->with('content',$content);
     }
+    public static function getProjectbyId($id){
+            $project=DB::table('progetto')->find($id);
+            return $project;
+        }
+
+
 }

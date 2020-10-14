@@ -26,7 +26,7 @@ Route::get('/live', function () {
 
 Route::get('/user/{id}', [ 'as' => 'userDetail', 'uses' => 'UserController@getUserDetails']);
 
-Route::get('/project/{id}','ProjectController@getProjectbyId')->name('project');
+Route::get('/project/{id}','ProjectController@ViewProjectbyId')->name('project');
 
-Route::get('/task/{id}','TaskController@getTaskbyId')->name('task');
+Route::get('/task/{id}','TaskController@ViewTaskbyId')->name('task');
 

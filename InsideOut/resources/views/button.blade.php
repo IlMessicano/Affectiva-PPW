@@ -26,7 +26,7 @@
     </div>
 
     <div class="col-4">
-        <button class="btn btn-block btn_new disabled">
+        <button class="btn btn-block btn_new disabled" id="new_video">
             <div class="row">
                 <div class="col-12 text-center">
                     <i class="fas fa-plus"></i>

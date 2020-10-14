@@ -18,12 +18,15 @@ $share=\App\Http\Controllers\ShareController::getShareWithMe($id);
                 $('#task_of_'+id).show();
                 $('#label_project_'+id).addClass('rotate');
                 $('#content').attr('src','http://127.0.0.1:8000/project/'+id);
+                $('#new_task').removeClass('disabled');
+                $('#new_video').addClass('disabled');
             });
             $(".task_name").click(function(){
                 var id = this.id;
                 $(".task_name").removeClass("font-weight-bold");
                 $(this).addClass("font-weight-bold");
                 $('#content').attr('src','http://127.0.0.1:8000/task/'+id);
+                $('#new_video').removeClass('disabled');
             });
         });
     </script>
@@ -34,6 +37,11 @@ $share=\App\Http\Controllers\ShareController::getShareWithMe($id);
 @section('project')
 
     <div class="row w-100 all_project">
+        <div class="row w-100">
+            <div class="col-12">
+                <p class="my_project_title font-weight-bold">I miei progetti</p>
+            </div>
+        </div>
         @forelse($project as $project)
             <?php $task=\App\Http\Controllers\TaskController::getTasksOfProject($project->id); ?>
             <div class="row w-100 project_n">
