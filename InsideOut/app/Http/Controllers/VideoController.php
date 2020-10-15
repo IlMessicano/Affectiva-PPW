@@ -19,7 +19,7 @@ class VideoController extends Controller
     {
         request()->validate([
             'nomeVideo' => 'required',
-            'nomeVideo.*' => 'mimes:doc,docx,pdf,txt,jpeg,png,jpg,gif,svg'
+            'nomeVideo.*' => 'mimes:avi'
         ]);
 
         if ($request->hasfile('nomeVideo')) {
