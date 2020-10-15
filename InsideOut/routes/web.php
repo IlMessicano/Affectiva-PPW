@@ -25,3 +25,9 @@ Route::get('/live', function () {
 })->name('live');
 
 Route::get('/user/{id}', [ 'as' => 'userDetail', 'uses' => 'UserController@getUserDetails']);
+
+Route::get('video-upload', 'VideoController@index');
+Route::post('save-video-upload', 'VideoController@VideoStore');
+Route::get('video-upload', 'VideoController@getVideo');
+
+Route::post('video-upload', ['uses' => 'VideoController@destroy']);
