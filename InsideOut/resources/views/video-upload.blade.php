@@ -33,14 +33,14 @@
                     @csrf
                     <div class="form-group">
                         <input type="file" class="form-control-file" name="nomeVideo[]" id="nomeVideo" multiple="">
-
+                        <div class="preview"></div>   <!--for preview purpose -->
+                        </div>
                     </div>
                     <button type="submit" class="btn btn-primary">Carica</button>
                 </form>
 
             </div>
         </div>
-    </div>
     <form method="POST" action="{{ action('VideoController@destroy') }}">
         @csrf
         @foreach($video as $video)
@@ -48,6 +48,33 @@
         @endforeach
         <button type="submit">Elimina</button>
     </form>
-</div>
+    </div>
 
+
+<script>
+    $(function() {
+        // Multiple images preview in browser
+        var imagesPreview = function(input, placeToInsertImagePreview) {
+
+            if (input.files) {
+                var filesAmount = input.files.length;
+
+                for (i = 0; i < filesAmount; i++) {
+                    var reader = new FileReader();
+
+                    reader.onload = function(event) {
+                        $($.parseHTML('<img style="width: 150px">')).attr('src', event.target.result).appendTo(placeToInsertImagePreview);
+                    }
+
+                    reader.readAsDataURL(input.files[i]);
+                }
+            }
+
+        };
+
+        $('#nomeVideo').on('change', function() {
+            imagesPreview(this, 'div.preview');
+        });
+    });
+    </script>
 @endsection
