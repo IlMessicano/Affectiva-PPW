@@ -43,8 +43,11 @@
         </div>
     <form method="POST" action="{{ action('VideoController@destroy') }}">
         @csrf
+        <h5><b>VIDEO CARICATI: <b/></h5>
         @foreach($video as $video)
-            <label><input type="radio" name="checked" value="{{$video->id}}">{{$video->nomeVideo}}</label>
+            <label><input type="radio" name="checked" value="{{$video->id}}">
+                <img style="width: 100px" src="{{ asset($video->pathVideo) }}"/>
+            </label>
         @endforeach
         <button type="submit">Elimina</button>
     </form>
