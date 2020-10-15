@@ -18,8 +18,8 @@ $share=\App\Http\Controllers\ShareController::getShareWithMe($id);
                 $('#task_of_'+id).show();
                 $('#label_project_'+id).addClass('rotate');
                 $('#content').attr('src','http://127.0.0.1:8000/project/'+id);
-                $('#new_task').removeClass('disabled').attr('disabled',false);
-                $('#new_video').addClass('disabled').attr('disabled',true);
+                $('#new_task').removeClass('disabled_task').attr('disabled',false);
+                $('#new_video').addClass('disabled_video').attr('disabled',true);
                 $('#progetto').attr('value', id);
 
             });
@@ -29,7 +29,7 @@ $share=\App\Http\Controllers\ShareController::getShareWithMe($id);
                 $(this).addClass("font-weight-bold");
                 $('#content').attr('src','http://127.0.0.1:8000/task/'+id);
                 $('#iframe').attr('value','http://127.0.0.1:8000/task/'+id);
-                $('#new_video').removeClass('disabled').attr('disabled',false);
+                $('#new_video').removeClass('disabled_video').attr('disabled',false);
                 $('#task').attr('value', id);
             });
 
@@ -72,7 +72,7 @@ $share=\App\Http\Controllers\ShareController::getShareWithMe($id);
                     </div>
                 </div>
              <div class="col-1 offset-5 trash_project" id="{{$project->id}}" data-toggle="modal" data-target="#modal_delete_project">
-                    <i class="far fa-trash-alt" style="color:#c00000;"></i>
+                    <i class="far fa-trash-alt" style="color:#880400;"></i>
                 </div>
             </div>
             <div class="row w-100 all_task" id="task_of_{{$project->id}}">
@@ -85,7 +85,7 @@ $share=\App\Http\Controllers\ShareController::getShareWithMe($id);
                             {{$task->nomeTask}}
                         </div>
                         <div class="col-1 offset-2 trash_task" id="{{$task->id}}" data-toggle="modal" data-target="#modal_delete_task">
-                            <i class="far fa-trash-alt" style="color:#c00000;"></i>
+                            <i class="far fa-trash-alt" style="color:#880400;"></i>
                         </div>
                 </div>
             @empty
