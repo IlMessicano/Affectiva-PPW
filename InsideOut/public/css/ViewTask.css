@@ -1,0 +1,55 @@
+.container-fluid{
+    color:#666666;
+}
+
+.title {
+    font-size: 2.5rem;
+    padding-top:1%;
+}
+
+.modify{
+    position:absolute;
+    right:40%;
+    display: inline-block;
+    width: 1.5rem;
+    height: 1.5rem;
+    cursor: pointer;
+    font-size:1rem;
+    border-radius:100%;
+    background: #90a8b3;
+    transition: background 0.5s;
+}
+
+.modify:hover{
+    background: #7a949f;
+}
+
+.description{
+    font-size:1rem;
+}
+
+.description p{
+    margin:0;
+    margin-block-start: 0;
+    margin-block-end: 0;
+    word-wrap: break-word;
+}
+
+.bottom_nav{
+    position: fixed;
+    bottom: 5%;
+    height: 4rem;
+    padding-right: 5%;
+
+}
+
+.top_task{
+    height: 20%;
+}
+
+.breadcrumb a{
+    color: #566bac;
+    text-decoration: underline;
+ }
+
+

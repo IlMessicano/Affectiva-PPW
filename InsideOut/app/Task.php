@@ -8,8 +8,6 @@ class Task extends Model
 {
     public $table='task';
 
-    public $timestamps = false;
-
     protected $primaryKey ="id";
 
     protected $fillable = [

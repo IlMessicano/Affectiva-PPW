@@ -26,6 +26,22 @@ Route::get('/live', function () {
 
 Route::get('/user/{id}', [ 'as' => 'userDetail', 'uses' => 'UserController@getUserDetails']);
 
+Route::get('/project/{id}','ProjectController@ViewProjectbyId')->name('project');
+
+Route::get('/task/{id}','TaskController@ViewTaskbyId')->name('task');
+
+Route::post('/createproject','ProjectController@insertProject')->name('insert_project');
+
+Route::post('/createtask','TaskController@insertTask')->name('insert_task');
+
+Route::post('/updateproject','ProjectController@updateProject')->name('modify_project');
+
+Route::post('/updatetask','TaskController@updateTask')->name('modify_task');
+
+Route::post('/destroyproject','ProjectController@destroyProject')->name('delete_project');
+
+Route::post('/destroytask','TaskController@destroyTask')->name('delete_task');
+
 Route::get('video-upload', 'VideoController@index');
 Route::post('save-video-upload', 'VideoController@VideoStore');
 Route::get('video-upload', 'VideoController@getVideo');
