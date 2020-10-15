@@ -14,7 +14,7 @@ class TaskController extends Controller
     }
 
     public static function ViewTaskbyId($id){
-        $content=DB::table('task')->find($id);
+        $content=Task::find($id);
         return view('viewTask')->with('content',$content);
     }
 
@@ -29,6 +29,20 @@ class TaskController extends Controller
         $new_task->descrizione = $request->descrizione;
         $new_task->progetto = $request->progetto;
         $new_task->save();
-        return redirect('home');
+        $iframe=route('task',['id'=>$new_task->id]);
+        return view('home')->with ('iframe',$iframe);
+    }
+
+    public function updateTask(Request $request){
+        $task=Task::find($request->id);
+        $task->nomeTask = $request->nome;
+        $task->descrizione = $request->descrizione;
+        $task->save();
+        return view('viewTask')->with('content',$task);
+    }
+
+    public function destroyTask(Request $request){
+        Task::destroy($request->task);
+        return redirect()->route('home');
     }
 }

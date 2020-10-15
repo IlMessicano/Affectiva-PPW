@@ -15,12 +15,12 @@ class ProjectController extends Controller
     }
 
     public static function ViewProjectbyId($id){
-        $content=DB::table('progetto')->find($id);
+        $content=Progetto::find($id);
         return view('viewProject')->with('content',$content);
     }
 
     public static function getProjectbyId($id){
-        $project=DB::table('progetto')->find($id);
+        $project=Progetto::find($id);
         return $project;
     }
 
@@ -31,7 +31,22 @@ class ProjectController extends Controller
         $new_project->utente = $request->utente;
         $new_project->dataCreazione = now();
         $new_project->save();
-        return redirect('home');
+        $iframe=route('project',['id'=>$new_project->id]);
+        return view('home')->with ('iframe',$iframe);
      }
+
+    public function updateProject(Request $request){
+        $project= Progetto::find($request->id);
+        $project->nome = $request->nome;
+        $project->descrizione = $request->descrizione;
+        $project->save();
+        $iframe=route('project',['id'=>$project->id]);
+        return view('home')->with ('iframe',$iframe);
+    }
+
+    public function destroyProject(Request $request){
+        Progetto::destroy($request->progetto);
+        return redirect()->route('home');
+    }
 
 }

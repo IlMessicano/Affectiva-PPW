@@ -21,7 +21,6 @@ $share=\App\Http\Controllers\ShareController::getShareWithMe($id);
                 $('#new_task').removeClass('disabled').attr('disabled',false);
                 $('#new_video').addClass('disabled').attr('disabled',true);
                 $('#progetto').attr('value', id);
-                console.log()
 
             });
             $(".task_name").click(function(){
@@ -29,14 +28,27 @@ $share=\App\Http\Controllers\ShareController::getShareWithMe($id);
                 $(".task_name").removeClass("font-weight-bold");
                 $(this).addClass("font-weight-bold");
                 $('#content').attr('src','http://127.0.0.1:8000/task/'+id);
+                $('#iframe').attr('value','http://127.0.0.1:8000/task/'+id);
                 $('#new_video').removeClass('disabled').attr('disabled',false);
                 $('#task').attr('value', id);
+            });
+
+            $(".trash_project").click(function(){
+                var id = this.id;
+                $('#delete_project').attr('value', id);
+                var name = $(this).prev().text();
+                $('#title_delete_progetto').text(name);
+            });
+
+            $(".trash_task").click(function(){
+                var id = this.id;
+                $('#delete_task').attr('value', id);
+                var name = $(this).prev().text();
+                $('#title_delete_task').text(name);
             });
         });
     </script>
 @endsection
-
-
 
 @section('project')
 
@@ -59,7 +71,7 @@ $share=\App\Http\Controllers\ShareController::getShareWithMe($id);
                         </div>
                     </div>
                 </div>
-                <div class="col-1 offset-5 trash">
+             <div class="col-1 offset-5 trash_project" id="{{$project->id}}" data-toggle="modal" data-target="#modal_delete_project">
                     <i class="far fa-trash-alt" style="color:#c00000;"></i>
                 </div>
             </div>
@@ -72,7 +84,7 @@ $share=\App\Http\Controllers\ShareController::getShareWithMe($id);
                         <div class="col-4 task_name" id="{{$task->id}}">
                             {{$task->nomeTask}}
                         </div>
-                        <div class="col-1 offset-2 trash">
+                        <div class="col-1 offset-2 trash_task" id="{{$task->id}}" data-toggle="modal" data-target="#modal_delete_task">
                             <i class="far fa-trash-alt" style="color:#c00000;"></i>
                         </div>
                 </div>
@@ -102,12 +114,24 @@ $share=\App\Http\Controllers\ShareController::getShareWithMe($id);
                         </div>
                     </div>
                 </div>
-                <div class="col-1 offset-5 trash">
-                    <i class="far fa-trash-alt" style="color:#c00000;"></i>
-                </div>
+            </div>
+            <div class="row w-100 all_task" id="task_of_{{$share->progetto}}">
+            <?php $shareTask=\App\Http\Controllers\TaskController::getTasksOfProject($share->progetto); ?>
+                @forelse($shareTask as $shareTask)
+                    <div class="row task w-100">
+                        <div class="col-1 offset-3">
+                            <i class="fas fa-minus"></i>
+                        </div>
+                        <div class="col-4 task_name" id="{{$shareTask->id}}">
+                            {{$shareTask->nomeTask}}
+                        </div>
+                    </div>
+                @empty
+                    <div class="col-12 text-center">Nessun task creato</div>
+                @endforelse
             </div>
         @empty
-            <div class="col-12 text-center">Nessun progetto condiviso</div>
+             <div class="col-12 text-center">Nessun progetto condiviso</div>
         @endforelse
 
 
@@ -120,7 +144,13 @@ $share=\App\Http\Controllers\ShareController::getShareWithMe($id);
 @endsection
 
 @section('content_center')
+    @isset($iframe)
+    <iframe src="{{$iframe}}" id="content">
+    @endisset
+
+    @empty($iframe)
     <iframe src="" id="content">
+    @endempty
     </iframe>
 @endsection
 
@@ -191,7 +221,6 @@ $share=\App\Http\Controllers\ShareController::getShareWithMe($id);
                                     </div>
                                 </div>
                                 <input type="hidden" name="progetto" id="progetto" value="">
-
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
@@ -228,4 +257,61 @@ $share=\App\Http\Controllers\ShareController::getShareWithMe($id);
             </div>
         </div>
     </div>
+
+    <div class="modal fade" id="modal_delete_project">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title font-weight-bold">Elimina progetto</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" >
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="container-fluid h-100">
+                        <form method="post" action="{{route('delete_project')}}">
+                            @csrf
+                            <div class="elimina_allert text-center">
+                            Sei sicuro di voler eliminare il progetto: <br><span id="title_delete_progetto" class="font-weight-bold"></span>?
+                            </div>
+                            <input type="hidden" name="progetto" id="delete_project" value="">
+                            <div class="modal-footer">
+                                <button type="button" class="btn" data-dismiss="modal">Annulla</button>
+                                <button type="submit" class="btn btn-danger">Elimina</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modal_delete_task">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title font-weight-bold">Elimina task</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" >
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="container-fluid h-100">
+                        <form method="post" action="{{route('delete_task')}}">
+                            @csrf
+                            <div class="elimina_allert text-center">
+                            Sei sicuro di voler eliminare il task: <br><span id="title_delete_task" class="font-weight-bold"></span>?
+                            </div>
+                            <input type="hidden" name="task" id="delete_task" value="">
+                            <div class="modal-footer">
+                                <button type="button" class="btn" data-dismiss="modal">Annulla</button>
+                                <button type="submit" class="btn btn-danger">Elimina</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 @endsection

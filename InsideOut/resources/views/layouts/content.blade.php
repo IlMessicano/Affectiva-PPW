@@ -34,5 +34,7 @@
         @yield('breadcrumb')
     </nav>
     @yield('content')
+
+    @yield('modals')
 </body>
 </html>

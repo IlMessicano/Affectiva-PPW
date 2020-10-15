@@ -34,3 +34,13 @@ Route::post('/createproject','ProjectController@insertProject')->name('insert_pr
 
 Route::post('/createtask','TaskController@insertTask')->name('insert_task');
 
+Route::post('/updateproject','ProjectController@updateProject')->name('modify_project');
+
+Route::post('/updatetask','TaskController@updateTask')->name('modify_task');
+
+Route::post('/destroyproject','ProjectController@destroyProject')->name('delete_project');
+
+Route::post('/destroytask','TaskController@destroyTask')->name('delete_task');
+
+
+

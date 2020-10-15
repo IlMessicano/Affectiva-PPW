@@ -164,7 +164,7 @@ html, body{
     background-color: #7a7a7a;
 }
 
-.trash{
+.trash_project, .trash_task{
     height: 100%;
     width: 100%;
     text-align: center;
@@ -180,10 +180,10 @@ html, body{
 }
 
 .task{
-    height: 35%;
+    /*height: 35%;*/
 }
 
-.col-1 .trash{
+.col-1 .trash_task, .col-1 .trash_project{
     min-height: 20px;
     min-width: 20px;
 }
@@ -254,4 +254,9 @@ iframe{
 
 .input{
     border: 1px solid #666666;
+}
+
+.elimina_allert{
+    margin:5rem;
+    font-size: large;
 }
