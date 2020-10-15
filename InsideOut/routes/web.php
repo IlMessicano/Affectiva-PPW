@@ -42,5 +42,8 @@ Route::post('/destroyproject','ProjectController@destroyProject')->name('delete_
 
 Route::post('/destroytask','TaskController@destroyTask')->name('delete_task');
 
+Route::get('video-upload', 'VideoController@index');
+Route::post('save-video-upload', 'VideoController@VideoStore');
+Route::get('video-upload', 'VideoController@getVideo');
 
-
+Route::post('video-upload', ['uses' => 'VideoController@destroy']);
