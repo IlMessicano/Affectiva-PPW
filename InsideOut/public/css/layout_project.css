@@ -172,7 +172,7 @@ html, body{
     margin:0;
 }
 
-.my_project_title{
+.my_project_title, .my_video_title{
     font-size: medium;
     padding-left:10%;
     margin:0;
@@ -192,7 +192,7 @@ html, body{
     padding-right: 5%;
 }
 
-.p_title:hover, .trash:hover{
+.p_title:hover, .trash_task:hover, .trash_project:hover{
     background-color: #7a7a7a;
 }
 
@@ -246,7 +246,7 @@ html, body{
     cursor:pointer;
 }
 
-iframe{
+#content{
     border-left: 4px ridge #bbb9b9;
     border-top: 4px ridge #bbb9b9;
     height: 100%;
@@ -291,4 +291,12 @@ iframe{
 .elimina_allert{
     margin:5rem;
     font-size: large;
+}
+
+#video{
+    border: none;
+}
+
+.custom-file-input{
+    cursor: pointer;
 }

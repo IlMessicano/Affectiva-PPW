@@ -55,9 +55,12 @@
                 </div>
             </div>
             <div class="row video">
-                @yield('video')
+                <div class="container-fluid">
+                    @yield('video')
+                </div>
             </div>
         </div>
+
         <div class="col h-100" style="padding:0">
             @yield('content_center')
         </div>

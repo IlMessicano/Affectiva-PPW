@@ -20,7 +20,7 @@ form{
 }
 
 .form-reg{
-    margin-top:5rem;
+    margin-top:6rem;
     max-width: 380px;
     padding: 30px 8%;
     height: 85%;
@@ -39,7 +39,8 @@ form{
 .avatar-upload {
     position:absolute;
     max-width: 250px;
-    top:-4%;
+    top:0;
+    right:49%;
 }
 
 .avatar-edit {

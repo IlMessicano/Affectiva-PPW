@@ -19,7 +19,7 @@ class VideoController extends Controller
     {
         request()->validate([
             'nomeVideo' => 'required',
-            'nomeVideo.*' => 'mimes:avi'
+            'nomeVideo.*' => 'mimes:avi,txt'
         ]);
 
         if ($request->hasfile('nomeVideo')) {
@@ -27,11 +27,12 @@ class VideoController extends Controller
             foreach ($request->file('nomeVideo') as $key => $value) {
 
                 if ($files = $value) {
-                    $destinationPath = 'public/video/';
+                    $destinationPath = 'video/';
                     $fileName = $request->file('nomeVideo')[$key]->getClientOriginalName();
                     $files->move($destinationPath, $fileName);
                     $save[$key]['nomeVideo'] = "$fileName";
                     $save[$key]['pathVideo'] = "$destinationPath$fileName";
+                    $save[$key]['task'] = $request->task;
                 }
             }
 
@@ -39,21 +40,25 @@ class VideoController extends Controller
 
         Video::insert($save);
 
-        return Redirect::to("video-upload")
-            ->withSuccess('Caricamento completato!');
+        return redirect()->route('home');
 
     }
 
-    public function getVideo()
+    public static function getVideo($id)
     {
-        $video = DB::table('video')->get();
-        return view('/video-upload', compact('video'));
+        $video = DB::table('video')->where('task','=',$id)->get();
+        return $video;
+    }
+
+    public static function ViewVideobyId($id){
+        $content=Video::find($id);
+        return view('viewVideo')->with('content',$content);
     }
 
     public function destroy(Request $request)
     {
 
-        $checked = $request->input('checked');
+        $checked = $request->video;
         $video = DB::table('video')->select('pathVideo')->where('id', '=', $checked)->get();
 
 
@@ -72,8 +77,7 @@ class VideoController extends Controller
         Video::destroy($checked);
 
 
-        return Redirect::to("video-upload")
-            ->withSuccess('Video eliminato!');
+        return redirect()->route('home');
 
     }
 }

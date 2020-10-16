@@ -30,11 +30,10 @@
 
 </head>
 <body>
-    <nav aria-label="breadcrumb">
-        @yield('breadcrumb')
-    </nav>
-    @yield('content')
+@yield('breadcrumb')
 
-    @yield('modals')
+@yield('content')
+
+@yield('modals')
 </body>
 </html>

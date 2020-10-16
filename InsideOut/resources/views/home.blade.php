@@ -31,6 +31,9 @@ $share=\App\Http\Controllers\ShareController::getShareWithMe($id);
                 $('#iframe').attr('value','http://127.0.0.1:8000/task/'+id);
                 $('#new_video').removeClass('disabled_video').attr('disabled',false);
                 $('#task').attr('value', id);
+                var name = $(this).text();
+                $('#task_video').text(name);
+                $('#video').attr('src','http://127.0.0.1:8000/video/'+id);
             });
 
             $(".trash_project").click(function(){
@@ -46,7 +49,19 @@ $share=\App\Http\Controllers\ShareController::getShareWithMe($id);
                 var name = $(this).prev().text();
                 $('#title_delete_task').text(name);
             });
+
+            $('#nomeVideo').on('change', function(){
+                var lenght = this.files.length;
+                var fileName='-- '+this.files.item(0).name+' --';
+                for (var i = 1; i < length; ++i){
+                    fileName+='-- '+this.files.item(i).name+' --';
+                }
+
+                    $(this).next('.custom-file-label').html(fileName);
+            });
+
         });
+
     </script>
 @endsection
 
@@ -140,7 +155,18 @@ $share=\App\Http\Controllers\ShareController::getShareWithMe($id);
 @endsection
 
 @section('video')
-    Video
+
+
+    <div class="row w-100 h-100 all_video">
+        <div class="row w-100">
+            <div class="col-12">
+                <p class="my_video_title font-weight-bold">Video del task: <span id="task_video"></span></p>
+            </div>
+        </div>
+        <iframe src="" id="video">
+
+        </iframe>
+    </div>
 @endsection
 
 @section('content_center')
@@ -244,9 +270,17 @@ $share=\App\Http\Controllers\ShareController::getShareWithMe($id);
                 </div>
                 <div class="modal-body">
                     <div class="container-fluid h-100">
-                        <form method="post" action="#">
+                        <form method="post" action="{{ url('/save-video-upload') }}" enctype="multipart/form-data">
                             @csrf
-
+                            <div class="modal_form">
+                                <div class="form-group">
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input" id="nomeVideo" required name="nomeVideo[]" multiple="">
+                                        <label class="custom-file-label" for="nomeVideo" id="selectList">Scegli video</label>
+                                    </div>
+                                    <input type="hidden" name="task" id="task" value="">
+                                </div>
+                            </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                                 <button class="btn" type="submit">Salva Video</button>
@@ -303,6 +337,34 @@ $share=\App\Http\Controllers\ShareController::getShareWithMe($id);
                             Sei sicuro di voler eliminare il task: <br><span id="title_delete_task" class="font-weight-bold"></span>?
                             </div>
                             <input type="hidden" name="task" id="delete_task" value="">
+                            <div class="modal-footer">
+                                <button type="button" class="btn" data-dismiss="modal">Annulla</button>
+                                <button type="submit" class="btn btn-danger">Elimina</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modal_delete_video" data-backdrop="false">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title font-weight-bold">Elimina video</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" >
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="container-fluid h-100">
+                        <form method="post" action="{{route('delete_video')}}">
+                            @csrf
+                            <div class="elimina_allert text-center">
+                            Sei sicuro di voler eliminare il Video: <br><span id="title_delete_video" class="font-weight-bold"></span>?
+                            </div>
+                            <input type="hidden" name="video" id="delete_video" value="">
                             <div class="modal-footer">
                                 <button type="button" class="btn" data-dismiss="modal">Annulla</button>
                                 <button type="submit" class="btn btn-danger">Elimina</button>

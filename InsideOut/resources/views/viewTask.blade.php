@@ -5,11 +5,13 @@
 @endsection
 
 @section('breadcrumb')
-    <?php $TaskProject= \App\Http\Controllers\ProjectController::getProjectbyId($content->progetto);$ProjectId=$TaskProject->id?>
-    <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="{{route('project', ['id' => $ProjectId ])}}">{{$TaskProject->nome}}</a></li>
-        <li class="breadcrumb-item active" aria-current="page">{{$content->nomeTask}}</li>
-    </ol>
+    <nav aria-label="breadcrumb">
+        <?php $TaskProject= \App\Http\Controllers\ProjectController::getProjectbyId($content->progetto);$ProjectId=$TaskProject->id?>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{route('project', ['id' => $ProjectId ])}}">{{$TaskProject->nome}}</a></li>
+            <li class="breadcrumb-item active" aria-current="page">{{$content->nomeTask}}</li>
+        </ol>
+    </nav>
 @endsection
 
 @section('content')
@@ -42,7 +44,7 @@
 @endsection
 
 @section('modals')
-    <div class="modal fade" id="modal_modify_task" data-backdrop="false">
+    <div class="modal fade" id="modal_modify_task" data-backdrop="static">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
