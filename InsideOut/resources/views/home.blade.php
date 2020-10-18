@@ -7,6 +7,7 @@ $share=\App\Http\Controllers\ShareController::getShareWithMe($id);
 @extends('layouts.project')
 
 @section('head')
+
     <script>
         $(document).ready(function(){
 
@@ -21,6 +22,8 @@ $share=\App\Http\Controllers\ShareController::getShareWithMe($id);
                 $('#new_task').removeClass('disabled_task').attr('disabled',false);
                 $('#new_video').addClass('disabled_video').attr('disabled',true);
                 $('#progetto').attr('value', id);
+                $('#video').attr('src','about::blank');
+                $('#task_video').text(' ');
 
             });
             $(".task_name").click(function(){
@@ -52,12 +55,17 @@ $share=\App\Http\Controllers\ShareController::getShareWithMe($id);
 
             $('#nomeVideo').on('change', function(){
                 var lenght = this.files.length;
-                var fileName='-- '+this.files.item(0).name+' --';
-                for (var i = 1; i < length; ++i){
-                    fileName+='-- '+this.files.item(i).name+' --';
-                }
-
+                console.log(lenght);
+                var fileName='-- '+this.files.item(0).name+' -- ';
+                if(lenght>1){
+                    for (var i = 1; i < length; ++i){
+                        fileName+=this.files.item(i).name+' -- ';
+                    }
                     $(this).next('.custom-file-label').html(fileName);
+                }
+                else{
+                    $(this).next('.custom-file-label').html(fileName);
+                }
             });
 
         });
@@ -275,7 +283,7 @@ $share=\App\Http\Controllers\ShareController::getShareWithMe($id);
                             <div class="modal_form">
                                 <div class="form-group">
                                     <div class="custom-file">
-                                        <input type="file" class="custom-file-input" id="nomeVideo" required name="nomeVideo[]" multiple="">
+                                        <input type="file" class="custom-file-input" id="nomeVideo" required name="nomeVideo[]" multiple="multiple">
                                         <label class="custom-file-label" for="nomeVideo" id="selectList">Scegli video</label>
                                     </div>
                                     <input type="hidden" name="task" id="task" value="">

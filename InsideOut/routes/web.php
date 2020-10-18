@@ -34,9 +34,11 @@ Route::get('/video/{id}',function($id){
     return view('video')->with('id', $id);
 })->name('video');
 
-Route::get('/viewVideo/{id}','VideoController@ViewVideobyId')->name('task');
+Route::get('/viewVideo/{id}','VideoController@ViewVideobyId')->name('viewVideo');
 
 Route::post('/createproject','ProjectController@insertProject')->name('insert_project');
+
+Route::post('/createshare','ShareController@insertShare')->name('insert_share');
 
 Route::post('/createtask','TaskController@insertTask')->name('insert_task');
 
@@ -47,6 +49,8 @@ Route::post('/updatetask','TaskController@updateTask')->name('modify_task');
 Route::post('/destroyproject','ProjectController@destroyProject')->name('delete_project');
 
 Route::post('/destroytask','TaskController@destroyTask')->name('delete_task');
+
+Route::post('/destroyshare','ShareController@destroyShare')->name('delete_share');
 
 Route::get('video-upload', 'VideoController@index');
 Route::post('save-video-upload', 'VideoController@VideoStore');

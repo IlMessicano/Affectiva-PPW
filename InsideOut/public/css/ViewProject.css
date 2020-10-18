@@ -30,8 +30,14 @@
     height: 1.5rem;
     cursor: pointer;
     font-size:1rem;
+    color: #212529;
     border-radius:100%;
     background: #90a8b3;
+    transition: background 0.15s ease-in-out;
+}
+
+.modify:hover{
+    background: #637C87;
 }
 
 .row{
@@ -42,8 +48,16 @@
     margin:0;
     margin-block-start: 0;
     margin-block-end: 0;
-    padding-left:1rem;
     display: inline-block;
+}
+
+a{
+    color:inherit;
+}
+
+a:hover{
+    font-weight: bold;
+    text-decoration: underline;
 }
 
 .bottom_nav{
@@ -51,5 +65,24 @@
     bottom: 5%;
     height: 4rem;
     padding-right: 5%;
+}
 
+.trash{
+    position: relative;
+    height: 23px;
+    width: 23px;
+    text-align: center;
+    transition: background-color 0.15s ease-in-out;
+    padding:0;
+    border-radius: 100%;
+    cursor:pointer;
+}
+
+.trash:hover{
+    background-color: #999999;
+}
+
+.elimina_allert_share{
+    margin:3rem;
+    font-size: large;
 }

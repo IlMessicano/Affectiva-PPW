@@ -124,15 +124,19 @@ html, body{
     visibility: hidden;
     width: 10rem;
     background-color: #858585;
-    color: #ffffff;
     text-align: center;
     border-radius: 6px;
     padding: 5px 0;
     position: absolute;
     top:-120%;
+}
+
+.tooltip_task{
     left:-60%;
-    z-index: 1;
-    opacity: 1!important;
+}
+
+.tooltip_video{
+    left:-90%;
 }
 
 .profile{
@@ -200,7 +204,7 @@ html, body{
     height: 100%;
     width: 100%;
     text-align: center;
-    transition: background-color 1s;
+    transition: background-color 0.15s ease-in-out;
     padding:0 5px;
     border-radius: 100%;
     cursor:pointer
