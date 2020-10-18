@@ -40,7 +40,8 @@ class VideoController extends Controller
 
         Video::insert($save);
 
-        return redirect()->route('home');
+        $iframe=route('viewVideo',['id'=>$save[$key]['id']]);
+        return view('home')->with ('iframe',$iframe);
 
     }
 
