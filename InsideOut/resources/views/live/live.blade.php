@@ -5,6 +5,7 @@
     <title>Affectiva RMX - Live Mode</title>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script type="text/javascript" src="https://download.affectiva.com/js/3.2.1/affdex.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 </head>
 
 <body>
@@ -18,6 +19,7 @@
                 <br>
                 <div id="results"></div>
             </div>
+            <div id="columnchart_values" style="width: 600px; height: 200px;"></div>         <!-------------DIV Grafico----------------->
         <div>
             <button id="start" onclick="onStart()">Start</button>
             <button id="stop" onclick="onStop()">Stop</button>
@@ -148,6 +150,43 @@
                 //return val.toFixed ? Number(val.toFixed(0)) : val;
             //}));
             log('#results', "Emoji: " + faces[0].emojis.dominantEmoji);
+
+            google.charts.load("current", {packages:['corechart']});
+            google.charts.setOnLoadCallback(drawChart);
+            function drawChart() {
+                var data = google.visualization.arrayToDataTable([
+                    ["Element", "Percentuale", { role: "style" } ],
+                    ["Gioia", (faces[0].emotions.joy), "yellow"],
+                    ["Tristezza", (faces[0].emotions.sadness), "brown"],
+                    ["Disgusto", (faces[0].emotions.disgust), "green"],
+                    ["Disprezzo", (faces[0].emotions.contempt), "grey"],
+                    ["Rabbia", (faces[0].emotions.anger), "red"],
+                    ["Paura", (faces[0].emotions.fear), "orange"],
+                    ["Sorpresa", (faces[0].emotions.surprise), "gold"],
+                    ["Valenza", (faces[0].emotions.valence), "heavenly"],
+                    ["Engagement", (faces[0].emotions.engagement), "blue"]
+                ]);
+
+                var view = new google.visualization.DataView(data);
+                /*
+                    view.setColumns([0, 1,
+                        { calc: "stringify",
+                            sourceColumn: 1,
+                            type: "string",
+                            role: "annotation" },
+                        2]);
+                */
+                var options = {
+                    title: "Grafico delle emozioni in tempo reale",
+                    width: 500,
+                    height: 200,
+                    bar: {groupWidth: "50%"},
+                    legend: { position: "none" },
+                };
+                var chart = new google.visualization.ColumnChart(document.getElementById("columnchart_values"));
+                chart.draw(view, options);
+            }
+
             if($('#face_video_canvas')[0] != null)
                 drawFeaturePoints(image, faces[0].featurePoints);
 
