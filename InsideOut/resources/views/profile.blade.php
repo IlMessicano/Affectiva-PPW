@@ -1,27 +1,15 @@
 @extends('layouts.user')
 
-
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/pikaday/css/pikaday.css">
     <script src="https://cdn.jsdelivr.net/npm/pikaday/pikaday.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.0/moment.min.js" integrity="sha512-Izh34nqeeR7/nwthfeE0SI3c8uhFSnqxV0sI9TvTcXiFJkMd6fB644O64BRq2P/LA/+7eRvCw4GmLsXksyTHBg==" crossorigin="anonymous"></script>
-
-
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
 
 
 @section('DatiUtente')
 
-    @error('password_updated')
-    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-    @enderror
-    @error('password_not_updated')
-    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-    @enderror
+
 
     @if(Auth::user()->id == $user->id)
 
@@ -53,7 +41,7 @@
                     </div>
                     <div class="avatar-upload">
                         <div class="avatar-edit">
-                            <div id="editIcon" data-toggle="modal" data-target="#exampleModal"><i class="fa fa-edit" style="font-size:30px; position:absolute; top: 0;" data-toggle="tooltip" data-placement="right" title="Modifica Avatar" onclick="javascript:editAvatar()"></i></div>
+                            <div id="editIcon" data-toggle="modal" data-target="#exampleModal"><i class="fas fa-pencil-alt" style="font-size:30px; position:absolute; top: 0;" data-toggle="tooltip" data-placement="right" title="Modifica Avatar" onclick="javascript:editAvatar()"></i></div>
                         </div>
                         <div class="avatar-preview-reg">
                             <div id="imagePreview" style="background-image: url('{{$user->imgProfilo}}')"></div>
@@ -172,7 +160,7 @@
                 {{-- NOME UTENTE --}}
                 <div id="userNome">
                     <div class="row"><div class="col-9"><label><b>Nome: </b>{{ $user->nome }}</label></div>
-                        <div id="editIcon"><i class="fa fa-edit" style="font-size:20px" data-toggle="tooltip" data-placement="right" title="Modifica Nome" onclick="javascript:editNome()"></i></div>
+                        <div id="editIcon"><i class="fas fa-pencil-alt" style="font-size:20px" data-toggle="tooltip" data-placement="right" title="Modifica Nome" onclick="javascript:editNome()"></i></div>
                     </div>
                 </div>
 
@@ -205,7 +193,7 @@
                 {{-- COGNOME UTENTE --}}
                 <div id="userCognome">
                     <div class="row"><div class="col-9"><label><b>Cognome: </b>{{ $user->cognome }}</label></div>
-                        <div id="editIcon"><i class="fa fa-edit" style="font-size:20px" data-toggle="tooltip" data-placement="right" title="Modifica Cognome" onclick="javascript:editCognome()"></i></div>
+                        <div id="editIcon"><i class="fas fa-pencil-alt" style="font-size:20px" data-toggle="tooltip" data-placement="right" title="Modifica Cognome" onclick="javascript:editCognome()"></i></div>
                     </div>
                 </div>
 
@@ -217,7 +205,7 @@
                         <div class="form-group">
                             <input type="text" id="column" name="column" value="cognome" readonly>
                             <label><b>Cognome: </b></label>
-                            <input id="cognome" type="text" class="input form-control @error('cognome') is-invalid @enderror" name="cognome" value="{{ old('cognome') }}" required autocomplete="cognome">
+                            <input id="cognome" type="text" class="input form-control @error('cognome') is-invalid @enderror" name="data" value="{{ old('cognome') }}" required autocomplete="cognome">
 
                             @error('name')
                             <span class="invalid-feedback" role="alert">
@@ -246,7 +234,7 @@
 {{-- DATA NASCITA UTENTE --}}
                 <div id="userDataNascita">
                     <div class="row"><div class="col-9"><label><b>Data di nascita: </b>{{ $user->dataNascita }}</label></div>
-                        <div id="editIcon"><i class="fa fa-edit" style="font-size:20px" data-toggle="tooltip" data-placement="right" title="Modifica Data Nascita" onclick="javascript:editDataNascita()"></i></div>
+                        <div id="editIcon"><i class="fas fa-pencil-alt" style="font-size:20px" data-toggle="tooltip" data-placement="right" title="Modifica Data Nascita" onclick="javascript:editDataNascita()"></i></div>
                     </div>
                 </div>
 
@@ -261,7 +249,7 @@
                         {{--   INSERIRE INPUT DATA DI NASCITA --}}
                             <div class="form-group">
                                 <div class="input-group" id="picker" style="cursor:pointer;">
-                                    <input placeholder="Data di nascita*" style="cursor:pointer;  background-color:white;" readonly type="text" id="datepicker" class="input form-control data @error('data') is-invalid @enderror" name="dataNascita" value="{{ old('data') }}" required autocomplete="data">
+                                    <input placeholder="Data di nascita*" style="cursor:pointer;  background-color:white;" readonly type="text" id="datepicker" class="input form-control data @error('data') is-invalid @enderror" name="data" value="{{ old('data') }}" required autocomplete="data">
                                     <div class="input-group-append">
                                         <div class="input-group-text btn"><i class="fa fa-calendar" aria-hidden="true"></i></div>
                                     </div>
@@ -293,7 +281,6 @@
                                             maxDate: moment().toDate()
 
                                         });
-
                                     </script>
                                 </div>
 
@@ -318,10 +305,19 @@
             {{-- PASSWORD UTENTE --}}
             <div id="userPassword">
                 <div class="row"><div class="col-9"><label><b>Password: </b>********</label></div>
-                    <div id="editIcon"><i class="fa fa-edit" style="font-size:20px" data-toggle="tooltip" data-placement="right" title="Modifica Password" onclick="javascript:editPassword()"></i></div>
+                    <div id="editIcon"><i class="fas fa-pencil-alt" style="font-size:20px" data-toggle="tooltip" data-placement="right" title="Modifica Password" onclick="javascript:editPassword()"></i></div>
                 </div>
             </div>
-
+            @error('password_updated')
+                <span class="text-success" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+            @enderror
+            @error('password_not_updated')
+                <span class="text-danger" role="alert">
+                    <strong>{{ $message }}</strong>
+                                    </span>
+            @enderror
             {{-- FORM A COMPARSA PASSWORD --}}
             <div id="formPassword">
                 <form method="POST" action="{{ route('verify.password') }}">
@@ -330,7 +326,7 @@
                     <div class="form-group">
                         <input type="text" id="column" name="column" value="password" readonly>
                         <label><b>Vecchia password: </b></label>
-                        <input id="password" type="password" class="form-control" name="current_password" autocomplete="current-password">
+                        <input id="password" required type="password" class="form-control" name="current_password" autocomplete="current-password">
 
                         @error('password')
                         <span class="invalid-feedback" role="alert">
@@ -341,7 +337,7 @@
 
                     <div class="form-group">
                         <label><b>Nuova password: </b></label>
-                        <input id="new_password" type="password" class="form-control" name="new_password" autocomplete="current-password">
+                        <input required id="new_password" type="password" class="form-control" name="new_password" autocomplete="current-password">
                         @error('password')
                         <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -349,9 +345,9 @@
                         @enderror
                     </div>
 
-                <div class="form-group"
+                <div class="form-group">
                         <label><b>Conferma password: </b></label>
-                    <input id="new_confirm_password" type="password" class="form-control" name="new_confirm_password" autocomplete="current-password">
+                    <input required id="new_confirm_password" type="password" class="form-control" name="new_confirm_password" autocomplete="current-password">
                      @error('password')
                         <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>

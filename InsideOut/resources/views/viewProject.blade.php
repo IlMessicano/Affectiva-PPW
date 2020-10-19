@@ -63,9 +63,9 @@ $sharedWith=\App\Http\Controllers\ShareController::getSharebyProject($content->i
                                         <i class="fas fa-minus"></i>
                                     </div>
                                     <div class="col-8">
-                                        <p class="shared_name"><a href="#">{{$email->email}}</a></p>
+                                        <p class="shared_name"><a href="{{route('profile',['id'=>$sharedWith->collaboratore])}}" target="_parent">{{$email->email}}</a></p>
                                     </div>
-                                    <div class="trash" id="{{$sharedWith->id}}" data-toggle="modal" data-target="#modal_delete_share">
+                                    <div class="trash" id="{{$sharedWith->collaboratore}}" data-toggle="modal" data-target="#modal_delete_share">
                                         <i class="far fa-trash-alt" style="color:#880400;"></i>
                                     </div>
                                 </div>
@@ -86,7 +86,7 @@ $sharedWith=\App\Http\Controllers\ShareController::getSharebyProject($content->i
                     @else
                         <?php $owner = \App\Http\Controllers\UserController::getEmailbyId($content->utente)?>
                         <div class="row">
-                            <p class="w-100"><span class="font-weight-bold" >Proprietario: </span><a href="#">{{$owner->email}}</a></p>
+                            <p class="w-100"><span class="font-weight-bold" >Proprietario: </span><a href="{{route('profile',['id'=>$content->utente])}}" target="_parent">{{$owner->email}}</a></p>
                         </div>
                             <div class="row">
                                 <p class="w-100"><span class="font-weight-bold">Collaboratori:</span></p>

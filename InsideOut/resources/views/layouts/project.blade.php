@@ -42,7 +42,7 @@
     <div class="row w-100 top_nav">
         <a href="{{route('home')}}" style="text-decoration: none" class="fas fa-home fa-2x text-center"></a>
         <i class="fas fa-bars fa-2x text-center collapse_left_bar"></i>
-        <a class="profile" style="background-image: url('{{Auth::user()->imgProfilo}}')" href="{{route('logout')}}"></a>
+        <a class="profile" style="background-image: url('{{Auth::user()->imgProfilo}}')" href="{{route('profile',['id'=>Auth::id()])}}"></a>
     </div>
     <div class="row h-100" >
         <div class="col-lg-3 col-md-4 col-sm-12 h-100 col_left">

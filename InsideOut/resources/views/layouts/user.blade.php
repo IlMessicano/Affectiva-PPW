@@ -2,6 +2,7 @@
 @section('head')
 
     <link href="{{ asset('css/profile.css') }}" rel="stylesheet">
+
 @endsection
 
 @if (Session::get('yes'))
@@ -26,12 +27,13 @@
 
         <div class="col-3">
             <div class="row">
-                <a  class="btn btn-block btn-profile" href="{{ route('logout') }}">Logout</a>
+                <a class="btn btn-block btn-profile" href="{{route('home')}}">Home</a>
             </div>
-
-            <div class="row">
-                <a class="btn btn-block btn-profile" onclick="goBack()">Indietro</a>
-            </div>
+            @if(Auth::user()->id == $user->id)
+                <div class="row">
+                    <a  class="btn btn-block btn-profile" href="{{ route('logout') }}">Logout</a>
+                </div>
+            @endif
         </div>
     </div>
 

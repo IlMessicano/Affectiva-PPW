@@ -25,6 +25,7 @@ Route::get('/live', function () {
 })->name('live');
 
 Route::get('/user/{id}', 'UserController@showUser')->name('profile');
+
 Route::get('/user', function() {
     if(Auth::user()->id){
         $id=Auth::user()->id;
@@ -39,7 +40,7 @@ Route::get('/user/{id}/change-password/updated', 'UserController@showUser')->nam
 Route::get('/user/{id}/change-password/failed', 'UserController@showUser')->name('password.not.updated');
 Route::post('/user/verify-password', 'UserController@editPassword')->name('verify.password');
 
-Route::get('/user/{id}', [ 'as' => 'userDetail', 'uses' => 'UserController@getUserDetails']);
+//Route::get('/user/{id}', [ 'as' => 'userDetail', 'uses' => 'UserController@getUserDetails']);
 
 Route::get('/project/{id}','ProjectController@ViewProjectbyId')->name('project');
 
