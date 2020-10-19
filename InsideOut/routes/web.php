@@ -35,6 +35,10 @@ Route::post('/user/updated', 'UserController@editUser')->name('editUser');
 
 Route::get('/delete', 'UserController@destroy')->name('deleteUser');
 
+Route::get('/user/{id}/change-password/updated', 'UserController@showUser')->name('password.updated');
+Route::get('/user/{id}/change-password/failed', 'UserController@showUser')->name('password.not.updated');
+Route::post('/user/verify-password', 'UserController@editPassword')->name('verify.password');
+
 /*
 Route::get('/user/{id}/edit', function(){
     if(Auth::user()->id){

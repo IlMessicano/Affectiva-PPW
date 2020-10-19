@@ -37259,7 +37259,52 @@ function editPasswordCancel(){
     div = document.getElementById('userPassword');
     div.style.display = "block";
 }
-
+function editPassword(){
+    div = document.getElementById('editIcon');
+    div.style.display = "none";
+    div = document.getElementById('userPassword');
+    div.style.display = "none";
+    div = document.getElementById('formPassword');
+    div.style.display = "block";
+    div = document.getElementById('userNome');
+    div.style.display = "none";
+    div = document.getElementById('userCognome');
+    div.style.display = "none";
+    div = document.getElementById('userDataNascita');
+    div.style.display = "none";
+    div = document.getElementById('userEmail');
+    div.style.display = "none";
+}
+function editPasswordCancel(){
+    div = document.getElementById('editIcon');
+    div.style.display = "block";
+    div = document.getElementById('formPassword');
+    div.style.display = "none";
+    div = document.getElementById('userEmail');
+    div.style.display = "block";
+    div = document.getElementById('userNome');
+    div.style.display = "block";
+    div = document.getElementById('userCognome');
+    div.style.display = "block";
+    div = document.getElementById('userDataNascita');
+    div.style.display = "block";
+    div = document.getElementById('userPassword');
+    div.style.display = "block";
+}
+function editAvatar(){
+    div = document.getElementById('userPassword');
+    div.style.display = "none";
+    div = document.getElementById('formAvatar');
+    div.style.display = "block";
+    div = document.getElementById('userNome');
+    div.style.display = "none";
+    div = document.getElementById('userCognome');
+    div.style.display = "none";
+    div = document.getElementById('userDataNascita');
+    div.style.display = "none";
+    div = document.getElementById('userEmail');
+    div.style.display = "none";
+}
 
 function deleteConfirm(){
     div = document.getElementById('deleteConfirm');
@@ -37274,3 +37319,4 @@ function deleteCancel(){
     div = document.getElementById('deleteButton');
     div.style.display = "block";
 }
+

@@ -1,14 +1,172 @@
 @extends('layouts.user')
 
 
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/pikaday/css/pikaday.css">
+    <script src="https://cdn.jsdelivr.net/npm/pikaday/pikaday.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.0/moment.min.js" integrity="sha512-Izh34nqeeR7/nwthfeE0SI3c8uhFSnqxV0sI9TvTcXiFJkMd6fB644O64BRq2P/LA/+7eRvCw4GmLsXksyTHBg==" crossorigin="anonymous"></script>
+
+
+
+
+
+
 @section('DatiUtente')
-    @foreach ($user as $user)
+
+    @error('password_updated')
+    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+    @enderror
+    @error('password_not_updated')
+    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+    @enderror
+
     @if(Auth::user()->id == $user->id)
 
             <div class="container-fluid userDetails">
 
                 {{-- AVATAR UTENTE INSERIRE MODIFICA --}}
-                <div class="avatar-preview-profile" style="background-image: url('{{asset('img/avatar/avatar01.png')}}')"></div>
+              {{--  <div class="avatar-preview-profile" style="background-image: url('{{asset('img/avatar/avatar01.png')}}')"></div> --}}
+
+            <div id="userAvatar">
+                <script>
+                    function select(img) {
+                        var ProfileImg = document.getElementById("imageUpload");
+                        ProfileImg.value = img.src;
+                        console.log(ProfileImg.value);
+                        $('#imagePreview').attr('style', 'background-image: url('+ProfileImg.value+')');
+                    }
+
+                    function unset(){
+                        var ProfileImg = document.getElementById("imageUpload");
+                        ProfileImg.value = '{{asset('img/avatar/Avatar01.png')}}';
+                        console.log(ProfileImg.value);
+                    }
+
+                </script>
+                <form method="POST" action="{{ route('editUser') }}">
+                    @csrf
+                    <div class="form-group">
+                        <input type="text" id="column" name="column" value="imgProfilo" readonly>
+                    </div>
+                    <div class="avatar-upload">
+                        <div class="avatar-edit">
+                            <div id="editIcon" data-toggle="modal" data-target="#exampleModal"><i class="fa fa-edit" style="font-size:30px; position:absolute; top: 0;" data-toggle="tooltip" data-placement="right" title="Modifica Avatar" onclick="javascript:editAvatar()"></i></div>
+                        </div>
+                        <div class="avatar-preview-reg">
+                            <div id="imagePreview" style="background-image: url('{{$user->imgProfilo}}')"></div>
+                        </div>
+                    </div>
+
+                    <div class="modal fade" id="exampleModal" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Scegli il tuo avatar</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" >
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <input type="text" hidden id="imageUpload" name="data" value="{{$user->imgProfilo}}">
+                                    <div class="row">
+                                        <div class="col-3 center">
+                                            <img src="{{asset('img/avatar/Avatar01.png')}}" onclick="select(this)">
+                                        </div>
+                                        <div class="col-3">
+                                            <img src="{{asset('img/avatar/Avatar02.png')}}" onclick="select(this)">
+                                        </div>
+                                        <div class="col-3">
+                                            <img src="{{asset('img/avatar/Avatar03.png')}}" onclick="select(this)">
+                                        </div>
+                                        <div class="col-3">
+                                            <img src="{{asset('img/avatar/Avatar04.png')}}" onclick="select(this)">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-3">
+                                            <img src="{{asset('img/avatar/Avatar05.png')}}" onclick="select(this)">
+                                        </div>
+                                        <div class="col-3">
+                                            <img src="{{asset('img/avatar/Avatar06.png')}}" onclick="select(this)">
+                                        </div>
+                                        <div class="col-3">
+                                            <img src="{{asset('img/avatar/Avatar07.png')}}" onclick="select(this)">
+                                        </div>
+                                        <div class="col-3">
+                                            <img src="{{asset('img/avatar/Avatar08.png')}}" onclick="select(this)">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-3">
+                                            <img src="{{asset('img/avatar/Avatar09.png')}}" onclick="select(this)">
+                                        </div>
+                                        <div class="col-3">
+                                            <img src="{{asset('img/avatar/Avatar10.png')}}" onclick="select(this)">
+                                        </div>
+                                        <div class="col-3">
+                                            <img src="{{asset('img/avatar/Avatar11.png')}}" onclick="select(this)">
+                                        </div>
+                                        <div class="col-3">
+                                            <img src="{{asset('img/avatar/Avatar12.png')}}" onclick="select(this)">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-3">
+                                            <img src="{{asset('img/avatar/Avatar13.png')}}" onclick="select(this)">
+                                        </div>
+                                        <div class="col-3">
+                                            <img src="{{asset('img/avatar/Avatar14.png')}}" onclick="select(this)">
+                                        </div>
+                                        <div class="col-3">
+                                            <img src="{{asset('img/avatar/Avatar15.png')}}" onclick="select(this)">
+                                        </div>
+                                        <div class="col-3">
+                                            <img src="{{asset('img/avatar/Avatar16.png')}}" onclick="select(this)">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-3">
+                                            <img src="{{asset('img/avatar/Avatar17.png')}}" onclick="select(this)">
+                                        </div>
+                                        <div class="col-3">
+                                            <img src="{{asset('img/avatar/Avatar18.png')}}" onclick="select(this)">
+                                        </div>
+                                        <div class="col-3">
+                                            <img src="{{asset('img/avatar/Avatar19.png')}}" onclick="select(this)">
+                                        </div>
+                                        <div class="col-3">
+                                            <img src="{{asset('img/avatar/Avatar20.png')}}" onclick="select(this)">
+                                        </div>
+                                    </div>
+                                </div>
+                                <script>
+                                    $(document).ready(function() {
+                                        $(".col-3").click(function () {
+
+                                            $(".col-3").removeClass('active');
+                                            $(this).addClass('active');
+
+                                        });
+                                    });
+                                </script>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="formAvatar">
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-block btn-success">
+                                SALVA
+                            </button>
+                        </div>
+                        <a type="button" class="btn btn-block btn-danger" href="{{ route('profile', ['id' => Auth::user()->id]) }}">
+                            ANNULLA
+                        </a>
+                    </div>
+                </form>
+            </div>
 
 
                 {{-- NOME UTENTE --}}
@@ -34,11 +192,11 @@
                             @enderror
                         </div>
                         <div class="form-group">
-                            <button type="submit" class="btn btn-block">
+                            <button type="submit" class="btn btn-block btn-success">
                                 SALVA
                             </button>
                         </div>
-                        <button type="button" class="btn btn-block" onclick="javascript:editNomeCancel()">
+                        <button type="button" class="btn btn-block btn-danger" onclick="javascript:editNomeCancel()">
                                 ANNULLA
                         </button>
                     </form>
@@ -68,11 +226,11 @@
                             @enderror
                         </div>
                         <div class="form-group">
-                            <button type="submit" class="btn btn-block">
+                            <button type="submit" class="btn btn-block btn-success">
                                 SALVA
                             </button>
                         </div>
-                            <button type="button" class="btn btn-block" onclick="javascript:editCognomeCancel()">
+                            <button type="button" class="btn btn-block btn-danger" onclick="javascript:editCognomeCancel()">
                                 ANNULLA
                             </button>
                     </form>
@@ -101,15 +259,58 @@
                             <label><b>Data di nascita: </b></label>
 
                         {{--   INSERIRE INPUT DATA DI NASCITA --}}
+                            <div class="form-group">
+                                <div class="input-group" id="picker" style="cursor:pointer;">
+                                    <input placeholder="Data di nascita*" style="cursor:pointer;  background-color:white;" readonly type="text" id="datepicker" class="input form-control data @error('data') is-invalid @enderror" name="dataNascita" value="{{ old('data') }}" required autocomplete="data">
+                                    <div class="input-group-append">
+                                        <div class="input-group-text btn"><i class="fa fa-calendar" aria-hidden="true"></i></div>
+                                    </div>
+                                    <script>
+                                        var picker = new Pikaday({
+                                            field: document.getElementById('datepicker'),
+                                            trigger: document.getElementById('picker'),
+                                            firstDay: 1,
+                                            bound: true,
+                                            i18n: {
+                                                previousMonth : 'Mese precedente',
+                                                nextMonth     : 'Mese successivo',
+                                                months        : ['Gennaio','Febbraio','Marzo','Aprile','Maggio','Giugno','Luglio','Agosto','Settembre','Ottobre','Novembre','Dicembre'],
+                                                weekdays      : ['Domenica','Lunedì','Martedì','Mercoledì','Giovedì','Venerdì','Sabato'],
+                                                weekdaysShort : ['Dom','Lun','Mar','Mer','Gio','Ven','Sab']
+                                            },
+                                            format: 'DD/MM/YYYY',
+                                            toString(date, format) {
+                                                // you should do formatting based on the passed format,
+                                                // but we will just return 'D/M/YYYY' for simplicity
+                                                const day = date.getDate();
+                                                const month = date.getMonth() + 1;
+                                                const year = date.getFullYear();
+                                                return `${day}/${month}/${year}`;
+                                            },
+                                            position: 'top right',
+                                            yearRange: [1940, moment().get('year')],
+                                            minDate: new Date(1920, 0, 1),
+                                            maxDate: moment().toDate()
 
+                                        });
+
+                                    </script>
+                                </div>
+
+                                @error('data')
+                                <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                                @enderror
+                        </div>
                         </div>
                         <div class="form-group">
-                            <button type="submit" class="btn btn-block">
+                            <button type="submit" class="btn btn-block btn-success">
                                 SALVA
                             </button>
                         </div>
                     </form>
-                        <button type="button" class="btn btn-block" onclick="javascript:editDataNascitaCancel()">
+                        <button type="button" class="btn btn-block btn-danger" onclick="javascript:editDataNascitaCancel()">
                             ANNULLA
                         </button>
                 </div>
@@ -121,15 +322,15 @@
                 </div>
             </div>
 
-            {{-- FORM A COMPARSA NOME --}}
+            {{-- FORM A COMPARSA PASSWORD --}}
             <div id="formPassword">
-                <form method="POST" action="{{ route('editUser') }}">
+                <form method="POST" action="{{ route('verify.password') }}">
                     @csrf
 
                     <div class="form-group">
                         <input type="text" id="column" name="column" value="password" readonly>
                         <label><b>Vecchia password: </b></label>
-                        <input id="password" type="password" placeholder="Password*" class="input form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                        <input id="password" type="password" class="form-control" name="current_password" autocomplete="current-password">
 
                         @error('password')
                         <span class="invalid-feedback" role="alert">
@@ -140,8 +341,7 @@
 
                     <div class="form-group">
                         <label><b>Nuova password: </b></label>
-                        <input id="password" type="password" placeholder="Password*" class="input form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
-
+                        <input id="new_password" type="password" class="form-control" name="new_password" autocomplete="current-password">
                         @error('password')
                         <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -151,25 +351,28 @@
 
                 <div class="form-group"
                         <label><b>Conferma password: </b></label>
-                        <input id="data" type="text" class="input form-control @error('password') is-invalid @enderror" name="data" required autocomplete="nome" >
-
-                        @error('password')
+                    <input id="new_confirm_password" type="password" class="form-control" name="new_confirm_password" autocomplete="current-password">
+                     @error('password')
                         <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                         @enderror
                 </div>
                     <div class="form-group">
-                        <button type="submit" class="btn btn-block">
+                        <button type="submit" class="btn btn-block btn-success">
                             SALVA
                         </button>
                     </div>
-                    <button type="button" class="btn btn-block" onclick="javascript:editPasswordCancel()">
+                    <button type="button" class="btn btn-block btn-danger" onclick="javascript:editPasswordCancel()">
                         ANNULLA
                     </button>
                 </form>
             </div>
-
+            @error('password')
+            <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+            @enderror
             </div>
 
         @else
@@ -181,7 +384,6 @@
             <div class="row"><div class="col-9"><label><b>Data di nascita:</b> {{ $user->dataNascita }} </label></div></div>
         </div>
     @endif
-    @endforeach
 
 @endsection
 
