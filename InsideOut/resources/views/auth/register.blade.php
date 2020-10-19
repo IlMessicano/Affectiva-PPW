@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('head')
+    <link href="{{ asset('css/login_register.css') }}" rel="stylesheet">
+@endsection
+
 @section('content')
 
 <div class="container">
@@ -7,14 +11,14 @@
         <div class="col-md-8">
             <script>
                 function select(img) {
-                    var ProfileImg = document.getElementById("imageUpload");
+                    var ProfileImg = document.getElementById("imgProfilo");
                     ProfileImg.value = img.src;
                     console.log(ProfileImg.value);
                     $('#imagePreview').attr('style', 'background-image: url('+ProfileImg.value+')');
                 }
 
                 function unset(){
-                    var ProfileImg = document.getElementById("imageUpload");
+                    var ProfileImg = document.getElementById("imgProfilo");
                     ProfileImg.value = '{{asset('img/avatar/Avatar01.png')}}';
                     console.log(ProfileImg.value);
                 }
@@ -24,7 +28,7 @@
                         @csrf
 
                         <div class="avatar-upload">
-                            <div class="avatar-edit">
+                            <div class="avatar-edit @error('imgProfilo') is-invalid @enderror">
                                 <span data-toggle="modal" data-target="#exampleModal" class="fas"></span>
                             </div>
                             <div class="avatar-preview-reg">
@@ -49,7 +53,7 @@
                         </div>
 
                         <div class="form-group">
-                                <input id="nome" type="text" placeholder="Nome*" class="input form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" >
+                                <input id="nome" type="text" placeholder="Nome*" class="input form-control @error('nome') is-invalid @enderror" name="nome" value="{{ old('nome') }}" required autocomplete="nome" >
 
                                 @error('name')
                                     <span class="invalid-feedback" role="alert">
@@ -61,7 +65,7 @@
                         <div class="form-group">
                             <input id="cognome" type="text" placeholder="Cognome*" class="input form-control @error('cognome') is-invalid @enderror" name="cognome" value="{{ old('cognome') }}" required autocomplete="cognome">
 
-                            @error('name')
+                            @error('cognome')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
@@ -70,13 +74,15 @@
 
                         <div class="form-group">
                             <div class="input-group" id="picker" style="cursor:pointer;">
-                                <input placeholder="Data di nascita*" style="cursor:pointer;  background-color:white;" readonly type="text" id="datepicker" class="input form-control data @error('data') is-invalid @enderror" name="dataNascita" value="{{ old('data') }}" required autocomplete="data">
+
+                                <input placeholder="Data di nascita*" style="cursor:pointer;  background-color:white;" readonly type="text" id="dataNascita" class="input form-control data @error('dataNascita') is-invalid @enderror" name="dataNascita" value="{{ old('dataNascita') }}" required autocomplete="dataNascita">
+
                                 <div class="input-group-append">
                                     <div class="input-group-text btn"><i class="fa fa-calendar" aria-hidden="true"></i></div>
                                 </div>
                                     <script>
                                         var picker = new Pikaday({
-                                            field: document.getElementById('datepicker'),
+                                            field: document.getElementById('dataNascita'),
                                             trigger: document.getElementById('picker'),
                                             firstDay: 1,
                                             bound: true,
@@ -106,7 +112,7 @@
                                     </script>
                             </div>
 
-                            @error('data')
+                            @error('dataNascita')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
@@ -127,13 +133,7 @@
                         </div>
 
                         <div class="form-group">
-                                <input id="password-confirm" type="password" placeholder="Conferma password*" class="input form-control" name="password_confirmation" required autocomplete="new-password">
-                            </div>
-
-                        <div class="form-group">
-                                <button type="submit" class="btn btn-block">
-                                    {{ __('Registrati') }}
-                                </button>
+                            <input id="password-confirm" type="password" placeholder="Conferma password*" class="input form-control" name="password_confirmation" required autocomplete="new-password">
                         </div>
 
                         <div class="modal fade" id="exampleModal" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -146,7 +146,7 @@
                                         </button>
                                     </div>
                                     <div class="modal-body">
-                                        <input type="text" hidden id="imageUpload" name="imgProfilo" value="{{asset('img/avatar/Avatar01.png')}}">
+                                        <input type="text" hidden id="imgProfilo" value="{{asset('img/avatar/Avatar01.png')}}" name="imgProfilo">
                                         <div class="row">
                                             <div class="col-3 center">
                                                 <img src="{{asset('img/avatar/Avatar01.png')}}" onclick="select(this)">
@@ -235,6 +235,14 @@
                                 </div>
                             </div>
                         </div>
+
+                        <div class="form-group">
+                                <button type="submit" class="btn btn-block">
+                                    {{ __('Registrati') }}
+                                </button>
+                        </div>
+
+
 
                     </form>
 

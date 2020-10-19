@@ -10,6 +10,7 @@ use App\User;
 
 class UserController extends Controller
 {
+
     public function findFromEmail($email)
     {
         $user = DB::table('users')->where('email', $email)->get();
@@ -63,6 +64,16 @@ class UserController extends Controller
         else {
             return redirect()->route('password.not.updated', ['id' => $id])->withErrors(['password_not_updated' => 'non aggiornato']);
         }
+    }
+
+    public function getUserDetails($id){
+        $user = DB::table('users')->where('id',$id)->get();
+        return view('profile',compact('user'));
+    }
+
+    public static function getEmailbyId($id){
+        $email= DB::table('users')->select('email')->find($id);
+        return $email;
     }
 
 }

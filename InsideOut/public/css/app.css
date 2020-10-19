@@ -2090,6 +2090,10 @@ pre code {
   .table-responsive-sm > .table-bordered {
     border: 0;
   }
+
+  .btn{
+      font-size: 0.5rem;
+  }
 }
 
 @media (max-width: 767.98px) {
@@ -10887,4 +10891,27 @@ a.text-dark:focus {
     letter-spacing: .1rem;
     text-decoration: none;
     text-transform: uppercase;
+}
+
+.btn{
+    position:relative;
+    background-color: #90a8b3 !important;
+    font-weight: bold !important;
+}
+
+.btn:hover{
+    background-color: #637C87!important;
+}
+
+.btn-danger{
+    background-color: #d9534f !important;
+    border:none!important;
+}
+
+.btn-danger:hover{
+    background-color: #c82333 !important;
+}
+
+.container, .container-fluid{
+    color: #505e6c;
 }

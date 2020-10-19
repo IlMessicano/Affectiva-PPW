@@ -1,4 +1,4 @@
-.container{
+.container, .container-fluid{
     color: #505e6c;
 }
 
@@ -20,7 +20,7 @@ form{
 }
 
 .form-reg{
-    margin-top:5rem;
+    margin-top:6rem;
     max-width: 380px;
     padding: 30px 8%;
     height: 85%;
@@ -39,7 +39,8 @@ form{
 .avatar-upload {
     position:absolute;
     max-width: 250px;
-    top:-4%;
+    top:0;
+    right:49%;
 }
 
 .avatar-edit {
@@ -114,24 +115,7 @@ form{
     background-repeat: no-repeat;
     background-position: center;
 }
-.btn{
-     position:relative;
-     background-color: #90a8b3 !important;
-     font-weight: bold !important;
- }
 
-.btn:hover{
-    background-color: #637C87!important;
-}
-
-.btn-danger{
-    background-color: #d9534f !important;
-    border:none!important;
-}
-
-.btn-danger:hover{
-    background-color: #c82333 !important;
-}
 
  .live{
      border: 2px solid #C487E8;

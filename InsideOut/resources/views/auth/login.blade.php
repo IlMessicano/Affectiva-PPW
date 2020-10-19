@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('head')
+    <link href="{{ asset('css/login_register.css') }}" rel="stylesheet">
+@endsection
+
 @section('content')
     <div class="container">
         <div class="row" style="margin-top:5%">

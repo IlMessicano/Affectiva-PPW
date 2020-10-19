@@ -39,12 +39,36 @@ Route::get('/user/{id}/change-password/updated', 'UserController@showUser')->nam
 Route::get('/user/{id}/change-password/failed', 'UserController@showUser')->name('password.not.updated');
 Route::post('/user/verify-password', 'UserController@editPassword')->name('verify.password');
 
-/*
-Route::get('/user/{id}/edit', function(){
-    if(Auth::user()->id){
-        $id=Auth::user()->id;
-        return
-    }
-}
-*/
+Route::get('/user/{id}', [ 'as' => 'userDetail', 'uses' => 'UserController@getUserDetails']);
 
+Route::get('/project/{id}','ProjectController@ViewProjectbyId')->name('project');
+
+Route::get('/task/{id}','TaskController@ViewTaskbyId')->name('task');
+
+Route::get('/video/{id}',function($id){
+    return view('video')->with('id', $id);
+})->name('video');
+
+Route::get('/viewVideo/{id}','VideoController@ViewVideobyId')->name('viewVideo');
+
+Route::post('/createproject','ProjectController@insertProject')->name('insert_project');
+
+Route::post('/createshare','ShareController@insertShare')->name('insert_share');
+
+Route::post('/createtask','TaskController@insertTask')->name('insert_task');
+
+Route::post('/updateproject','ProjectController@updateProject')->name('modify_project');
+
+Route::post('/updatetask','TaskController@updateTask')->name('modify_task');
+
+Route::post('/destroyproject','ProjectController@destroyProject')->name('delete_project');
+
+Route::post('/destroytask','TaskController@destroyTask')->name('delete_task');
+
+Route::post('/destroyshare','ShareController@destroyShare')->name('delete_share');
+
+Route::get('video-upload', 'VideoController@index');
+Route::post('save-video-upload', 'VideoController@VideoStore');
+Route::get('video-upload', 'VideoController@getVideo');
+
+Route::post('destroyvideo', ['uses' => 'VideoController@destroy'])->name('delete_video');
