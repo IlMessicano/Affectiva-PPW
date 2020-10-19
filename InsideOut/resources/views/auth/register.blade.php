@@ -74,7 +74,9 @@
 
                         <div class="form-group">
                             <div class="input-group" id="picker" style="cursor:pointer;">
+
                                 <input placeholder="Data di nascita*" style="cursor:pointer;  background-color:white;" readonly type="text" id="dataNascita" class="input form-control data @error('dataNascita') is-invalid @enderror" name="dataNascita" value="{{ old('dataNascita') }}" required autocomplete="dataNascita">
+
                                 <div class="input-group-append">
                                     <div class="input-group-text btn"><i class="fa fa-calendar" aria-hidden="true"></i></div>
                                 </div>

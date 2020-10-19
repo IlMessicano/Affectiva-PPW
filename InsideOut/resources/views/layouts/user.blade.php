@@ -1,9 +1,22 @@
 @extends('layouts.app')
+@section('head')
 
+    <link href="{{ asset('css/profile.css') }}" rel="stylesheet">
+@endsection
 
-<div class="container-fluid">
-    <h1>PROFILO UTENTE</h1>
-</div>
+@if (Session::get('yes'))
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        {{ Session::get('yes') }}
+    </div>
+@endif
+@if (Session::get('no'))
+    <div class="alert alert-danger" role="alert">
+        {{ Session::get('no') }}
+    </div>
+@endif
 
 <div class="container-fluid">
     <div class="row">
@@ -13,16 +26,20 @@
 
         <div class="col-3">
             <div class="row">
-                <button type="button" onclick="{{ route('login') }}">LOGOUT</button>
+                <a  class="btn btn-block btn-profile" href="{{ route('logout') }}">Logout</a>
             </div>
+
             <div class="row">
-                <button type="button" onclick="{{ route('login') }}">INDIETRO</button>
+                <a class="btn btn-block btn-profile" onclick="goBack()">Indietro</a>
             </div>
         </div>
     </div>
 
-    @if(Auth::user()->id == $user->id)
-                @yield('EliminaAccount')
+    @if($user->id !=null )
+        @if(Auth::user()->id == $user->id)
+            @yield('EliminaAccount')
+        @endif
+
     @endif
 
 </div>

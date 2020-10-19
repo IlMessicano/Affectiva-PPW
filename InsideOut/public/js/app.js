@@ -37126,3 +37126,197 @@ module.exports = __webpack_require__(/*! C:\Users\emidi\Desktop\InsideOut\resour
 /***/ })
 
 /******/ });
+
+function goBack() {
+    window.history.back();
+}
+
+function editNome(){
+    div = document.getElementById('editIcon');
+    div.style.display = "none";
+    div = document.getElementById('userNome');
+    div.style.display = "none";
+    div = document.getElementById('formNome');
+    div.style.display = "block";
+    div = document.getElementById('userCognome');
+    div.style.display = "none";
+    div = document.getElementById('userEmail');
+    div.style.display = "none";
+    div = document.getElementById('userDataNascita');
+    div.style.display = "none";
+    div = document.getElementById('userPassword');
+    div.style.display = "none";
+}
+function editNomeCancel(){
+    div = document.getElementById('editIcon');
+    div.style.display = "block";
+    div = document.getElementById('userNome');
+    div.style.display = "block";
+    div = document.getElementById('formNome');
+    div.style.display = "none";
+    div = document.getElementById('userCognome');
+    div.style.display = "block";
+    div = document.getElementById('userEmail');
+    div.style.display = "block";
+    div = document.getElementById('userDataNascita');
+    div.style.display = "block";
+    div = document.getElementById('userPassword');
+    div.style.display = "block";
+}
+function editCognome(){
+    div = document.getElementById('editIcon');
+    div.style.display = "none";
+    div = document.getElementById('userCognome');
+    div.style.display = "none";
+    div = document.getElementById('formCognome');
+    div.style.display = "block";
+    div = document.getElementById('userNome');
+    div.style.display = "none";
+    div = document.getElementById('userEmail');
+    div.style.display = "none";
+    div = document.getElementById('userDataNascita');
+    div.style.display = "none";
+    div = document.getElementById('userPassword');
+    div.style.display = "none";
+}
+function editCognomeCancel(){
+    div = document.getElementById('editIcon');
+    div.style.display = "block";
+    div = document.getElementById('userCognome');
+    div.style.display = "block";
+    div = document.getElementById('formCognome');
+    div.style.display = "none";
+    div = document.getElementById('userNome');
+    div.style.display = "block";
+    div = document.getElementById('userEmail');
+    div.style.display = "block";
+    div = document.getElementById('userDataNascita');
+    div.style.display = "block";
+    div = document.getElementById('userPassword');
+    div.style.display = "block";
+}
+function editDataNascita(){
+    div = document.getElementById('editIcon');
+    div.style.display = "none";
+    div = document.getElementById('userEmail');
+    div.style.display = "none";
+    div = document.getElementById('formDataNascita');
+    div.style.display = "block";
+    div = document.getElementById('userNome');
+    div.style.display = "none";
+    div = document.getElementById('userCognome');
+    div.style.display = "none";
+    div = document.getElementById('userDataNascita');
+    div.style.display = "none";
+    div = document.getElementById('userPassword');
+    div.style.display = "none";
+}
+function editDataNascitaCancel(){
+    div = document.getElementById('editIcon');
+    div.style.display = "block";
+    div = document.getElementById('userEmail');
+    div.style.display = "block";
+    div = document.getElementById('formDataNascita');
+    div.style.display = "none";
+    div = document.getElementById('userNome');
+    div.style.display = "block";
+    div = document.getElementById('userCognome');
+    div.style.display = "block";
+    div = document.getElementById('userDataNascita');
+    div.style.display = "block";
+    div = document.getElementById('userPassword');
+    div.style.display = "block";
+}
+function editPassword(){
+    div = document.getElementById('editIcon');
+    div.style.display = "none";
+    div = document.getElementById('userPassword');
+    div.style.display = "none";
+    div = document.getElementById('formPassword');
+    div.style.display = "block";
+    div = document.getElementById('userNome');
+    div.style.display = "none";
+    div = document.getElementById('userCognome');
+    div.style.display = "none";
+    div = document.getElementById('userDataNascita');
+    div.style.display = "none";
+    div = document.getElementById('userEmail');
+    div.style.display = "none";
+}
+function editPasswordCancel(){
+    div = document.getElementById('editIcon');
+    div.style.display = "block";
+    div = document.getElementById('formPassword');
+    div.style.display = "none";
+    div = document.getElementById('userEmail');
+    div.style.display = "block";
+    div = document.getElementById('userNome');
+    div.style.display = "block";
+    div = document.getElementById('userCognome');
+    div.style.display = "block";
+    div = document.getElementById('userDataNascita');
+    div.style.display = "block";
+    div = document.getElementById('userPassword');
+    div.style.display = "block";
+}
+function editPassword(){
+    div = document.getElementById('editIcon');
+    div.style.display = "none";
+    div = document.getElementById('userPassword');
+    div.style.display = "none";
+    div = document.getElementById('formPassword');
+    div.style.display = "block";
+    div = document.getElementById('userNome');
+    div.style.display = "none";
+    div = document.getElementById('userCognome');
+    div.style.display = "none";
+    div = document.getElementById('userDataNascita');
+    div.style.display = "none";
+    div = document.getElementById('userEmail');
+    div.style.display = "none";
+}
+function editPasswordCancel(){
+    div = document.getElementById('editIcon');
+    div.style.display = "block";
+    div = document.getElementById('formPassword');
+    div.style.display = "none";
+    div = document.getElementById('userEmail');
+    div.style.display = "block";
+    div = document.getElementById('userNome');
+    div.style.display = "block";
+    div = document.getElementById('userCognome');
+    div.style.display = "block";
+    div = document.getElementById('userDataNascita');
+    div.style.display = "block";
+    div = document.getElementById('userPassword');
+    div.style.display = "block";
+}
+function editAvatar(){
+    div = document.getElementById('userPassword');
+    div.style.display = "none";
+    div = document.getElementById('formAvatar');
+    div.style.display = "block";
+    div = document.getElementById('userNome');
+    div.style.display = "none";
+    div = document.getElementById('userCognome');
+    div.style.display = "none";
+    div = document.getElementById('userDataNascita');
+    div.style.display = "none";
+    div = document.getElementById('userEmail');
+    div.style.display = "none";
+}
+
+function deleteConfirm(){
+    div = document.getElementById('deleteConfirm');
+    div.style.display = "block";
+    div = document.getElementById('deleteButton');
+    div.style.display = "none";
+}
+
+function deleteCancel(){
+    div = document.getElementById('deleteConfirm');
+    div.style.display = "none";
+    div = document.getElementById('deleteButton');
+    div.style.display = "block";
+}
+
