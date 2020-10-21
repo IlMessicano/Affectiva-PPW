@@ -28,7 +28,8 @@ class VideoController extends Controller
 
                 if ($files = $value) {
                     $destinationPath = 'video/';
-                    $fileName = $request->file('nomeVideo')[$key]->getClientOriginalName();
+                    $code = rand(0,999);
+                    $fileName = $code.'_'.$request->file('nomeVideo')[$key]->getClientOriginalName();
                     $files->move($destinationPath, $fileName);
                     $save[$key]['nomeVideo'] = "$fileName";
                     $save[$key]['pathVideo'] = "$destinationPath$fileName";

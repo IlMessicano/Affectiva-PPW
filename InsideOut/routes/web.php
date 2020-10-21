@@ -73,3 +73,5 @@ Route::post('save-video-upload', 'VideoController@VideoStore');
 Route::get('video-upload', 'VideoController@getVideo');
 
 Route::post('destroyvideo', ['uses' => 'VideoController@destroy'])->name('delete_video');
+
+Route::get('export/{table}/{id}','PdfController@createPDF')->name('export');
