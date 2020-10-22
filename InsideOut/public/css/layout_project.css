@@ -141,7 +141,7 @@ html, body{
 
 .profile{
     position:absolute;
-    right:0.5rem;
+    right:9rem;
     top:0.1rem;
     border-radius: 100%;
     height:40px;
@@ -303,4 +303,18 @@ html, body{
 
 .custom-file-input{
     cursor: pointer;
+}
+
+.sizeing{
+    display:block;
+    position:absolute;
+    right:0.5rem;
+    cursor:pointer;
+    top:1rem;
+}
+
+
+#inc-size:hover, #dec-size:hover, #reset-size:hover{
+
+    font-weight: bold;
 }

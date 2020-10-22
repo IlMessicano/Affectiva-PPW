@@ -24,8 +24,12 @@
         <div class="col-9">
             @yield('DatiUtente')
         </div>
-
-        <div class="col-3">
+        <div class="sizeing">
+            <a id="inc-size">A+</a>
+            <a id="dec-size"style="margin-left:0.5rem">A-</a>
+            <a id="reset-size"style="margin-left:0.5rem">Reset</a>
+        </div>
+        <div class="col-3" style="margin-top:6rem">
             <div class="row">
                 <a class="btn btn-block btn-profile" href="{{route('home')}}">Home</a>
             </div>

@@ -35,14 +35,17 @@ class VideoController extends Controller
                     $save[$key]['pathVideo'] = "$destinationPath$fileName";
                     $save[$key]['task'] = $request->task;
                 }
+                $i = $key;
             }
 
         }
 
         Video::insert($save);
 
-        $iframe=route('viewVideo',['id'=>$save[$key]['id']]);
-        return view('home')->with ('iframe',$iframe);
+        $id= DB::getPdo()->lastInsertId();
+
+        $iframe=route('viewVideo',['id'=>$id]);
+        return view('home')->with('iframe',$iframe);
 
     }
 

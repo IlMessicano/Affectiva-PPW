@@ -282,3 +282,15 @@ img.top:hover {
     border: 4px solid #4ea4c3;
 }
 
+.sizeing{
+    display:block;
+    position:absolute;
+    right:0.5rem;
+    cursor:pointer;
+    top:1rem;
+}
+
+#inc-size:hover, #dec-size:hover, #reset-size:hover{
+
+    font-weight: bold;
+}
