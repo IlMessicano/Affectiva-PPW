@@ -52,7 +52,7 @@ $ProjectId=$TaskProject->id;
     <div class="bottom_nav w-100 text-right">
         <a class="btn" style="margin-right: 1rem">Analizza</a>
         <a class="btn" id="Grafici" style="margin-right: 1rem">Grafici</a>
-        <a class="btn">Esporta PDF</a>
+        <a class="btn" href="{{ route('export',['table'=>'video','id'=>$content->id]) }}">Esporta PDF</a>
     </div>
 
     <script>
