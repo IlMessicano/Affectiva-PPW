@@ -38,7 +38,8 @@ class TaskController extends Controller
         $task->nomeTask = $request->nome;
         $task->descrizione = $request->descrizione;
         $task->save();
-        return view('viewTask')->with('content',$task);
+        $iframe=route('task',['id'=>$new_task->id]);
+        return view('home')->with ('iframe',$iframe);
     }
 
     public function destroyTask(Request $request){

@@ -8,7 +8,8 @@
             $(".video_name").click(function(){
                 var id = this.id;
                 var content = parent.document.getElementById('content');
-               $(content).attr('src','http://127.0.0.1:8000/viewVideo/'+id);
+                $(content).attr('src','http://127.0.0.1:8000/viewVideo/'+id);
+                $(".video_name").removeClass("font-weight-bold");
                 $(this).addClass("font-weight-bold");
             });
 
