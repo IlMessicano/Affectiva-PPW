@@ -44,7 +44,7 @@
 @endsection
 
 @section('modals')
-    <div class="modal fade" id="modal_modify_task" data-backdrop="static">
+    <div class="modal fade" id="modal_modify_task" data-backdrop="false">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">

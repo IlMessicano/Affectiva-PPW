@@ -7,7 +7,7 @@ $share=\App\Http\Controllers\ShareController::getShareWithMe($id);
 @extends('layouts.project')
 
 @section('head')
-
+    <script type="text/javascript" src="http://malsup.github.com/jquery.form.js"></script>
     <script>
         $(document).ready(function(){
 
@@ -26,6 +26,7 @@ $share=\App\Http\Controllers\ShareController::getShareWithMe($id);
                 $('#task_video').text(' ');
 
             });
+
             $(".task_name").click(function(){
                 var id = this.id;
                 $(".task_name").removeClass("font-weight-bold");
@@ -68,7 +69,37 @@ $share=\App\Http\Controllers\ShareController::getShareWithMe($id);
                 }
             });
 
+            $('#upload_video').on('submit', function(e){
+                $('.progress').show();
+                e.preventDefault();
+                $.ajax({
+                    xhr: function () {
+                        var xhr = new window.XMLHttpRequest();
+                        xhr.upload.addEventListener("progress", function (evt) {
+                            if (evt.lengthComputable) {
+                                var percentComplete = (evt.loaded / evt.total) * 100;
+                                $(".progress").html('<div class="progress-bar" style="width:'+percentComplete + '%">'+percentComplete.toFixed(0) + '%</div>');
+                            }
+                        }, false);
+                        return xhr;
+                    },
+                    type: 'POST',
+                    url: '{{url('/save-video-upload')}}',
+                    data: new FormData(this),
+                    contentType: false,
+                    cache: false,
+                    processData:false,
+                    success: function(res) {
+                        $('#content').attr('src','http://127.0.0.1:8000/viewVideo/'+res);
+                        $('#modal_new_video').modal('hide');
+                        document.getElementById('video').contentWindow.location.reload();
+                        $('.progress').hide();
+                        $(".custom-file-label").html("Seleziona Video...");
+                    },
+                });
+            });
         });
+
 
     </script>
 @endsection
@@ -267,7 +298,7 @@ $share=\App\Http\Controllers\ShareController::getShareWithMe($id);
         </div>
     </div>
 
-    <div class="modal fade" id="modal_new_video">
+    <div class="modal fade" id="modal_new_video" data-backdrop="static">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -278,22 +309,26 @@ $share=\App\Http\Controllers\ShareController::getShareWithMe($id);
                 </div>
                 <div class="modal-body">
                     <div class="container-fluid h-100">
-                        <form method="post" action="{{ url('/save-video-upload') }}" enctype="multipart/form-data">
+                        <form method="post" id="upload_video" enctype="multipart/form-data">
                             @csrf
                             <div class="modal_form">
                                 <div class="form-group">
                                     <div class="custom-file">
-                                        <input type="file" class="custom-file-input" id="nomeVideo" required name="nomeVideo[]" multiple="multiple">
+                                        <input type="file" class="custom-file-input" id="nomeVideo" required name="nomeVideo[]" multiple="multiple" placeholder="Seleziona Video...">
                                         <label class="custom-file-label" for="nomeVideo" id="selectList">Scegli video</label>
                                     </div>
                                     <input type="hidden" name="task" id="task" value="">
+                                    <div class="progress">
+
+                                    </div>
                                 </div>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                                <button class="btn" type="submit">Salva Video</button>
+                                <button class="btn" type="submit" id="submitVideo">Salva Video</button>
                             </div>
                         </form>
+
                     </div>
                 </div>
             </div>

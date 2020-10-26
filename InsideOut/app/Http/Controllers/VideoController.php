@@ -44,8 +44,7 @@ class VideoController extends Controller
 
         $id= DB::getPdo()->lastInsertId();
 
-        $iframe=route('viewVideo',['id'=>$id]);
-        return view('home')->with('iframe',$iframe);
+        return $id;
 
     }
 

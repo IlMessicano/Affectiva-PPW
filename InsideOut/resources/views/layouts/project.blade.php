@@ -12,6 +12,7 @@
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.3.0/jquery.form.min.js" integrity="sha384-qlmct0AOBiA2VPZkMY3+2WqkHtIQ9lSdAsAn5RUJD/3vA5MKDgSGcdmIv4ycVxyn" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/pikaday/pikaday.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.0/moment.min.js" integrity="sha512-Izh34nqeeR7/nwthfeE0SI3c8uhFSnqxV0sI9TvTcXiFJkMd6fB644O64BRq2P/LA/+7eRvCw4GmLsXksyTHBg==" crossorigin="anonymous"></script>
@@ -98,7 +99,7 @@
 
 </head>
 <body>
-<div class="container-fluid h-100 w-100" >
+<div class="container-fluid h-100 w-100">
     <div class="row w-100 top_nav">
         <a href="{{route('home')}}" style="text-decoration: none" class="fas fa-home fa-2x text-center"></a>
         <i class="fas fa-bars fa-2x text-center collapse_left_bar"></i>
@@ -126,7 +127,7 @@
             </div>
         </div>
 
-        <div class="col h-100" style="padding:0">
+        <div class="col h-100" style="padding:0;overflow-y: auto;" >
             @yield('content_center')
         </div>
     </div>

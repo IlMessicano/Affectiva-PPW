@@ -318,3 +318,12 @@ html, body{
 
     font-weight: bold;
 }
+.progress{
+    display: none;
+    margin-top: 5%;
+}
+.progress-bar{
+    color:#cccccc;
+    font-weight: bold;
+}
+
