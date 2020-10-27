@@ -2,7 +2,7 @@ html, body{
     height: 100%;
     background-color: #cccccc;
     overflow-x:hidden;
-    overflow-y:hidden;
+    overflow-y:auto;
 }
 
 .container-fluid{

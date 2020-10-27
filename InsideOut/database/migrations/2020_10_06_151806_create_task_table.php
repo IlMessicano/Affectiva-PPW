@@ -15,7 +15,7 @@ class CreateTaskTable extends Migration
     {
         Schema::create('task', function (Blueprint $table) {
             $table->id();
-            $table->string('progetto')->references('id')->on('progetto')->onDelete('cascade');
+            $table->foreignId('progetto')->references('id')->on('progetto')->onDelete('cascade');
             $table->string('nomeTask');
             $table->string('descrizione');
             $table->timestamps();

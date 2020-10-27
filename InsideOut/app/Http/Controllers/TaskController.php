@@ -30,7 +30,7 @@ class TaskController extends Controller
         $new_task->progetto = $request->progetto;
         $new_task->save();
         $iframe=route('task',['id'=>$new_task->id]);
-        return view('home')->with ('iframe',$iframe);
+        return redirect('home')->with ('iframe',$iframe);
     }
 
     public function updateTask(Request $request){
@@ -39,7 +39,7 @@ class TaskController extends Controller
         $task->descrizione = $request->descrizione;
         $task->save();
         $iframe=route('task',['id'=>$new_task->id]);
-        return view('home')->with ('iframe',$iframe);
+        return redirect('home')->with ('iframe',$iframe);
     }
 
     public function destroyTask(Request $request){

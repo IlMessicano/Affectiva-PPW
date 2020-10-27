@@ -24,6 +24,7 @@ $share=\App\Http\Controllers\ShareController::getShareWithMe($id);
                 $('#progetto').attr('value', id);
                 $('#video').attr('src','about::blank');
                 $('#task_video').text(' ');
+                $('#videoOfTask').html(' ');
 
             });
 
@@ -58,7 +59,7 @@ $share=\App\Http\Controllers\ShareController::getShareWithMe($id);
                 console.log(lenght);
                 var fileName='-- '+this.files.item(0).name+' -- ';
                 if(lenght>1){
-                    for (var i = 1; i < length; ++i){
+                    for (var i = 1; i <= length; ++i){
                         fileName+=this.files.item(i).name+' -- ';
                     }
                     $(this).next('.custom-file-label').html(fileName);

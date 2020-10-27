@@ -32,7 +32,7 @@ class ProjectController extends Controller
         $new_project->dataCreazione = now();
         $new_project->save();
         $iframe=route('project',['id'=>$new_project->id]);
-        return view('home')->with ('iframe',$iframe);
+        return redirect('home')->with ('iframe',$iframe);
      }
 
     public function updateProject(Request $request){
@@ -41,7 +41,7 @@ class ProjectController extends Controller
         $project->descrizione = $request->descrizione;
         $project->save();
         $iframe=route('project',['id'=>$project->id]);
-        return view('home')->with ('iframe',$iframe);
+        return redirect('home')->with ('iframe',$iframe);
     }
 
     public function destroyProject(Request $request){
