@@ -32,12 +32,11 @@ $share=\App\Http\Controllers\ShareController::getShareWithMe($id);
                 $(".task_name").removeClass("font-weight-bold");
                 $(this).addClass("font-weight-bold");
                 $('#content').attr('src','http://127.0.0.1:8000/task/'+id);
-                $('#iframe').attr('value','http://127.0.0.1:8000/task/'+id);
                 $('#new_video').removeClass('disabled_video').attr('disabled',false);
                 $('#task').attr('value', id);
                 var name = $(this).text();
                 $('#task_video').text(name);
-                $('#video').attr('src','http://127.0.0.1:8000/video/'+id);
+                showVideo(id);
             });
 
             $(".trash_project").click(function(){
@@ -83,8 +82,8 @@ $share=\App\Http\Controllers\ShareController::getShareWithMe($id);
                         }, false);
                         return xhr;
                     },
-                    type: 'POST',
                     url: '{{url('/save-video-upload')}}',
+                    type: 'POST',
                     data: new FormData(this),
                     contentType: false,
                     cache: false,
@@ -92,14 +91,42 @@ $share=\App\Http\Controllers\ShareController::getShareWithMe($id);
                     success: function(res) {
                         $('#content').attr('src','http://127.0.0.1:8000/viewVideo/'+res);
                         $('#modal_new_video').modal('hide');
-                        document.getElementById('video').contentWindow.location.reload();
+                        var task = $("#task").val();
+                        showVideo(task);
                         $('.progress').hide();
                         $(".custom-file-label").html("Seleziona Video...");
                     },
                 });
             });
+
+            $('#delete_video_Form').on('submit', function(e){
+                e.preventDefault();
+                $.ajax({
+                    type: 'POST',
+                    url: '{{route('delete_video')}}',
+                    data: new FormData(this),
+                    contentType: false,
+                    cache: false,
+                    processData:false,
+                    success: function() {
+                        var task = $("#task").val();
+                        $('#content').attr('src','http://127.0.0.1:8000/task/'+task);
+                        $('#modal_delete_video').modal('hide');
+                        showVideo(task);
+                    },
+                });
+            });
+
         });
 
+        function showVideo(id) {
+            $.ajax({
+                url:'http://127.0.0.1:8000/video/'+id,
+                success:function(result){
+                    $('#videoOfTask').html(result);
+                }
+            });
+        }
 
     </script>
 @endsection
@@ -195,16 +222,19 @@ $share=\App\Http\Controllers\ShareController::getShareWithMe($id);
 
 @section('video')
 
+    <?php
+    $video=\App\Http\Controllers\VideoController::getVideo($id);
+    ?>
 
-    <div class="row w-100 h-100 all_video">
+    <div class="row w-100 h-100 all_video h-auto">
         <div class="row w-100">
             <div class="col-12">
                 <p class="my_video_title font-weight-bold">Video del task: <span id="task_video"></span></p>
             </div>
         </div>
-        <iframe src="" id="video">
+        <div class="row w-100" id="videoOfTask">
 
-        </iframe>
+        </div>
     </div>
 @endsection
 
@@ -402,7 +432,8 @@ $share=\App\Http\Controllers\ShareController::getShareWithMe($id);
                 </div>
                 <div class="modal-body">
                     <div class="container-fluid h-100">
-                        <form method="post" action="{{route('delete_video')}}">
+                        <input type="hidden" id="delete_video_task">
+                        <form method="post" id="delete_video_Form">
                             @csrf
                             <div class="elimina_allert text-center">
                             Sei sicuro di voler eliminare il Video: <br><span id="title_delete_video" class="font-weight-bold"></span>?

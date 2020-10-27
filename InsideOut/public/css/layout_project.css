@@ -313,17 +313,37 @@ html, body{
     top:1rem;
 }
 
-
 #inc-size:hover, #dec-size:hover, #reset-size:hover{
 
     font-weight: bold;
 }
+
 .progress{
     display: none;
     margin-top: 5%;
 }
+
 .progress-bar{
     color:#cccccc;
     font-weight: bold;
+}
+
+.video_name:hover{
+    font-weight: bold;
+    cursor:pointer;
+}
+
+.trash_video{
+    height: 100%;
+    width: 100%;
+    text-align: center;
+    transition: background-color 1s;
+    padding:0 5px;
+    border-radius: 100%;
+    cursor:pointer
+}
+
+.trash_video:hover{
+    background-color: #7a7a7a;
 }
 
