@@ -24,7 +24,7 @@ $ProjectId=$TaskProject->id;
 
 @section('content')
 
-    <div class="container-fluid h-100">
+    <div class="container-fluid">
         <div class="row top_video">
             <div class="row w-100 top1_video">
                 <div class="col-sm-12 text-center align-content-center title">
@@ -40,39 +40,58 @@ $ProjectId=$TaskProject->id;
                             ANTEPRIMA VIDEO
                     </div>
                 </div>
-
             </div>
-            <div id="Grafici_A" style="display: none">
-                <b>Seleziona le emozioni che desideri visualizzare e clicca su: Disegna Grafico</b>
-                <br>
+        </div>
+        <div class="row w-100" id="Grafici_A" style="display: none;padding-left:3rem">
+            <div class="row w-100">
+                <p class="font-weight-bold pt-2">Seleziona le emozioni che desideri visualizzare e clicca su: Disegna Grafico</p>
                 <form id="sw" action="" method="post">
-                <input class="sw" name="sw[]" type = "checkbox" value='0'> Gioia
-                <input class="sw" name="sw[]" type = "checkbox" value='1'> Tristezza
-                <input class="sw" name="sw[]" type = "checkbox" value='2'> Disgusto
-                <input class="sw" name="sw[]" type = "checkbox" value='3'> Disprezzo
-                <input class="sw" name="sw[]" type = "checkbox" value='4'> Rabbia
-                <input class="sw" name="sw[]" type = "checkbox" value='5'> Paura
-                <input class="sw" name="sw[]" type = "checkbox" value='6'> Sorpresa
-                <input class="sw" name="sw[]" type = "checkbox" value='7'> Engagement
+                    <input class="sw" name="sw[]" type = "checkbox" value='0'> Gioia
+                    <input class="sw" name="sw[]" type = "checkbox" value='1'> Tristezza
+                    <input class="sw" name="sw[]" type = "checkbox" value='2'> Disgusto
+                    <input class="sw" name="sw[]" type = "checkbox" value='3'> Disprezzo
+                    <input class="sw" name="sw[]" type = "checkbox" value='4'> Rabbia
+                    <input class="sw" name="sw[]" type = "checkbox" value='5'> Paura
+                    <input class="sw" name="sw[]" type = "checkbox" value='6'> Sorpresa
+                    <input class="sw" name="sw[]" type = "checkbox" value='7'> Engagement
                 </form>
-                <button id="drow">Disegna Grafico</button>
-                <button id="showAll">Mostra Tutte</button>
-                <br><br>
-            <div id="columnchart_values" style="display:block; float:left; width: 600px; height: 200px;"></div>         <!-------------DIV BarChart----------------->
-            <div id="piechart" style="display:block; float:right; width: 500px; height: 200px;"></div>                   <!-------------DIV PieChart----------------->
             </div>
+            <div class="row w-100">
+                <div class="col-2 offset-md-1">
+                    <button class="btn" id="drow">Disegna Grafico</button>
+                </div>
+                <div class="col-2 offset-md-1">
+                    <button class="btn" id="showAll">Mostra Tutte</button>
+                </div>
+            </div>
+            <div class="row w-100" style="margin-top:1.5rem">
+                <div class="col-6 h-100">
+                    <div id="columnchart_values" style="display:block; float:left;"></div>         <!-------------DIV BarChart----------------->
+                </div>
+                <div class="col-6 h-100">
+                    <div id="piechart" style="display:block; float:right;"></div>        <!-------------DIV PieChart----------------->
+                </div>
+            </div>
+        </div>
+        <div class="bottom_nav w-100 text-right">
+            <a class="btn" style="margin-right: 1rem">Analizza</a>
+            <a class="btn" id="Grafici" style="margin-right: 1rem">Grafici</a>
+            <a class="btn" href="{{ route('export',['table'=>'video','id'=>$content->id]) }}">Esporta PDF</a>
         </div>
     </div>
 
-    <div class="bottom_nav w-100 text-right">
-        <a class="btn" style="margin-right: 1rem">Analizza</a>
-        <a class="btn" id="Grafici" style="margin-right: 1rem">Grafici</a>
-        <a class="btn" href="{{ route('export',['table'=>'video','id'=>$content->id]) }}">Esporta PDF</a>
-    </div>
+
 
     <script>
         $("#Grafici").click(function(){
-            $("#Grafici_A").show();
+            $("#Grafici_A").fadeIn();
+            $(".bottom_nav").css({
+                'position':'relative',
+                'top': '4%',
+                'height': '4rem',
+                'padding-right': '5%'
+            });
+            $("#Grafici").addClass('disabled');
         });
     </script>
 

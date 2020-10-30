@@ -46,7 +46,7 @@ $sharedWith=\App\Http\Controllers\ShareController::getSharebyProject($content->i
                         <p class="font-weight-bold">Descrizione:</p>
                     </div>
                     <div class="row h-75" style="overflow-y:auto">
-                        <p class="text-left">{{$content->descrizione}}{{$content->descrizione}}{{$content->descrizione}}{{$content->descrizione}}{{$content->descrizione}}{{$content->descrizione}}</p>
+                        <p class="text-left">{{$content->descrizione}}</p>
                     </div>
                 </div>
                 <div class="col-6 text-center h-100"  style="overflow-y: auto">

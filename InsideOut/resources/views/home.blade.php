@@ -143,7 +143,7 @@ $share=\App\Http\Controllers\ShareController::getShareWithMe($id);
         @forelse($project as $project)
             <?php $task=\App\Http\Controllers\TaskController::getTasksOfProject($project->id); ?>
             <div class="row w-100 project_n">
-                <div class="col-5 offset-1 p_title" id="{{$project->id}}">
+                <div class="col-7 offset-1 p_title" id="{{$project->id}}">
                     <div class="row">
                         <div class="col-1">
                             <i class="fas fa-chevron-right" id="label_project_{{$project->id}}"></i>
@@ -153,7 +153,7 @@ $share=\App\Http\Controllers\ShareController::getShareWithMe($id);
                         </div>
                     </div>
                 </div>
-             <div class="col-1 offset-5 trash_project" id="{{$project->id}}" data-toggle="modal" data-target="#modal_delete_project">
+             <div class="col-1 offset-3 trash_project" id="{{$project->id}}" data-toggle="modal" data-target="#modal_delete_project">
                     <i class="far fa-trash-alt" style="color:#880400;"></i>
                 </div>
             </div>

@@ -1,3 +1,9 @@
+html, body{
+    overflow-x:hidden;
+    overflow-y:auto!important;
+}
+
+
 .container-fluid{
     color:#666666;
 }
@@ -61,7 +67,7 @@ a:hover{
 }
 
 .bottom_nav{
-    position: fixed;
+    position: relative;
     bottom: 5%;
     height: 4rem;
     padding-right: 5%;

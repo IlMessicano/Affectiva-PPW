@@ -1,6 +1,11 @@
+html, body{
+    overflow-x:hidden;
+    overflow-y:auto!important;
+}
+
 .bottom_nav{
-    position: fixed;
-    bottom: 5%;
+    position: absolute;
+    bottom: 4%;
     height: 4rem;
     padding-right: 5%;
 
@@ -13,13 +18,13 @@
 
 .container-fluid{
     color:#666666;
+    height: 100%;
 }
 
 .title {
     font-size: 2.5rem;
     padding-top:1%;
 }
-
 
 .top_video{
     height: 40%;
@@ -44,9 +49,6 @@
     background: #90a8b3;
 }
 
-.row{
-    margin:auto;
-}
 
 .anteprima{
     height: 100%;
