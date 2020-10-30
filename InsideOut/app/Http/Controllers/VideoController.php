@@ -19,7 +19,7 @@ class VideoController extends Controller
     {
         request()->validate([
             'nomeVideo' => 'required',
-            'nomeVideo.*' => 'mimes:avi,txt'
+            'nomeVideo.*' => 'mimes:mp4,avi,txt'
         ]);
 
         if ($request->hasfile('nomeVideo')) {
@@ -80,5 +80,12 @@ class VideoController extends Controller
 
         return redirect()->route('home');
 
+    }
+
+    public function start_analisi()
+    {
+        return view('analisi');
+
+        // echo "<script>scriptAnalisi($request->video)</script>"
     }
 }
