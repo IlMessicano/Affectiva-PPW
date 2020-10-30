@@ -43,8 +43,23 @@ $ProjectId=$TaskProject->id;
 
             </div>
             <div id="Grafici_A" style="display: none">
-            <div id="columnchart_values" style="width: 600px; height: 200px;"></div>         <!-------------DIV BarChart----------------->
-            <div id="piechart" style="width: 500px; height: 200px;"></div>                   <!-------------DIV PieChart----------------->
+                <b>Seleziona le emozioni che desideri visualizzare e clicca su: Disegna Grafico</b>
+                <br>
+                <form id="sw" action="" method="post">
+                <input class="sw" name="sw[]" type = "checkbox" value='0'> Gioia
+                <input class="sw" name="sw[]" type = "checkbox" value='1'> Tristezza
+                <input class="sw" name="sw[]" type = "checkbox" value='2'> Disgusto
+                <input class="sw" name="sw[]" type = "checkbox" value='3'> Disprezzo
+                <input class="sw" name="sw[]" type = "checkbox" value='4'> Rabbia
+                <input class="sw" name="sw[]" type = "checkbox" value='5'> Paura
+                <input class="sw" name="sw[]" type = "checkbox" value='6'> Sorpresa
+                <input class="sw" name="sw[]" type = "checkbox" value='7'> Engagement
+                </form>
+                <button id="drow">Disegna Grafico</button>
+                <button id="showAll">Mostra Tutte</button>
+                <br><br>
+            <div id="columnchart_values" style="display:block; float:left; width: 600px; height: 200px;"></div>         <!-------------DIV BarChart----------------->
+            <div id="piechart" style="display:block; float:right; width: 500px; height: 200px;"></div>                   <!-------------DIV PieChart----------------->
             </div>
         </div>
     </div>
@@ -138,8 +153,6 @@ $ProjectId=$TaskProject->id;
             return media_f;
         }
 
-        //log('#results', "Valore della media: " + media(obj, "joy"));
-
         google.charts.load("current", {packages:['corechart']});
         google.charts.setOnLoadCallback(drawChart);
         function drawChart() {
@@ -152,7 +165,6 @@ $ProjectId=$TaskProject->id;
                 ["Rabbia", (media(obj, "anger")), "red"],
                 ["Paura", (media(obj, "fear")), "orange"],
                 ["Sorpresa", (media(obj, "surprise")), "gold"],
-                ["Valenza", (media(obj, "valence")), "heavenly"],
                 ["Engagement", (media(obj, "engagement")), "blue"]
             ]);
 
@@ -166,13 +178,29 @@ $ProjectId=$TaskProject->id;
                 legend: { position: "none" },
             };
             var chart = new google.visualization.ColumnChart(document.getElementById("columnchart_values"));
+
+            $("#showAll").click(function (){
+                view.setRows([0,1,2,3,4,5,6,7]);
+                chart.draw(view, options);
+            });
+
+            $("#drow").click(function (){
+                var selected=[];
+                $(".sw:checkbox:checked").each(function () {
+                    selected.push($(this).attr('value'));
+                });
+                var stack = new Array();
+                for(var i=0; i<selected.length; i++){
+                    stack[i] = Number(selected[i]);
+                }
+                view.setRows(stack);
+                chart.draw(view, options);
+            });
             chart.draw(view, options);
         }
     </script>
 
     <script type="text/javascript">
-
-
         google.charts.load('current', {'packages':['corechart']});
         google.charts.setOnLoadCallback(drawChart);
 
@@ -187,9 +215,10 @@ $ProjectId=$TaskProject->id;
                 ["Rabbia", (media(obj, "anger")), "red"],
                 ["Paura", (media(obj, "fear")), "orange"],
                 ["Sorpresa", (media(obj, "surprise")), "gold"],
-                ["Valenza", (media(obj, "valence")), "heavenly"],
                 ["Engagement", (media(obj, "engagement")), "blue"]
             ]);
+
+            var view_p = new google.visualization.DataView(data);
 
             var options = {
                 title: "PieChart della media delle emozioni"
@@ -197,9 +226,24 @@ $ProjectId=$TaskProject->id;
 
             var chart = new google.visualization.PieChart(document.getElementById('piechart'));
 
-            chart.draw(data, options);
+            $("#showAll").click(function (){
+                view_p.setRows([0,1,2,3,4,5,6,7]);
+                chart.draw(view_p, options);
+            });
+
+            $("#drow").click(function (){
+                var selected_p=[];
+                $(".sw:checkbox:checked").each(function () {
+                    selected_p.push($(this).attr('value'));
+                });
+                var stack_p = new Array();
+                for(var i=0; i<selected_p.length; i++){
+                    stack_p[i] = Number(selected_p[i]);
+                }
+                view_p.setRows(stack_p);
+                chart.draw(view_p, options);
+            });
+            chart.draw(view_p, options);
         }
-
     </script>
-
 @endsection

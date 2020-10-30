@@ -34,10 +34,7 @@
 </div>
 </div>
 
-
 <script type="text/javascript">
-
-
     // SDK Needs to create video and canvas nodes in the DOM in order to function
     // Here we are adding those nodes a predefined div.
     var divRoot = $("#affdex_elements")[0];
@@ -163,7 +160,7 @@
                     ["Rabbia", (faces[0].emotions.anger), "red"],
                     ["Paura", (faces[0].emotions.fear), "orange"],
                     ["Sorpresa", (faces[0].emotions.surprise), "gold"],
-                    ["Valenza", (faces[0].emotions.valence), "heavenly"],
+                //  ["Valenza", (faces[0].emotions.valence), "heavenly"],
                     ["Engagement", (faces[0].emotions.engagement), "blue"]
                 ]);
 
@@ -183,6 +180,7 @@
                     bar: {groupWidth: "50%"},
                     legend: { position: "none" },
                 };
+
                 var chart = new google.visualization.ColumnChart(document.getElementById("columnchart_values"));
                 chart.draw(view, options);
             }
