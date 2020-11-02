@@ -41,15 +41,19 @@ $ProjectId=$TaskProject->id;
                 </div>
                 <div class="col-md-5 offset-md-2 text-center">
                     <div class="anteprima mx-auto">
-                        <video class="w-100 h-100" controls>
+                        <video class="w-100 h-100" controls >
                             <source src = "{{ asset($content->pathVideo)}}">
-                            Anteprima video {{ asset($content->nomeVideo)}}
+                            Video non riproducibile.
                         </video>
                     </div>
                 </div>
             </div>
         </div>
+        @if($content->risultatiAnalisi == null)
+        <div class="row w-100" hidden id="Grafici_A" style="padding-left:3rem">
+        @else
         <div class="row w-100" id="Grafici_A" style="padding-left:3rem">
+        @endif
             <div class="row w-100">
                 <p class="font-weight-bold pt-2">Seleziona le emozioni che desideri visualizzare e clicca su: Disegna Grafico</p>
                 <form id="sw" action="" method="post">
@@ -80,9 +84,15 @@ $ProjectId=$TaskProject->id;
                 </div>
             </div>
         </div>
-        <div class="bottom_nav w-100 text-right">
-            <button class="btn" style="margin-right: 1rem" onclick="startAnalisi('{{asset($content->pathVideo)}}','{{$content->id}}')">Analizza</button>
-            <a class="btn" id="Grafici" style="margin-right: 1rem">Grafici</a>
+
+            @if($content->risultatiAnalisi == null)
+            <div class="bottom_nav w-100 text-right"style="position:absolute;bottom:4%">
+            <button class="btn" style="margin-right: 1rem;" onclick="startAnalisi('{{asset($content->pathVideo)}}','{{$content->id}}')">Analizza</button>
+            @else
+            <div class="bottom_nav w-100 text-right">
+            <button class="btn" style="margin-right: 1rem" disabled>Analizza</button>
+            @endif
+                {{--            <a class="btn" id="Grafici" style="margin-right: 1rem">Grafici</a>--}}
             <a class="btn" href="{{ route('export',['table'=>'video','id'=>$content->id]) }}">Esporta PDF</a>
         </div>
     </div>
@@ -272,6 +282,39 @@ $ProjectId=$TaskProject->id;
 
 @section('modals')
 
+    <div class="modal fade" id="modal_modify_video" data-backdrop="false">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title font-weight-bold">Modifica Video</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" >
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="container-fluid h-100">
+                        <form method="post" action="{{route('modify_video')}}" target="_top">
+                            @csrf
+                            <div class="modal_form">
+                                <div class="form-group row">
+                                    <label for="nome" class="col-sm-4 col-form-label font-weight-bold">Nome Task</label>
+                                    <div class="col-sm-8">
+                                        <input id="nomeVideo" type="text" class="input form-control @error('nome') is-invalid @enderror" name="nomeVideo" value="{{ $content->nomeVideo }}" required autocomplete="nome" >
+                                    </div>
+                                </div>
+                                <input type="hidden" name="id" id="id" value="{{$content->id}}">
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                <button class="btn" type="submit">Salva Modifica</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="modal fade" id="modal_error" data-backdrop="false">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -292,4 +335,6 @@ $ProjectId=$TaskProject->id;
             </div>
         </div>
     </div>
+
+
 @endsection

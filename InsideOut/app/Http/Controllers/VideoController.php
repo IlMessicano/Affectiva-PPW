@@ -19,7 +19,7 @@ class VideoController extends Controller
     {
         request()->validate([
             'nomeVideo' => 'required',
-            'nomeVideo.*' => 'mimes:mp4,txt'
+            'nomeVideo.*' => 'mimes:mp4,txt,avi'
         ]);
 
         if ($request->hasfile('nomeVideo')) {
@@ -48,6 +48,14 @@ class VideoController extends Controller
 
     }
 
+    public function updateVideo(Request $request){
+        $video=Video::find($request->id);
+        $video->nomeVideo = $request->nomeVideo;
+        $video->save();
+        $iframe=route('video',['id'=>$video->id]);
+        return redirect('home')->with('iframe',$iframe);
+    }
+
     public static function getVideo($id)
     {
         $video = DB::table('video')->where('task','=',$id)->get();
@@ -64,7 +72,6 @@ class VideoController extends Controller
 
         $checked = $request->video;
         $video = DB::table('video')->select('pathVideo')->where('id', '=', $checked)->get();
-
 
         $video = str_replace('/', '', $video);
         $video = str_replace('{', '', $video);

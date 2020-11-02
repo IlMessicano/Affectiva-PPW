@@ -122,14 +122,7 @@ function startAnalisi(pathVideo, videoId) {
                     '_token': $('meta[name="csrf-token"]').attr('content')
                 })
                 .done(function () {
-                    $("#Grafici_A").fadeIn();
-                    $(".bottom_nav").css({
-                        'position':'relative',
-                        'top': '4%',
-                        'height': '4rem',
-                        'padding-right': '5%'
-                    });
-                    $("#Grafici").addClass('disabled');
+                    window.location.reload();
                 })
                 .fail(function(){
                     $("#modal_error_msg").html("Errore nell'analisi del video!");

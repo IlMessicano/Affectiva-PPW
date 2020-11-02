@@ -4,8 +4,9 @@ html, body{
 }
 
 .bottom_nav{
-    position: absolute;
-    bottom: 4%;
+    position: relative;
+    margin-top: 5%;
+    margin-bottom: 5%;
     height: 4rem;
     padding-right: 5%;
 

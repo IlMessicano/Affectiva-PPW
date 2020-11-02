@@ -62,6 +62,8 @@ Route::post('/updateproject','ProjectController@updateProject')->name('modify_pr
 
 Route::post('/updatetask','TaskController@updateTask')->name('modify_task');
 
+Route::post('/updatevideo','VideoController@updateVideo')->name('modify_video');
+
 Route::post('/destroyproject','ProjectController@destroyProject')->name('delete_project');
 
 Route::post('/destroytask','TaskController@destroyTask')->name('delete_task');
