@@ -18,7 +18,7 @@ class CreateVideoTable extends Migration
             $table->foreignId('task')->references('id')->on('task')->onDelete('cascade');
             $table->string('nomeVideo');
             $table->string('pathVideo');
-            $table->string('risultatiAnalisi')->nullable();
+            $table->json('risultatiAnalisi')->nullable();
             $table->timestamps();
         });
 

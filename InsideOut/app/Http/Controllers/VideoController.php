@@ -19,7 +19,7 @@ class VideoController extends Controller
     {
         request()->validate([
             'nomeVideo' => 'required',
-            'nomeVideo.*' => 'mimes:avi,txt'
+            'nomeVideo.*' => 'mimes:mp4,txt'
         ]);
 
         if ($request->hasfile('nomeVideo')) {
@@ -83,5 +83,13 @@ class VideoController extends Controller
 
         return redirect()->route('home');
 
+    }
+
+    public static function saveJson($id, Request $request){
+
+        $video= Video::find($id);
+        $video->risultatiAnalisi = $request->data;
+        $video->save();
+        return $video;
     }
 }

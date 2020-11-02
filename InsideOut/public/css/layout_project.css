@@ -262,8 +262,7 @@ html, body{
     position: absolute;
     border-radius: 0;
     height: 2rem;
-    padding-bottom: 0.4rem;
-    /*margin-top:-2rem;*/
+    padding: 0.4rem;
     z-index: 1;
     background: transparent;
 }
