@@ -39,9 +39,12 @@ $ProjectId=$TaskProject->id;
                 <div class="col-md-3 offset-md-2 text-center my-auto font-weight-bold">
                     Anteprima:
                 </div>
-                <div class="col-md-5 text-center">
+                <div class="col-md-5 offset-md-2 text-center">
                     <div class="anteprima mx-auto">
-                            ANTEPRIMA VIDEO
+                        <video class="w-100 h-100" controls>
+                            <source src = "{{ asset($content->pathVideo)}}">
+                            Anteprima video {{ asset($content->nomeVideo)}}
+                        </video>
                     </div>
                 </div>
             </div>
@@ -98,73 +101,74 @@ $ProjectId=$TaskProject->id;
     </script>
 
     <script type="text/javascript">
-        var json = JSON.stringify({{$content->risultatiAnalisi}});
-        console.log (json);
-        var obj = JSON.parse(json);
+        var json = '{{$content->risultatiAnalisi}}';
+        var obj = JSON.parse(json.replace(/&quot;/g,'"'));
         console.log(obj);
         function log(node_name, msg) {
             $(node_name).append("<span>" + msg + "</span><br />")
         }
         //log('#results', "Valore del json: " + obj.emozioni.length);
-
-
+        var obj_keys = Object.keys(obj);
+        console.log(obj_keys);
+        var len = obj_keys.length;
         function media(json, emozione){
 
             sum = 0;
 
             switch (emozione) {
                 case "joy":
-                    for (i = 0; i < obj.i.length; i++) {
-                        sum = sum + obj.i.joy;
-                        media_f = sum / obj.i.length;
+                    for (i = 1; i <= len; i++) {
+                        sum = sum + Number(obj[i].joy);
+                        media_f = sum / len;
                     }
                     break;
                 case "sadness":
-                    for (i = 0; i < obj.i.length; i++) {
-                        sum = sum + obj.i.sadness;
-                        media_f = sum / obj.i.length;
+                    for (i = 1; i <= len; i++) {
+                        sum = sum + Number(obj[i].sadness);
+                        media_f = sum / len;
                     }
                     break;
                 case "disgust":
-                    for (i = 0; i < obj.i.length; i++) {
-                        sum = sum + obj.i.disgust;
-                        media_f = sum / obj.i.length;
+                    for (i = 1; i <= len; i++) {
+                        sum = sum + Number(obj[i].disgust);
+                        media_f = sum / len;
                     }
                     break;
                 case "contempt":
-                    for (i = 0; i < obj.i.length; i++) {
-                        sum = sum + obj.i.contempt;
-                        media_f = sum / obj.i.length;
+                    for (i = 1; i <= len; i++) {
+                        sum = sum + Number(obj[i].contempt);
+                        media_f = sum / len;
                     }
                     break;
                 case "anger":
-                    for (i = 0; i < obj.i.length; i++) {
-                        sum = sum + obj.i.anger;
-                        media_f = sum / obj.i.length;
+                    for (i = 1; i <= len; i++) {
+                        sum = sum + Number(obj[i].anger);
+                        media_f = sum / len;
                     }
+                    console.log(sum);
                     break;
                 case "fear":
-                    for (i = 0; i < obj.i.length; i++) {
-                        sum = sum + obj.i.fear;
-                        media_f = sum / obj.i.length;
+                    for (i = 1; i <= len; i++) {
+                        sum = sum + Number(obj[i].fear);
+                        media_f = sum / len;
                     }
                     break;
                 case "surprise":
-                    for (i = 0; i < obj.i.length; i++) {
-                        sum = sum + obj.i.surprise;
-                        media_f = sum / obj.i.length;
+                    for (i = 1; i <= len; i++) {
+                        sum = sum + Number(obj[i].surprise);
+                        media_f = sum / len;
                     }
                     break;
                 case "valence":
-                    for (i = 0; i < obj.i.length; i++) {
-                        sum = sum + obj.i.valence;
-                        media_f = sum / obj.i.length;
+                    for (i = 1; i <= len; i++) {
+                        sum = sum + Number(obj[i].valence);
+                        media_f = sum / len;
                     }
                     break;
                 case "engagement":
-                    for (i = 0; i < obj.i.length; i++) {
-                        sum = sum + obj.i.engagement;
-                        media_f = sum / obj.i.length;
+                    for (i = 1; i <= len; i++) {
+                        sum = sum + Number(obj[i].engagement);
+                        media_f = sum / len;
                     }
                     break;
             }

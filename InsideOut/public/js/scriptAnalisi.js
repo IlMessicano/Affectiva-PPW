@@ -34,7 +34,7 @@ function startAnalisi(pathVideo, videoId) {
     // detector.detectAllExpressions();
 
     // Init variable to save results
-    var detection_results = []; // for logging all detection results.
+    var detection_results = [{}]; // for logging all detection results.
     if (typeof stop_sec === 'undefined') {
         stop_sec = Infinity
     }

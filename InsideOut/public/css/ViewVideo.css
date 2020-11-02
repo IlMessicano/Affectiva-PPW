@@ -49,10 +49,9 @@ html, body{
     background: #90a8b3;
 }
 
-
 .anteprima{
     height: 100%;
-    width: 15rem;
+    width: 20rem;
     background: black;
     color:white;
 }
