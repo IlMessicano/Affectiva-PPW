@@ -177,6 +177,7 @@ html, body{
 }
 
 .my_project_title, .my_video_title{
+
     font-size: medium;
     padding-left:10%;
     margin:0;
@@ -189,6 +190,8 @@ html, body{
 }
 
 .p_title{
+    overflow:hidden;
+    text-overflow: ellipsis;
     cursor:pointer;
     font-weight: bold;
     border-radius: 10px;
@@ -235,6 +238,8 @@ html, body{
 }
 
 .shared_title{
+    overflow:hidden;
+    text-overflow: ellipsis;
     font-size: medium;
     padding-left:10%;
     margin:0;
@@ -243,6 +248,11 @@ html, body{
 
 .rotate{
     transform:rotate(90deg);
+}
+
+.task_name{
+    overflow:hidden;
+    text-overflow: ellipsis;
 }
 
 .task_name:hover{
@@ -326,6 +336,11 @@ html, body{
 .progress-bar{
     color:#cccccc;
     font-weight: bold;
+}
+
+.video_name{
+    overflow:hidden;
+    text-overflow: ellipsis;
 }
 
 .video_name:hover{

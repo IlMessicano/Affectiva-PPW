@@ -56,3 +56,39 @@ html, body{
     background: black;
     color:white;
 }
+
+.loader {
+    height: 100%;
+    width: 100%;
+    border: 1rem solid #666666;
+    border-radius: 50%;
+    border-top:1rem solid #0e2231;
+    border-right: 1rem solid #666666;
+    border-bottom: 1rem solid #0e2231;
+    -webkit-animation: spin 2s linear infinite;
+    animation: spin 2s linear infinite;
+}
+
+@-webkit-keyframes spin {
+    0% { -webkit-transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+#percent_analysis{
+    position:absolute;
+    left:30%;
+    bottom:20%;
+}
+
+.loading{
+    position:absolute;
+    left:42%;
+    bottom:10%;
+    width: 5.5rem;
+    height: 5.5rem;
+}

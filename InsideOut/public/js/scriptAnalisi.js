@@ -63,6 +63,8 @@ function startAnalisi(pathVideo, videoId) {
     // This portion grabs image from the video
     function getVideoImage(secs) {
         video.currentTime = Math.min(Math.max(0, (secs < 0 ? video.duration : 0) + secs), video.duration);
+        var percent = (video.currentTime/video.duration)*100;
+        $('#percent_analysis').html(parseInt(percent)+'%');
         video.onseeked = function (e) {
             var canvas = document.createElement('canvas');
             // canvas.height = canvas.height;

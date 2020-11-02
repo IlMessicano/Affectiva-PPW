@@ -87,12 +87,11 @@ $ProjectId=$TaskProject->id;
 
             @if($content->risultatiAnalisi == null)
             <div class="bottom_nav w-100 text-right"style="position:absolute;bottom:4%">
-            <button class="btn" style="margin-right: 1rem;" onclick="startAnalisi('{{asset($content->pathVideo)}}','{{$content->id}}')">Analizza</button>
+            <button class="btn" style="margin-right: 1rem;" data-toggle="modal" data-target="#modal_analysis" onclick="startAnalisi('{{asset($content->pathVideo)}}','{{$content->id}}')">Analizza</button>
             @else
             <div class="bottom_nav w-100 text-right">
             <button class="btn" style="margin-right: 1rem" disabled>Analizza</button>
             @endif
-                {{--            <a class="btn" id="Grafici" style="margin-right: 1rem">Grafici</a>--}}
             <a class="btn" href="{{ route('export',['table'=>'video','id'=>$content->id]) }}">Esporta PDF</a>
         </div>
     </div>
@@ -336,5 +335,28 @@ $ProjectId=$TaskProject->id;
         </div>
     </div>
 
+    <div class="modal fade" id="modal_analysis" data-backdrop="false">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    Analisi in corso
+                </div>
+                <div class="modal-body" style="height: 15rem">
+                    <div class="container">
+                        <div class="row w-100 text-center" style="margin-top: 15%">
+                            <div class="col-12 align-self-center text-center">
+                                <p>Stiamo analizzando {{$content->nomeVideo}}...</p>
+                            </div>
+
+                        </div>
+                        <div class="loading text-center">
+                            <p id="percent_analysis"></p>
+                            <div class="loader"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 @endsection

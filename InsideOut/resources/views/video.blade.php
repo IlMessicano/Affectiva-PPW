@@ -29,10 +29,10 @@
             <div class="col-1 offset-3">
                 <i class="fas fa-minus"></i>
             </div>
-            <div class="col-4 video_name" id="{{$video->id}}">
+            <div class="col-6 video_name" id="{{$video->id}}">
                 {{$video->nomeVideo}}
             </div>
-            <div class="col-1 offset-2 trash_video" id="{{$video->id}}" data-toggle="modal" data-target="#modal_delete_video">
+            <div class="col-1 trash_video" id="{{$video->id}}" data-toggle="modal" data-target="#modal_delete_video">
                 <i class="far fa-trash-alt" style="color:#880400;"></i>
             </div>
         </div>

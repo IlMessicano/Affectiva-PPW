@@ -163,10 +163,10 @@ $share=\App\Http\Controllers\ShareController::getShareWithMe($id);
                         <div class="col-1 offset-3">
                             <i class="fas fa-minus"></i>
                         </div>
-                        <div class="col-4 task_name" id="{{$task->id}}">
+                        <div class="col-6 task_name" id="{{$task->id}}">
                             {{$task->nomeTask}}
                         </div>
-                        <div class="col-1 offset-2 trash_task" id="{{$task->id}}" data-toggle="modal" data-target="#modal_delete_task">
+                        <div class="col-1 trash_task" id="{{$task->id}}" data-toggle="modal" data-target="#modal_delete_task">
                             <i class="far fa-trash-alt" style="color:#880400;"></i>
                         </div>
                 </div>
