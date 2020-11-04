@@ -69,7 +69,7 @@
     detector.addEventListener("onInitializeSuccess", function() {
         log('#logs', "Analisi avviata");
         //Display canvas instead of video feed because we want to draw the feature points on it
-        $("#face_video_canvas").css("display", "block");
+        $("#face_video_canvas").css({"display":"block", "border":"2px solid #90A8B3"});
         $("#face_video").css("display", "none");
     });
 
