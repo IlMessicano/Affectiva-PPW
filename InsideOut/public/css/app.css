@@ -10908,3 +10908,11 @@ a.text-dark:focus {
     background-color: #2fa360!important;
     border-color: #2d995b;
 }
+
+
+
+/* GRAFICA PER LIVE MODE */
+
+.camera{
+    margin: 5%;
+}
