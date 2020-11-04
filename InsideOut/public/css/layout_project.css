@@ -323,6 +323,10 @@ html, body{
     top:1rem;
 }
 
+.sizeing a{
+    color:#cccccc;
+}
+
 #inc-size:hover, #dec-size:hover, #reset-size:hover{
 
     font-weight: bold;
