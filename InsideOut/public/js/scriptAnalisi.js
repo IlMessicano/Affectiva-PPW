@@ -1,3 +1,4 @@
+
 function startAnalisi(pathVideo, videoId) {
 
     /* Filename or path to your file.
@@ -63,28 +64,31 @@ function startAnalisi(pathVideo, videoId) {
     // This portion grabs image from the video
     function getVideoImage(secs) {
         video.currentTime = Math.min(Math.max(0, (secs < 0 ? video.duration : 0) + secs), video.duration);
-        var percent = (video.currentTime/video.duration)*100;
-        $('#percent_analysis').html(parseInt(percent)+'%');
-        video.onseeked = function (e) {
-            var canvas = document.createElement('canvas');
-            // canvas.height = canvas.height;
-            // canvas.width = canvas.width;
-            // canvas.width = 640;
-            // canvas.height = 480;
+            $("#modal_error_msg").html("Errore nell'analisi del video!");
+            $('#modal_analysis').modal();
+            $("#modal_error").modal()
+            var percent = (video.currentTime/video.duration)*100;
+            $('#percent_analysis').html(parseInt(percent)+'%');
+            video.onseeked = function (e) {
+                var canvas = document.createElement('canvas');
+                // canvas.height = canvas.height;
+                // canvas.width = canvas.width;
+                // canvas.width = 640;
+                // canvas.height = 480;
 
-            var ctx = canvas.getContext('2d');
-            ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
-            var img = new Image();
-            img.src = canvas.toDataURL();
-            // Pass the image to the detector to track emotions
-            if (detector && detector.isRunning) {
-                console.log("#logs", "Processing second : ".concat(precisionRound(secs, 3).toString()));
-                detector.process(ctx.getImageData(0, 0, canvas.width, canvas.height), secs);
-            }
-        };
-        video.onerror = function (e) {
-            console.log ("Video Seeking Error");
-        };
+                var ctx = canvas.getContext('2d');
+                ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+                var img = new Image();
+                img.src = canvas.toDataURL();
+                // Pass the image to the detector to track emotions
+                if (detector && detector.isRunning) {
+                    console.log("#logs", "Processing second : ".concat(precisionRound(secs, 3).toString()));
+                    detector.process(ctx.getImageData(0, 0, canvas.width, canvas.height), secs);
+                }
+            };
+            video.onerror = function (e) {
+                console.log ("Video Seeking Error");
+            };
     }
 
     detector.addEventListener("onImageResultsSuccess", function (faces, image, timestamp) {
@@ -118,18 +122,15 @@ function startAnalisi(pathVideo, videoId) {
             var DBjson = detection_results;
             console.log(DBjson);
 
-            $.post('http://127.0.0.1:8000/save_json/'+videoId,
-                {
-                    'data': DBjson,
-                    '_token': $('meta[name="csrf-token"]').attr('content')
-                })
-                .done(function () {
-                    window.location.reload();
-                })
-                .fail(function(){
-                    $("#modal_error_msg").html("Errore nell'analisi del video!");
-                    $("#modal_error").modal()
-                });
+            $.ajax({
+                url: 'http://127.0.0.1:8000/save_json/'+videoId,
+                type: 'POST',
+                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                data: {'data': DBjson},
+                success: function () {
+                    window.location.reload()
+                }
+            });
         }
     });
 

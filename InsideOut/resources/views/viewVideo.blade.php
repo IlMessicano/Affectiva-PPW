@@ -92,23 +92,12 @@ $ProjectId=$TaskProject->id;
             <div class="bottom_nav w-100 text-right">
             <button class="btn" style="margin-right: 1rem" disabled>Analizza</button>
             @endif
+                <button class="btn" data-toggle="modal" data-target="#modal_analysis"></button>
             <a class="btn" href="{{ route('export',['table'=>'video','id'=>$content->id]) }}">Esporta PDF</a>
         </div>
     </div>
 
-    <script>
-        $("#Grafici").click(function(){
-            $("#Grafici_A").fadeIn();
-            $(".bottom_nav").css({
-                'position':'relative',
-                'top': '4%',
-                'height': '4rem',
-                'padding-right': '5%'
-            });
-            $("#Grafici").addClass('disabled');
-        });
-    </script>
-
+    @if($content->risultatiAnalisi != null)
     <script type="text/javascript">
         var json = '{{$content->risultatiAnalisi}}';
         var obj = JSON.parse(json.replace(/&quot;/g,'"'));
@@ -277,6 +266,7 @@ $ProjectId=$TaskProject->id;
             chart.draw(view_p, options);
         }
     </script>
+    @endif
 @endsection
 
 @section('modals')
@@ -349,8 +339,8 @@ $ProjectId=$TaskProject->id;
                             </div>
 
                         </div>
-                        <div class="loading text-center">
-                            <p id="percent_analysis"></p>
+                        <div class="loading">
+                            <p id="percent_analysis" class="text-center">0%</p>
                             <div class="loader"></div>
                         </div>
                     </div>

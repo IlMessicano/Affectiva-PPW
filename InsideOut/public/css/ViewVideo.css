@@ -80,8 +80,8 @@ html, body{
 }
 
 #percent_analysis{
+    width: 100%;
     position:absolute;
-    left:30%;
     bottom:20%;
 }
 
