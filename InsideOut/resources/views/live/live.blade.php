@@ -10,25 +10,40 @@
 
 <body>
 <div class="container-fluid" >
-    <div class="row" style="display: flex">
-        <div class="col-md-7" id="affdex_elements" style="width:700px;height:500px;"></div>
-        <div class="col-md-5">
-            <div style="height:25em;">
+    <div class="row">
+        <a class="btn" style="margin: 1%" href="{{route('login')}}">Login</a>
+    </div>
+    <div class="row">
+        <div class="col-md-12" style="text-align: center">
+            <h2>LIVE MODE</h2>
+            <button class="btn btn-success" id="start" onclick="onStart()">Start</button>
+            <button class="btn btn-danger" id="stop" onclick="onStop()">Stop</button>
+            <!--<button id="reset" onclick="onReset()">Reset</button> -->
+        </div>
+    </div>
+    <div class="row" style="display: flex; margin: auto; width: 80%;">
+        <div id="affdex_elements" style="width:700px;height:500px;margin:auto; margin-top: 1%"></div>
+    </div>
+    <div class="row">
+        <div class="col-md-12" style="text-align: center; height:25em; margin-top: 1%">
+
                 <strong>RISULTATO DELL'ANALISI IN TEMPO REALE:</strong>
                 <br>
                 <br>
                 <div id="results"></div>
             </div>
-            <div id="columnchart_values" style="width: 600px; height: 200px;"></div>         <!-------------DIV Grafico----------------->
-        <div>
-            <button id="start" onclick="onStart()">Start</button>
-            <button id="stop" onclick="onStop()">Stop</button>
-            <!--<button id="reset" onclick="onReset()">Reset</button> -->
+            <div id="columnchart_values" style="width: 600px; height: 200px;"></div>
+    </div>
+
+    <!-------------DIV Grafico----------------->
+
         </div>
         <br>
-        <div>
-            <strong>Detector log: </strong>
-            <div id="logs"></div>
+        <div class="row">
+            <div class="col-md-12" style="text-align: center">
+                <strong>Detector log: </strong>
+                <div id="logs"></div>
+            </div>
         </div>
     </div>
 </div>
