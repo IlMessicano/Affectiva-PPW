@@ -129,6 +129,11 @@ function startAnalisi(pathVideo, videoId) {
                 data: {'data': DBjson},
                 success: function () {
                     window.location.reload()
+                },
+                error: function(){
+                    $("#modal_error_msg").html("Errore nell'analisi del video!");
+                    $('#modal_analysis').modal('hide');
+                    $("#modal_error").modal()
                 }
             });
         }

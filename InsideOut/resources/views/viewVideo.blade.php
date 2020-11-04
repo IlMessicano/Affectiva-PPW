@@ -308,7 +308,7 @@ $ProjectId=$TaskProject->id;
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title font-weight-bold">Elimina video</h5>
+                    <h5 class="modal-title font-weight-bold">ERRORE</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close" >
                         <i class="fas fa-times"></i>
                     </button>
@@ -344,6 +344,9 @@ $ProjectId=$TaskProject->id;
                             <div class="loader"></div>
                         </div>
                     </div>
+                </div>
+                <div class="modal-footer" style="justify-content: center">
+                    <p style="color:#ff6464;text-decoration:underline">Non aggiornare la pagina durante l'analisi!</p>
                 </div>
             </div>
         </div>
