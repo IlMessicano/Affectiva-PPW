@@ -128,12 +128,16 @@ function startAnalisi(pathVideo, videoId) {
                 headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
                 data: {'data': DBjson},
                 success: function () {
-                    window.location.reload()
+                    // var block_body = window.parent.document.getElementsByClassName('block-body');
+                    // $(block_body).show();
+                    window.location.reload();
                 },
-                error: function(){
-                    $("#modal_error_msg").html("Errore nell'analisi del video!");
-                    $('#modal_analysis').modal('hide');
-                    $("#modal_error").modal()
+                error:function (jqXHR, exception) {
+                    console.log(jqXHR);
+                    $("#modal_analysis").modal('hide');
+                    // $("#modal_error_msg").html(jqXHR.responseText);
+                    $("#modal_error_msg").html('Impossibile analizzare il file. Errore: '+jqXHR.status);
+                    $("#modal_error").modal();
                 }
             });
         }

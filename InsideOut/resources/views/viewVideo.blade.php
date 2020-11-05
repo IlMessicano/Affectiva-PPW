@@ -2,11 +2,27 @@
 
 @section('head')
     <meta name="csrf-token" content="{{ csrf_token() }}" />
+
     <link href="{{ asset('css/ViewVideo.css') }}" rel="stylesheet">
+
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
     <!-- Load Affectiva API -->
     <script type="text/javascript" src="https://download.affectiva.com/js/3.2/affdex.js"></script>
+
+    {{--    Script Analysis--}}
     <script type="text/javascript" src="{{asset('js/scriptAnalisi.js')}}"></script>
+
+    <script>
+        $(document).ready(function(){
+            $('#analizza').click(function(){
+                var block_body = window.parent.document.getElementsByClassName('block-body');
+                $(block_body).show();
+            });
+
+
+        });
+    </script>
 @endsection
 
 <?php
@@ -87,12 +103,12 @@ $ProjectId=$TaskProject->id;
 
             @if($content->risultatiAnalisi == null)
             <div class="bottom_nav w-100 text-right"style="position:absolute;bottom:4%">
-            <button class="btn" style="margin-right: 1rem;" data-toggle="modal" data-target="#modal_analysis" onclick="startAnalisi('{{asset($content->pathVideo)}}','{{$content->id}}')">Analizza</button>
+            <button class="btn" id="analizza" style="margin-right: 1rem;" data-toggle="modal" data-target="#modal_analysis" onclick="startAnalisi('{{asset($content->pathVideo)}}','{{$content->id}}')">Analizza</button>
             @else
             <div class="bottom_nav w-100 text-right">
             <button class="btn" style="margin-right: 1rem" disabled>Analizza</button>
             @endif
-                <button class="btn" data-toggle="modal" data-target="#modal_analysis"></button>
+{{--                <button class="btn" data-toggle="modal" data-target="#modal_analysis"></button>--}}
             <a class="btn" href="{{ route('export',['table'=>'video','id'=>$content->id]) }}">Esporta PDF</a>
         </div>
     </div>
@@ -346,7 +362,7 @@ $ProjectId=$TaskProject->id;
                     </div>
                 </div>
                 <div class="modal-footer" style="justify-content: center">
-                    <p style="color:#ff6464;text-decoration:underline">Non aggiornare la pagina durante l'analisi!</p>
+                    <p  style="color:#ff6464;text-decoration:underline">Non aggiornare la pagina durante l'analisi!</p>
                 </div>
             </div>
         </div>

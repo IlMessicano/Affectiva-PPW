@@ -99,6 +99,7 @@
 
 </head>
 <body>
+<div class="block-body"></div>
 <div class="container-fluid h-100 w-100">
     <div class="row w-100 top_nav">
         <a href="{{route('home')}}" style="text-decoration: none" class="fas fa-home fa-2x text-center"></a>
@@ -127,7 +128,7 @@
             </div>
         </div>
 
-        <div class="col h-100" style="padding:0;overflow-y: auto;" >
+        <div class="col h-100" style="padding:0;overflow-y: auto;z-index: 50;" >
             @yield('content_center')
         </div>
     </div>

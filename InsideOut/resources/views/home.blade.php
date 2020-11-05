@@ -71,6 +71,7 @@ $share=\App\Http\Controllers\ShareController::getShareWithMe($id);
 
             $('#upload_video').on('submit', function(e){
                 $('.progress').show();
+                $('.block_body').show();
                 e.preventDefault();
                 $.ajax({
                     xhr: function () {
@@ -91,6 +92,7 @@ $share=\App\Http\Controllers\ShareController::getShareWithMe($id);
                     processData:false,
                     success: function(res) {
                         $('#content').attr('src','http://127.0.0.1:8000/viewVideo/'+res);
+                        $('.block_body').hide();
                         $('#modal_new_video').modal('hide');
                         var task = $("#task").val();
                         showVideo(task);

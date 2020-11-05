@@ -68,9 +68,11 @@ a:hover{
 
 .bottom_nav{
     position: relative;
-    bottom: 5%;
+    margin-top: 5%;
+    margin-bottom: 5%;
     height: 4rem;
     padding-right: 5%;
+
 }
 
 .trash{
@@ -91,4 +93,47 @@ a:hover{
 .elimina_allert_share{
     margin:3rem;
     font-size: large;
+}
+
+.task_title{
+    margin-top: 1rem;
+    font-size: large;
+}
+
+.analysis_contain{
+    width:100%;
+    margin-top: 1rem;
+}
+
+.analysis{
+    margin-bottom: 1.5rem;
+    height: 2rem;
+}
+
+.loader {
+    height: 75%;
+    padding-top:80%;
+    border-left: 0.3rem solid #666666;
+    border-top:0.3rem solid #0e2231;
+    border-right: 0.3rem solid #666666;
+    border-bottom: 0.3rem solid #0e2231;
+    border-radius: 50%;
+    -webkit-animation: spin 2s linear infinite;
+    animation: spin 2s linear infinite;
+}
+
+@-webkit-keyframes spin {
+    0% { -webkit-transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.percent{
+    width: 60%;
+    position:absolute;
+    bottom:-5%;
 }

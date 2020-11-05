@@ -2,6 +2,47 @@
 
 @section('head')
     <link href="{{ asset('css/ViewTask.css') }}" rel="stylesheet">
+
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+    <!-- Load Affectiva API -->
+    <script type="text/javascript" src="https://download.affectiva.com/js/3.2/affdex.js"></script>
+
+    {{--    Script Analysis--}}
+    <script type="text/javascript" src="{{asset('js/scriptAnalisi.js')}}"></script>
+
+    <script>
+        $(document).ready(function(){
+            $('.btn_analysis').click(function(){
+                var block_body = window.parent.document.getElementsByClassName('block-body');
+                $(block_body).show();
+                var id= this.id;
+                $(this).hide();
+                $('#loading_'+id).show();
+                $('#all').attr('disabled',true).css('cursor','not-allowed');
+                // $('#dismiss_analysis').attr('disabled',true).css('cursor','not-allowed');
+                $('.btn_analysis').attr('disabled',true).css('cursor','not-allowed');
+            });
+
+            $('#all').click(function(){
+                var block_body = window.parent.document.getElementsByClassName('block-body');
+                $(block_body).show();
+                $('.btn_analysis').hide();
+                $('.loading').show();
+                $('#all').attr('disabled',true).css('cursor','not-allowed');
+                // $('#dismiss_analysis').attr('disabled',true).css('cursor','not-allowed');
+            });
+
+            $('#dismiss_analysis').click(function(){
+                $('.btn_analysis').attr('disabled',false).css('cursor','pointer');
+                $('#all').attr('disabled',false).css('cursor','pointer');
+                var block_body = window.parent.document.getElementsByClassName('block-body');
+                $(block_body).hide();
+            });
+
+        });
+
+    </script>
 @endsection
 
 @section('breadcrumb')
@@ -35,12 +76,13 @@
                 </div>
             </div>
         </div>
+        <div class="bottom_nav w-100 text-right">
+            <button class="btn" style="margin-right: 1rem" data-toggle="modal" data-target="#modal_analysis">Analizza</button>
+            <a class="btn" href="{{ route('export',['table'=>'task','id'=>$content->id]) }}">Esporta PDF</a>
+        </div>
     </div>
 
-    <div class="bottom_nav w-100 text-right">
-        <a class="btn" style="margin-right: 1rem">Analizza</a>
-        <a class="btn" href="{{ route('export',['table'=>'task','id'=>$content->id]) }}">Esporta PDF</a>
-    </div>
+
 @endsection
 
 @section('modals')
@@ -82,4 +124,63 @@
             </div>
         </div>
     </div>
+
+    <div class="modal fade" id="modal_analysis" data-backdrop="false">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    Video da analizzare
+                </div>
+                <div class="modal-body" style="height: 18rem;overflow-y: auto">
+                    <div class="container">
+                        <?php $videos=\App\Http\Controllers\VideoController::getVideo($content->id);
+                        $i=0;
+                        ?>
+                        @if(count($videos)>0)
+                                <div class="row w-100 text-center" style="margin-top: 1rem">
+                                    <div class="col-4 offset-md-7 text-center">
+                                        <button id="all" class="btn">Analizza tutto</button>
+                                    </div>
+                                </div>
+                        @endif
+                        <div class="container-fluid analysis_contain">
+                        @forelse($videos as $video)
+                            <div class="row w-100 analysis">
+                                <div class="col-7 offset-md-1 my-auto">
+                                    {{$video->nomeVideo}}
+                                </div>
+                                <div class="col-2 my-auto">
+                                    @if($video->risultatiAnalisi == null)
+
+                                        <button class="btn btn_analysis" id="{{$video->id}}">Analizza</button>
+                                        <div id="loading_{{$video->id}}" class="loading" style="display:none">
+                                            <div class="loader mx-auto"></div>
+                                            <p class="percent text-center mx-auto small">0%</p>
+                                        </div>
+                                    @else
+                                        <?php $i++;?>
+                                        <i class="far fa-check-circle text-success fa-2x"></i>
+                                    @endif
+                                </div>
+                            </div>
+                        @empty
+                            <div class="row w-100 analysis">
+                                <div class="col-12 text-center">
+                                    Nessun video per questo Task
+                                </div>
+                            </div>
+                        @endforelse
+                        </div>
+                        @if($i==count($videos))
+                                <script>$('#all').attr('disabled','true').css('cursor','not-allowed')</script>
+                        @endif
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="dismiss_analysis" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 @endsection

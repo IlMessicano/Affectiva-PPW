@@ -22,6 +22,34 @@ $sharedWith=\App\Http\Controllers\ShareController::getSharebyProject($content->i
                 var name = $(this).prev().text();
                 $('#title_delete_share').text(name);
             });
+
+            $('.btn_analysis').click(function(){
+                var block_body = window.parent.document.getElementsByClassName('block-body');
+                $(block_body).show();
+                var id= this.id;
+                $(this).hide();
+                $('#loading_'+id).show();
+                $('#all').attr('disabled',true).css('cursor','not-allowed');
+                // $('#dismiss_analysis').attr('disabled',true).css('cursor','not-allowed');
+                $('.btn_analysis').attr('disabled',true).css('cursor','not-allowed');
+            });
+
+            $('#all').click(function(){
+                var block_body = window.parent.document.getElementsByClassName('block-body');
+                $(block_body).show();
+                $('.btn_analysis').hide();
+                $('.loading').show();
+                $('#all').attr('disabled',true).css('cursor','not-allowed');
+                // $('#dismiss_analysis').attr('disabled',true).css('cursor','not-allowed');
+            });
+
+            $('#dismiss_analysis').click(function(){
+                $('.btn_analysis').attr('disabled',false).css('cursor','pointer');
+                $('#all').attr('disabled',false).css('cursor','pointer');
+                var block_body = window.parent.document.getElementsByClassName('block-body');
+                $(block_body).hide();
+            });
+
         });
     </script>
 @endsection
@@ -118,13 +146,13 @@ $sharedWith=\App\Http\Controllers\ShareController::getSharebyProject($content->i
                 </div>
             </div>
         </div>
-
+        <div class="bottom_nav w-100 text-right">
+            <a class="btn" style="margin-right: 1rem"  data-toggle="modal" data-target="#modal_analysis">Analizza</a>
+            <a class="btn" href="{{ route('export',['table'=>'progetto','id'=>$content->id]) }}">Esporta PDF</a>
+        </div>
     </div>
 
-    <div class="bottom_nav w-100 text-right">
-        <a class="btn" style="margin-right: 1rem">Analizza</a>
-        <a class="btn" href="{{ route('export',['table'=>'progetto','id'=>$content->id]) }}">Esporta PDF</a>
-    </div>
+
 @endsection
 
 @section('modals')
@@ -229,4 +257,74 @@ $sharedWith=\App\Http\Controllers\ShareController::getSharebyProject($content->i
             </div>
         </div>
     </div>
+
+    <div class="modal fade" id="modal_analysis" data-backdrop="false">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    Video da analizzare
+                </div>
+                <div class="modal-body" style="height: 20rem;overflow-y: auto">
+                    <div class="container">
+                        <?php $tot=0;$i=0;
+                        $task=\App\Http\Controllers\TaskController::getTasksOfProject($content->id); ?>
+                        @forelse($task as $task)
+                            <?php $videos=\App\Http\Controllers\VideoController::getVideo($task->id);
+                            $tot += count($videos);
+                            ?>
+                            <div class="row w-100 task_title">
+                                <div class="col-5 offset-1 font-weight-bold">
+                                    {{$task->nomeTask}}
+                                </div>
+                            </div>
+                            <div class="container-fluid analysis_contain">
+                                @forelse($videos as $video)
+                                    <div class="row w-100 analysis">
+                                        <div class="col-7 offset-md-2 my-auto">
+                                            {{$video->nomeVideo}}
+                                        </div>
+                                        <div class="col-2 my-auto">
+                                            @if($video->risultatiAnalisi == null)
+
+                                                <button class="btn btn_analysis" id="{{$video->id}}">Analizza</button>
+                                                <div id="loading_{{$video->id}}" class="loading" style="display:none">
+                                                    <div class="loader mx-auto"></div>
+                                                    <p class="percent text-center mx-auto small">0%</p>
+                                                </div>
+                                            @else
+                                                <?php $i++;?>
+                                                <i class="far fa-check-circle text-success fa-2x"></i>
+                                            @endif
+                                        </div>
+                                    </div>
+                                @empty
+                                    <div class="row w-100 analysis">
+                                        <div class="col-12 text-center">
+                                            Nessun video per questo Task
+                                        </div>
+                                    </div>
+                                @endforelse
+                            </div>
+                        @empty
+                        @endforelse
+                        @if($tot>0)
+                            <div class="row w-100">
+                                <div class="col-6 offset-md-6 text-center">
+                                    <button id="all" class="btn btn-sm">Analizza tutto</button>
+                                </div>
+                            </div>
+                        @endif
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    @if($i==$tot)
+                        <script> $(document).ready(function(){$('#all').attr('disabled','true').css('cursor','not-allowed');$('#btn_all').attr('disabled','true').css('cursor','not-allowed');});</script>
+                    @endif
+                    <button class="btn btn_analysis" id="btn_all">Analizza tutto</button>
+                    <button type="button" id="dismiss_analysis" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 @endsection

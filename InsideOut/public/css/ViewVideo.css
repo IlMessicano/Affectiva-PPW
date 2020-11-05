@@ -60,11 +60,11 @@ html, body{
 .loader {
     height: 100%;
     width: 100%;
-    border: 1rem solid #666666;
-    border-radius: 50%;
-    border-top:1rem solid #0e2231;
+    border-left: 1rem solid #666666;
     border-right: 1rem solid #666666;
     border-bottom: 1rem solid #0e2231;
+    border-radius: 50%;
+    border-top:1rem solid #0e2231;
     -webkit-animation: spin 2s linear infinite;
     animation: spin 2s linear infinite;
 }
