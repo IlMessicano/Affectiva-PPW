@@ -131,18 +131,11 @@
                 <div class="modal-header">
                     Video da analizzare
                 </div>
-                <div class="modal-body" style="height: 18rem;overflow-y: auto">
+                <div class="modal-body" style="height: 18rem;overflow-y: auto;padding-top: 2rem;">
                     <div class="container">
                         <?php $videos=\App\Http\Controllers\VideoController::getVideo($content->id);
                         $i=0;
                         ?>
-                        @if(count($videos)>0)
-                                <div class="row w-100 text-center" style="margin-top: 1rem">
-                                    <div class="col-4 offset-md-7 text-center">
-                                        <button id="all" class="btn">Analizza tutto</button>
-                                    </div>
-                                </div>
-                        @endif
                         <div class="container-fluid analysis_contain">
                         @forelse($videos as $video)
                             <div class="row w-100 analysis">
@@ -173,10 +166,16 @@
                         </div>
                         @if($i==count($videos))
                                 <script>$('#all').attr('disabled','true').css('cursor','not-allowed')</script>
+                        @else
+                                <script>$(document).ready(function(){$('#btn_all').attr('disabled','true').css('cursor','not-allowed');});</script>
                         @endif
                     </div>
                 </div>
                 <div class="modal-footer">
+                    @if(count($videos)>0)
+                        <button id="all" class="btn">Analizza tutto</button>
+                        <button class="btn btn_analysis" id="btn_all">Analizza Progetto</button>
+                    @endif
                     <button type="button" id="dismiss_analysis" class="btn btn-danger" data-dismiss="modal">Close</button>
                 </div>
             </div>

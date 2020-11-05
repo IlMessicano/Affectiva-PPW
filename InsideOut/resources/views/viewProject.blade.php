@@ -30,7 +30,7 @@ $sharedWith=\App\Http\Controllers\ShareController::getSharebyProject($content->i
                 $(this).hide();
                 $('#loading_'+id).show();
                 $('#all').attr('disabled',true).css('cursor','not-allowed');
-                // $('#dismiss_analysis').attr('disabled',true).css('cursor','not-allowed');
+                $('#dismiss_analysis').attr('disabled',true).css('cursor','not-allowed');
                 $('.btn_analysis').attr('disabled',true).css('cursor','not-allowed');
             });
 
@@ -40,7 +40,7 @@ $sharedWith=\App\Http\Controllers\ShareController::getSharebyProject($content->i
                 $('.btn_analysis').hide();
                 $('.loading').show();
                 $('#all').attr('disabled',true).css('cursor','not-allowed');
-                // $('#dismiss_analysis').attr('disabled',true).css('cursor','not-allowed');
+                $('#dismiss_analysis').attr('disabled',true).css('cursor','not-allowed');
             });
 
             $('#dismiss_analysis').click(function(){
@@ -307,20 +307,18 @@ $sharedWith=\App\Http\Controllers\ShareController::getSharebyProject($content->i
                             </div>
                         @empty
                         @endforelse
-                        @if($tot>0)
-                            <div class="row w-100">
-                                <div class="col-6 offset-md-6 text-center">
-                                    <button id="all" class="btn btn-sm">Analizza tutto</button>
-                                </div>
-                            </div>
-                        @endif
                     </div>
                 </div>
                 <div class="modal-footer">
                     @if($i==$tot)
-                        <script> $(document).ready(function(){$('#all').attr('disabled','true').css('cursor','not-allowed');$('#btn_all').attr('disabled','true').css('cursor','not-allowed');});</script>
+                        <script> $(document).ready(function(){$('#all').attr('disabled','true').css('cursor','not-allowed');});</script>
+                    @else
+                        <script> $(document).ready(function(){$('#btn_all').attr('disabled','true').css('cursor','not-allowed');});</script>
                     @endif
-                    <button class="btn btn_analysis" id="btn_all">Analizza tutto</button>
+                    @if($tot>0)
+                        <button id="all" class="btn">Analizza tutto</button>
+                        <button class="btn" id="btn_all">Analizza Progetto</button>
+                    @endif
                     <button type="button" id="dismiss_analysis" class="btn btn-danger" data-dismiss="modal">Close</button>
                 </div>
             </div>
