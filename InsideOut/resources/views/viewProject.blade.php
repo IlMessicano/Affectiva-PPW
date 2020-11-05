@@ -55,6 +55,7 @@ $sharedWith=\App\Http\Controllers\ShareController::getSharebyProject($content->i
 @endsection
 
 @section('content')
+
     <div class="container-fluid h-100">
         <div class="row top_project">
             <div class="row w-100 top1_project">
@@ -101,10 +102,9 @@ $sharedWith=\App\Http\Controllers\ShareController::getSharebyProject($content->i
                         @empty
                                 <div class="col-12 text-center">Non hai condiviso il progetto con nessun utente</div>
                         @endforelse
-                            <div class="row w-100">
-                                <div class="col-12 text-center"><button class="btn" style="margin-top:0.7rem;color: #212529;" data-toggle="modal" data-target="#modal_share_project">Codividi ora! <i class="fas fa-user-plus"></i></button></div>
-                            </div>
-
+                        <div class="row w-100">
+                            <div class="col-12 text-center"><button class="btn" style="margin-top:0.7rem;color: #212529;" data-toggle="modal" data-target="#modal_share_project">Codividi ora! <i class="fas fa-user-plus"></i></button></div>
+                        </div>
                     </div>
                     @error('share')
                     <span class="text-danger" role="alert">
@@ -146,12 +146,14 @@ $sharedWith=\App\Http\Controllers\ShareController::getSharebyProject($content->i
                 </div>
             </div>
         </div>
+
+
+
         <div class="bottom_nav w-100 text-right">
             <a class="btn" style="margin-right: 1rem"  data-toggle="modal" data-target="#modal_analysis">Analizza</a>
             <a class="btn" href="{{ route('export',['table'=>'progetto','id'=>$content->id]) }}">Esporta PDF</a>
         </div>
     </div>
-
 
 @endsection
 

@@ -18,6 +18,7 @@ class CreateTaskTable extends Migration
             $table->foreignId('progetto')->references('id')->on('progetto')->onDelete('cascade');
             $table->string('nomeTask');
             $table->string('descrizione');
+            $table->json('risultatiAnalisi')->nullable();
             $table->timestamps();
         });
     }

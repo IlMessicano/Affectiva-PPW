@@ -19,6 +19,7 @@ class CreateProjectTable extends Migration
             $table->string('nome');
             $table->dateTime('dataCreazione');
             $table->string('descrizione');
+            $table->json('risultatiAnalisi')->nullable();
             $table->timestamps();
         });
     }

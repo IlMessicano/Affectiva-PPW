@@ -56,6 +56,7 @@
 @endsection
 
 @section('content')
+
     <div class="container-fluid h-100">
         <div class="row justify-content-center top_task">
             <div class="col-12 text-center align align-content-center title">
@@ -76,12 +77,14 @@
                 </div>
             </div>
         </div>
+
+
+
         <div class="bottom_nav w-100 text-right">
             <button class="btn" style="margin-right: 1rem" data-toggle="modal" data-target="#modal_analysis">Analizza</button>
             <a class="btn" href="{{ route('export',['table'=>'task','id'=>$content->id]) }}">Esporta PDF</a>
         </div>
     </div>
-
 
 @endsection
 
