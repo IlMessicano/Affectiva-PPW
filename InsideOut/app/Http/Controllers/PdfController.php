@@ -13,6 +13,10 @@ class PdfController extends Controller
         // retreive all records from db
         $data = DB::table($table)->where('id', $id)->first();
         view()->share('data',$data);
+
+        /* VISUALIZZAZIONE VISTA */
+        return view('pdf_view_'.$table);
+
         $pdf = PDF::loadView('pdf_view_'.$table);
 
         // download PDF file with download method
