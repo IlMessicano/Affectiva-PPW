@@ -5,7 +5,6 @@ html, body{
 
 .bottom_nav{
     position: relative;
-    margin-top: 5%;
     margin-bottom: 5%;
     height: 4rem;
     padding-right: 5%;
@@ -28,11 +27,11 @@ html, body{
 }
 
 .top_video{
-    height: 40%;
+    height: 45%;
 }
 
 .top1_video{
-    height: 45%;
+    height: 30%;
 }
 
 .top2_video{
@@ -53,8 +52,8 @@ html, body{
 .anteprima{
     height: 100%;
     width: 20rem;
-    background: black;
-    color:white;
+    /*background: black;*/
+    /*color:white;*/
 }
 
 .loader {
@@ -79,7 +78,7 @@ html, body{
     100% { transform: rotate(360deg); }
 }
 
-#percent_analysis{
+.percent_analysis{
     width: 100%;
     position:absolute;
     bottom:20%;

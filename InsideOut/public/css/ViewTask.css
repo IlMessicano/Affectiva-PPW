@@ -1,5 +1,11 @@
+html, body{
+    overflow-x:hidden;
+    overflow-y:auto!important;
+}
+
 .container-fluid{
     color:#666666;
+    height: 100%;
 }
 
 .title {
@@ -37,7 +43,6 @@
 
 .bottom_nav{
     position: relative;
-    margin-top: 5%;
     margin-bottom: 5%;
     height: 4rem;
     padding-right: 5%;
@@ -64,8 +69,8 @@
 }
 
 .loader {
-    height: 75%;
-    padding-top:80%;
+    width: 26%;
+    padding-top:21%;
     border-left: 0.3rem solid #666666;
     border-top:0.3rem solid #0e2231;
     border-right: 0.3rem solid #666666;
@@ -86,7 +91,8 @@
 }
 
 .percent{
-    width: 60%;
+    width: 100%;
     position:absolute;
-    bottom:-5%;
+    bottom:-10%;
+    left: -0%;
 }

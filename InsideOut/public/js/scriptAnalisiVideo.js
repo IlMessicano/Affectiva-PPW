@@ -1,5 +1,53 @@
+function media(json){
+    obj_keys = Object.keys(json);
+    // console.log(obj_keys);
+    len = obj_keys.length;
 
-function startAnalisi(pathVideo, videoId) {
+    jsonDB = {
+        "joy":"",
+        "sadness":"",
+        "disgust":"",
+        "contempt":"",
+        "anger":"",
+        "fear":"",
+        "surprise":"",
+        "engagement":""};
+
+    sumJoy = 0;
+    sumSad = 0;
+    sumDisg = 0;
+    sumCon = 0;
+    sumAng = 0;
+    sumFea = 0;
+    sumSur = 0;
+    sumEng = 0;
+
+    for (i = 1; i < len; i++) {
+        sumJoy = sumJoy + json[i].joy;
+        sumSad = sumSad + json[i].sadness;
+        sumDisg = sumDisg + json[i].disgust;
+        sumCon = sumCon + json[i].contempt;
+        sumAng = sumAng + json[i].anger;
+        sumFea = sumFea + json[i].fear;
+        sumSur = sumSur + json[i].surprise;
+        sumEng = sumEng + json[i].engagement;
+
+    }
+
+    jsonDB.joy = sumJoy / len;
+    jsonDB.sadness = sumSad / len;
+    jsonDB.disgust = sumDisg / len;
+    jsonDB.contempt = sumCon / len;
+    jsonDB.anger = sumAng / len;
+    jsonDB.fear = sumFea / len;
+    jsonDB.surprise = sumSur / len;
+    jsonDB.engagement = sumEng / len;
+
+   return jsonDB;
+}
+
+
+function startAnalisi(pathVideo, videoId, string) {
 
     /* Filename or path to your file.
     This is relative to where you are running your server.
@@ -64,11 +112,9 @@ function startAnalisi(pathVideo, videoId) {
     // This portion grabs image from the video
     function getVideoImage(secs) {
         video.currentTime = Math.min(Math.max(0, (secs < 0 ? video.duration : 0) + secs), video.duration);
-            $("#modal_error_msg").html("Errore nell'analisi del video!");
             $('#modal_analysis').modal();
-            $("#modal_error").modal()
             var percent = (video.currentTime/video.duration)*100;
-            $('#percent_analysis').html(parseInt(percent)+'%');
+            $('#percent_analysis_'+videoId).html(parseInt(percent)+'%');
             video.onseeked = function (e) {
                 var canvas = document.createElement('canvas');
                 // canvas.height = canvas.height;
@@ -119,18 +165,18 @@ function startAnalisi(pathVideo, videoId) {
             getVideoImage(secs);
         } else {
             console.log("EndofDuration");
-            var DBjson = detection_results;
+            var DBjson = media(detection_results);
             console.log(DBjson);
 
             $.ajax({
-                url: 'http://127.0.0.1:8000/save_json/'+videoId,
+                url: 'http://127.0.0.1:8000/save_json_video/'+videoId,
                 type: 'POST',
                 headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
                 data: {'data': DBjson},
                 success: function () {
-                    // var block_body = window.parent.document.getElementsByClassName('block-body');
-                    // $(block_body).show();
-                    window.location.reload();
+                        var block_body = window.parent.document.getElementsByClassName('block-body');
+                        $(block_body).hide();
+                        window.location.reload();
                 },
                 error:function (jqXHR, exception) {
                     console.log(jqXHR);

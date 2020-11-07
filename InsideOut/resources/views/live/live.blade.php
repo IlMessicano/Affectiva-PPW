@@ -27,7 +27,8 @@
         <div class="col-6 text-center">
             <div id="columnchart_values" style="width: 80%; height: 100%;margin:auto"></div>
         </div>
-        <p style="display:none; padding-top: 1%; padding-left: 65%" id="visualizza">Valore dell'Engagement:&nbsp<p style="padding-top: 1%" id="engag"></p></p>
+        <p style="display:none; padding-top: 1%; padding-left: 65%" id="visualizza">Valore dell'Engagement:  <span style="padding-top: 1%" id="engag"></span></p>
+
     </div>
     <!-------------DIV Grafico----------------->
     <div class="row">
@@ -122,7 +123,6 @@
                     ["Rabbia", (faces[0].emotions.anger), "red"],
                     ["Paura", (faces[0].emotions.fear), "orange"],
                     ["Sorpresa", (faces[0].emotions.surprise), "gold"],
-                    ["Engagement", (faces[0].emotions.engagement), "blue"]
                 ]);
 
                 $('#engag').html((faces[0].emotions.engagement).toFixed(3));

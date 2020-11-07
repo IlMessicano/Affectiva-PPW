@@ -49,4 +49,11 @@ class ProjectController extends Controller
         return redirect()->route('home');
     }
 
+    public static function saveJson($id, Request $request){
+
+        $video= Progetto::find($id);
+        $video->risultatiAnalisi = $request->data;
+        $video->save();
+        return $video;
+    }
 }

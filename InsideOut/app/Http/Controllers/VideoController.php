@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Video;
+use App\Task;
+use App\Progetto;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
@@ -44,6 +46,14 @@ class VideoController extends Controller
 
         Video::insert($save);
 
+        $task = Task::find($request->task);
+        $task->risultatiAnalisi = null;
+        $task->save();
+
+        $project = Progetto::find($task->progetto);
+        $project->risultatiAnalisi = null;
+        $project->save();
+
         $id= DB::getPdo()->lastInsertId();
 
         return $id;
@@ -62,6 +72,11 @@ class VideoController extends Controller
     {
         $video = DB::table('video')->where('task','=',$id)->get();
         return $video;
+    }
+
+    public static function getAnalysisVideo($id){
+        $video = Video::find($id);
+        return $video->risultatiAnalisi;
     }
 
     public static function ViewVideobyId($id){
@@ -101,4 +116,10 @@ class VideoController extends Controller
         $video->save();
         return $video;
     }
+
+    public function path($id){
+        $video= Video::find($id);
+        return asset($video->pathVideo);
+    }
+
 }

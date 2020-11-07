@@ -11,7 +11,7 @@
     <script type="text/javascript" src="https://download.affectiva.com/js/3.2/affdex.js"></script>
 
     {{--    Script Analysis--}}
-    <script type="text/javascript" src="{{asset('js/scriptAnalisi.js')}}"></script>
+    <script type="text/javascript" src="{{asset('js/scriptAnalisiVideo.js')}}"></script>
 
     <script>
         $(document).ready(function(){
@@ -20,8 +20,8 @@
                 $(block_body).show();
             });
 
-
         });
+
     </script>
 @endsection
 
@@ -52,12 +52,9 @@ $ProjectId=$TaskProject->id;
                 </div>
             </div>
             <div class="row w-100 top2_video">
-                <div class="col-md-3 offset-md-2 text-center my-auto font-weight-bold">
-                    Anteprima:
-                </div>
-                <div class="col-md-5 offset-md-2 text-center">
+                <div class="col-md-12 text-center">
                     <div class="anteprima mx-auto">
-                        <video class="w-100 h-100" controls >
+                        <video class="w-75" controls>
                             <source src = "{{ asset($content->pathVideo)}}">
                             Video non riproducibile.
                         </video>
@@ -66,28 +63,29 @@ $ProjectId=$TaskProject->id;
             </div>
         </div>
         @if($content->risultatiAnalisi == null)
-        <div class="row w-100" hidden id="Grafici_A" style="padding-left:3rem">
+        <div class="row w-100" hidden id="Grafici_A" style="padding-left:2rem">
         @else
-        <div class="row w-100" id="Grafici_A" style="padding-left:3rem">
+        <div class="row w-100" id="Grafici_A" style="padding-left:2rem">
         @endif
             <div class="row w-100">
-                <p class="font-weight-bold pt-2">Seleziona le emozioni che desideri visualizzare e clicca su: Disegna Grafico</p>
-                <form id="sw" action="" method="post">
-                    <input class="sw" name="sw[]" type = "checkbox" value='0'> Gioia
-                    <input class="sw" name="sw[]" type = "checkbox" value='1'> Tristezza
-                    <input class="sw" name="sw[]" type = "checkbox" value='2'> Disgusto
-                    <input class="sw" name="sw[]" type = "checkbox" value='3'> Disprezzo
-                    <input class="sw" name="sw[]" type = "checkbox" value='4'> Rabbia
-                    <input class="sw" name="sw[]" type = "checkbox" value='5'> Paura
-                    <input class="sw" name="sw[]" type = "checkbox" value='6'> Sorpresa
-                    <input class="sw" name="sw[]" type = "checkbox" value='7'> Engagement
-                </form>
+                <div class="col-12 text-center">
+                    <p class="font-weight-bold pt-2">Seleziona le emozioni che desideri visualizzare e clicca su: Disegna Grafico</p>
+                    <form id="sw" action="" method="post">
+                        <input class="sw" name="sw[]" type = "checkbox" value='0'> Gioia
+                        <input class="sw" name="sw[]" type = "checkbox" value='1'> Tristezza
+                        <input class="sw" name="sw[]" type = "checkbox" value='2'> Disgusto
+                        <input class="sw" name="sw[]" type = "checkbox" value='3'> Disprezzo
+                        <input class="sw" name="sw[]" type = "checkbox" value='4'> Rabbia
+                        <input class="sw" name="sw[]" type = "checkbox" value='5'> Paura
+                        <input class="sw" name="sw[]" type = "checkbox" value='6'> Sorpresa
+                    </form>
+                </div>
             </div>
-            <div class="row w-100">
-                <div class="col-2 offset-md-1">
+            <div class="row w-100 mt-3">
+                <div class="col-2 offset-md-3">
                     <button class="btn" id="drow">Disegna Grafico</button>
                 </div>
-                <div class="col-2 offset-md-1">
+                <div class="col-2 offset-md-2">
                     <button class="btn" id="showAll">Mostra Tutte</button>
                 </div>
             </div>
@@ -98,19 +96,22 @@ $ProjectId=$TaskProject->id;
                 <div class="col-6 h-100">
                     <div id="piechart" style="display:block; float:right;"></div>        <!-------------DIV PieChart----------------->
                 </div>
-                <p>Valore dell'Engagement:&nbsp<p id="engagement"></p></p>
+            </div>
+            <div class="row w-100 mt-4">
+                <div class="col-3 text-center">
+                    <p class="text-primary">Valore dell'Engagement:  <span class="font-weight-bold" id="engagement"></span></p>
+                </div>
             </div>
         </div>
 
             @if($content->risultatiAnalisi == null)
             <div class="bottom_nav w-100 text-right"style="position:absolute;bottom:4%">
-            <button class="btn" id="analizza" style="margin-right: 1rem;" data-toggle="modal" data-target="#modal_analysis" onclick="startAnalisi('{{asset($content->pathVideo)}}','{{$content->id}}')">Analizza</button>
+            <button class="btn" id="analizza" style="margin-right: 1rem;" data-toggle="modal" data-target="#modal_analysis" onclick="startAnalisi('{{asset($content->pathVideo)}}','{{$content->id}}','video')">Analizza</button>
             @else
             <div class="bottom_nav w-100 text-right">
-            <button class="btn" style="margin-right: 1rem" disabled>Analizza</button>
+                <a class="btn" href="{{ route('export',['table'=>'video','id'=>$content->id]) }}">Esporta PDF</a>
             @endif
 {{--                <button class="btn" data-toggle="modal" data-target="#modal_analysis"></button>--}}
-            <a class="btn" href="{{ route('export',['table'=>'video','id'=>$content->id]) }}">Esporta PDF</a>
         </div>
     </div>
 
@@ -118,94 +119,24 @@ $ProjectId=$TaskProject->id;
     <script type="text/javascript">
         var json = '{{$content->risultatiAnalisi}}';
         var obj = JSON.parse(json.replace(/&quot;/g,'"'));
-        console.log(obj);
         function log(node_name, msg) {
             $(node_name).append("<span>" + msg + "</span><br />")
         }
-        //log('#results', "Valore del json: " + obj.emozioni.length);
-        var obj_keys = Object.keys(obj);
-        console.log(obj_keys);
-        var len = obj_keys.length;
-        function media(json, emozione){
-
-            sum = 0;
-
-            switch (emozione) {
-                case "joy":
-                    for (i = 1; i <= len; i++) {
-                        sum = sum + Number(obj[i].joy);
-                        media_f = sum / len;
-                    }
-                    break;
-                case "sadness":
-                    for (i = 1; i <= len; i++) {
-                        sum = sum + Number(obj[i].sadness);
-                        media_f = sum / len;
-                    }
-                    break;
-                case "disgust":
-                    for (i = 1; i <= len; i++) {
-                        sum = sum + Number(obj[i].disgust);
-                        media_f = sum / len;
-                    }
-                    break;
-                case "contempt":
-                    for (i = 1; i <= len; i++) {
-                        sum = sum + Number(obj[i].contempt);
-                        media_f = sum / len;
-                    }
-                    break;
-                case "anger":
-                    for (i = 1; i <= len; i++) {
-                        sum = sum + Number(obj[i].anger);
-                        media_f = sum / len;
-                    }
-                    console.log(sum);
-                    break;
-                case "fear":
-                    for (i = 1; i <= len; i++) {
-                        sum = sum + Number(obj[i].fear);
-                        media_f = sum / len;
-                    }
-                    break;
-                case "surprise":
-                    for (i = 1; i <= len; i++) {
-                        sum = sum + Number(obj[i].surprise);
-                        media_f = sum / len;
-                    }
-                    break;
-                case "valence":
-                    for (i = 1; i <= len; i++) {
-                        sum = sum + Number(obj[i].valence);
-                        media_f = sum / len;
-                    }
-                    break;
-                case "engagement":
-                    for (i = 1; i <= len; i++) {
-                        sum = sum + Number(obj[i].engagement);
-                        media_f = sum / len;
-                    }
-                    break;
-            }
-            return media_f;
-        }
 
         google.charts.load("current", {packages:['corechart']});
-        google.charts.setOnLoadCallback(drawChart);
-        function drawChart() {
+        google.charts.setOnLoadCallback(drawColumnChart);
+        function drawColumnChart() {
             var data = google.visualization.arrayToDataTable([
                 ["Element", "Percentuale", { role: "style" } ],
-                ["Gioia", (media(obj, "joy")), "yellow"],
-                ["Tristezza", (media(obj, "sadness")), "brown"],
-                ["Disgusto", (media(obj, "disgust")), "green"],
-                ["Disprezzo", (media(obj, "contempt")), "grey"],
-                ["Rabbia", (media(obj, "anger")), "red"],
-                ["Paura", (media(obj, "fear")), "orange"],
-                ["Sorpresa", (media(obj, "surprise")), "gold"],
-                ["Engagement", (media(obj, "engagement")), "blue"]
+                ["Gioia", (Number(obj.joy)), "yellow"],
+                ["Tristezza", (Number(obj.sadness)), "brown"],
+                ["Disgusto", (Number(obj.disgust)), "green"],
+                ["Disprezzo", (Number(obj.contempt)), "grey"],
+                ["Rabbia", (Number(obj.anger)), "red"],
+                ["Paura", (Number(obj.fear)), "orange"],
+                ["Sorpresa", (Number(obj.surprise)), "gold"],
             ]);
-
-            $('#engagement').html(media(obj, "engagement").toFixed(3));
+            $('#engagement').html(Number(obj.engagement).toFixed(3));
 
             var view = new google.visualization.DataView(data);
 
@@ -216,11 +147,11 @@ $ProjectId=$TaskProject->id;
                 bar: {groupWidth: "50%"},
                 legend: { position: "none" },
             };
-            var chart = new google.visualization.ColumnChart(document.getElementById("columnchart_values"));
+            var chartCol = new google.visualization.ColumnChart(document.getElementById("columnchart_values"));
 
             $("#showAll").click(function (){
-                view.setRows([0,1,2,3,4,5,6,7]);
-                chart.draw(view, options);
+                view.setRows([0,1,2,3,4,5,6]);
+                chartCol.draw(view, options);
             });
 
             $("#drow").click(function (){
@@ -233,28 +164,25 @@ $ProjectId=$TaskProject->id;
                     stack[i] = Number(selected[i]);
                 }
                 view.setRows(stack);
-                chart.draw(view, options);
+                chartCol.draw(view, options);
             });
-            chart.draw(view, options);
+            chartCol.draw(view, options);
         }
-    </script>
 
-    <script type="text/javascript">
         google.charts.load('current', {'packages':['corechart']});
-        google.charts.setOnLoadCallback(drawChart);
+        google.charts.setOnLoadCallback(drawPieChart);
 
-        function drawChart() {
+        function drawPieChart() {
 
             var data = google.visualization.arrayToDataTable([
                 ["Element", "Percentuale", { role: "style" } ],
-                ["Gioia", (media(obj, "joy")), "yellow"],
-                ["Tristezza", (media(obj, "sadness")), "brown"],
-                ["Disgusto", (media(obj, "disgust")), "green"],
-                ["Disprezzo", (media(obj, "contempt")), "grey"],
-                ["Rabbia", (media(obj, "anger")), "red"],
-                ["Paura", (media(obj, "fear")), "orange"],
-                ["Sorpresa", (media(obj, "surprise")), "gold"],
-                ["Engagement", (media(obj, "engagement")), "blue"]
+                ["Gioia", (Number(obj.joy)), "yellow"],
+                ["Tristezza", (Number(obj.sadness)), "brown"],
+                ["Disgusto", (Number(obj.disgust)), "green"],
+                ["Disprezzo", (Number(obj.contempt)), "grey"],
+                ["Rabbia", (Number(obj.anger)), "red"],
+                ["Paura", (Number(obj.fear)), "orange"],
+                ["Sorpresa", (Number(obj.surprise)), "gold"],
             ]);
 
             var view_p = new google.visualization.DataView(data);
@@ -263,11 +191,11 @@ $ProjectId=$TaskProject->id;
                 title: "PieChart della media delle emozioni"
             };
 
-            var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+            var chartPie = new google.visualization.PieChart(document.getElementById('piechart'));
 
             $("#showAll").click(function (){
-                view_p.setRows([0,1,2,3,4,5,6,7]);
-                chart.draw(view_p, options);
+                view_p.setRows([0,1,2,3,4,5,6]);
+                chartPie.draw(view_p, options);
             });
 
             $("#drow").click(function (){
@@ -279,10 +207,11 @@ $ProjectId=$TaskProject->id;
                 for(var i=0; i<selected_p.length; i++){
                     stack_p[i] = Number(selected_p[i]);
                 }
+
                 view_p.setRows(stack_p);
-                chart.draw(view_p, options);
+                chartPie.draw(view_p, options);
             });
-            chart.draw(view_p, options);
+            chartPie.draw(view_p, options);
         }
     </script>
     @endif
@@ -359,7 +288,7 @@ $ProjectId=$TaskProject->id;
 
                         </div>
                         <div class="loading">
-                            <p id="percent_analysis" class="text-center">0%</p>
+                            <p id="percent_analysis_{{$content->id}}" class="text-center percent_analysis">0%</p>
                             <div class="loader"></div>
                         </div>
                     </div>

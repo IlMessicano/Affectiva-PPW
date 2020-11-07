@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Task;
+use App\Progetto;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -29,6 +30,11 @@ class TaskController extends Controller
         $new_task->descrizione = $request->descrizione;
         $new_task->progetto = $request->progetto;
         $new_task->save();
+
+        $project=Progetto::find($new_task->progetto);
+        $project->risultatiAnalisi = null;
+        $project->save();
+
         $iframe=route('task',['id'=>$new_task->id]);
         return redirect('home')->with ('iframe',$iframe);
     }
@@ -45,5 +51,13 @@ class TaskController extends Controller
     public function destroyTask(Request $request){
         Task::destroy($request->task);
         return redirect()->route('home');
+    }
+
+    public static function saveJson($id, Request $request){
+
+        $video= Task::find($id);
+        $video->risultatiAnalisi = $request->data;
+        $video->save();
+        return $video;
     }
 }

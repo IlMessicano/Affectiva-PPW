@@ -68,7 +68,6 @@ a:hover{
 
 .bottom_nav{
     position: relative;
-    margin-top: 5%;
     margin-bottom: 5%;
     height: 4rem;
     padding-right: 5%;
@@ -102,7 +101,6 @@ a:hover{
 
 .analysis_contain{
     width:100%;
-    margin-top: 1rem;
 }
 
 .analysis{
@@ -111,8 +109,8 @@ a:hover{
 }
 
 .loader {
-    height: 75%;
-    padding-top:80%;
+    width: 26%;
+    padding-top:21%;
     border-left: 0.3rem solid #666666;
     border-top:0.3rem solid #0e2231;
     border-right: 0.3rem solid #666666;
@@ -133,7 +131,24 @@ a:hover{
 }
 
 .percent{
-    width: 60%;
+    width: 100%;
     position:absolute;
-    bottom:-5%;
+    bottom:-10%;
+    left: -0%;
+}
+
+
+#btn_all:hover .tooltip_analysis{
+    visibility: visible;
+}
+
+.tooltip_analysis{
+    visibility: hidden;
+    width: 10rem;
+    background-color: #858585;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    top:-120%;
 }

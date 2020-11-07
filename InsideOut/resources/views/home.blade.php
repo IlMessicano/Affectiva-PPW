@@ -452,6 +452,4 @@ $share=\App\Http\Controllers\ShareController::getShareWithMe($id);
             </div>
         </div>
     </div>
-
-
 @endsection

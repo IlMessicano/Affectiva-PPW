@@ -76,6 +76,14 @@ Route::get('video-upload', 'VideoController@getVideo');
 
 Route::post('destroyvideo', ['uses' => 'VideoController@destroy'])->name('delete_video');
 
+Route::post('/path_video/{id}','VideoController@path')->name('pathVideo');
+
 Route::get('export/{table}/{id}','PdfController@createPDF')->name('export');
 
-Route::post('/save_json/{id}','VideoController@saveJson')->name('save_json');
+Route::post('/save_json_video/{id}','VideoController@saveJson')->name('save_json_video');
+
+Route::post('/save_json_task/{id}','TaskController@saveJson')->name('save_json_task');
+
+Route::post('/save_json_project/{id}','ProjectController@saveJson')->name('save_json_project');
+
+Route::post('/videoAnalysis/{id}','VideoController@getAnalysisVideo')->name('videoAnalysis');
