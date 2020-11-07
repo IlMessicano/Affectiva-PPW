@@ -27,6 +27,7 @@
         <div class="col-6 text-center">
             <div id="columnchart_values" style="width: 80%; height: 100%;margin:auto"></div>
         </div>
+        <p style="display:none; padding-top: 1%; padding-left: 65%" id="visualizza">Valore dell'Engagement:&nbsp<p style="padding-top: 1%" id="engag"></p></p>
     </div>
     <!-------------DIV Grafico----------------->
     <div class="row">
@@ -73,6 +74,7 @@
             detector.start();
             $("#face_video_canvas").css({"display":"block", "border":"2px solid #90A8B3", "margin":"auto"});
             $("#face_video").css({"display": "none"});
+            $("#visualizza").show();
         }
 
     }
@@ -123,6 +125,7 @@
                     ["Engagement", (faces[0].emotions.engagement), "blue"]
                 ]);
 
+                $('#engag').html((faces[0].emotions.engagement).toFixed(3));
                 var view = new google.visualization.DataView(data);
                 var options = {
                     title: "Grafico delle emozioni in tempo reale",

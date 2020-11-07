@@ -98,6 +98,7 @@ $ProjectId=$TaskProject->id;
                 <div class="col-6 h-100">
                     <div id="piechart" style="display:block; float:right;"></div>        <!-------------DIV PieChart----------------->
                 </div>
+                <p>Valore dell'Engagement:&nbsp<p id="engagement"></p></p>
             </div>
         </div>
 
@@ -203,6 +204,8 @@ $ProjectId=$TaskProject->id;
                 ["Sorpresa", (media(obj, "surprise")), "gold"],
                 ["Engagement", (media(obj, "engagement")), "blue"]
             ]);
+
+            $('#engagement').html(media(obj, "engagement").toFixed(3));
 
             var view = new google.visualization.DataView(data);
 
