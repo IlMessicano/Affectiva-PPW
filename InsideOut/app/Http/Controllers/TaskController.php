@@ -50,6 +50,9 @@ class TaskController extends Controller
 
     public function destroyTask(Request $request){
         Task::destroy($request->task);
+        $project=Progetto::find($new_task->progetto);
+        $project->risultatiAnalisi = null;
+        $project->save();
         return redirect()->route('home');
     }
 

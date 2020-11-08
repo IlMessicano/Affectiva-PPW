@@ -46,6 +46,7 @@ class ProjectController extends Controller
 
     public function destroyProject(Request $request){
         Progetto::destroy($request->progetto);
+
         return redirect()->route('home');
     }
 

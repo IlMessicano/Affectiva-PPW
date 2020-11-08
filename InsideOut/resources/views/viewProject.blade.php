@@ -479,7 +479,7 @@ $idAnalyze = []; $all_video =[];
                     @if($i==$tot)
                         <button class="btn btn_analysis" id="btn_all" onclick="projectAnalisi('{{$content->id}}',{{json_encode($all_video)}})">Analizza Task</button>
                     @elseif($tot>0)
-                        <button class="btn btn_analysis" id="btn_all" onclick="analyze()">Analizza Task</button>
+                        <button class="btn btn_analysis" id="btn_all" onclick="analyze()">Analizza Progetto</button>
                     @endif
                     <button type="button" id="dismiss_analysis" class="btn btn-danger" data-dismiss="modal">Close</button>
                 </div>
@@ -525,7 +525,7 @@ $idAnalyze = []; $all_video =[];
                         </div>
                         <div class="modal-body">
                             <div class="container-fluid h-100">
-                                <p id="modal_error_msg" class="mt-5 mb-5 text-center w-100 text-danger">aaaaaaaa</p>
+                                <p id="modal_error_msg" class="mt-5 mb-5 text-center w-100 text-danger">Errore nell'analisi</p>
                             </div>
                         </div>
                         <div class="modal-footer">

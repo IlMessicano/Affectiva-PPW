@@ -263,7 +263,7 @@ $ProjectId=$TaskProject->id;
                 </div>
                 <div class="modal-body">
                     <div class="container-fluid h-100">
-                        <p id="modal_error_msg" class="mt-5 mb-5 text-center w-100 text-danger">aaaaaaaa</p>
+                        <p id="modal_error_msg" class="mt-5 mb-5 text-center w-100 text-danger">Errore nell'analisi</p>
                     </div>
                 </div>
                 <div class="modal-footer">

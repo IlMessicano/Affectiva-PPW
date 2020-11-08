@@ -45,6 +45,7 @@ class VideoController extends Controller
         }
 
         Video::insert($save);
+        $id= DB::getPdo()->lastInsertId();
 
         $task = Task::find($request->task);
         $task->risultatiAnalisi = null;
@@ -54,7 +55,6 @@ class VideoController extends Controller
         $project->risultatiAnalisi = null;
         $project->save();
 
-        $id= DB::getPdo()->lastInsertId();
 
         return $id;
 
@@ -104,6 +104,13 @@ class VideoController extends Controller
         unlink($video);
         Video::destroy($checked);
 
+        $task = Task::find($request->task);
+        $task->risultatiAnalisi = null;
+        $task->save();
+
+        $project = Progetto::find($task->progetto);
+        $project->risultatiAnalisi = null;
+        $project->save();
 
         return redirect()->route('home');
 
