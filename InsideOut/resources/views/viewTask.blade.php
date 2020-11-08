@@ -117,7 +117,13 @@
         @else
         <div class="bottom_nav w-100 text-right">
 {{--            <button class="btn" style="margin-right: 1rem" disabled>Analizza</button>--}}
-            <a class="btn" disabled href="{{ route('export',['table'=>'video','id'=>$content->id]) }}">Esporta PDF</a>
+            <form id="export_pdf_form" action="{{ route('export',['table'=>'task','id'=>$content->id]) }}" method="POST">
+                @csrf
+                <input type="hidden" name="col" id="col"/>
+                <input type="hidden" name="pie" id="pie"/>
+                <input type="hidden" name="engag" id="engag" value=""/>
+                <button class="btn" id="export_pdf">Esporta PDF</button>
+            </form>
         </div>
         @endif
     </div>
@@ -143,6 +149,7 @@
                     ["Sorpresa", (Number(obj.surprise)), "gold"],
                 ]);
                 $('#engagement').html(Number(obj.engagement).toFixed(3));
+                $('#engag').val(Number(obj.engagement).toFixed(3));
 
                 var view = new google.visualization.DataView(data);
 
@@ -153,7 +160,15 @@
                     bar: {groupWidth: "50%"},
                     legend: { position: "none" },
                 };
-                var chartCol = new google.visualization.ColumnChart(document.getElementById("columnchart_values"));
+
+                var divCol = document.getElementById("columnchart_values");
+                var chartCol_input = document.getElementById('col');
+                var chartCol = new google.visualization.ColumnChart(divCol);
+
+                google.visualization.events.addListener(chartCol, 'ready', function () {
+                    divCol.innerHTML = '<img src="' + chartCol.getImageURI() + '">';
+                    chartCol_input.value = chartCol.getImageURI();
+                });
 
                 $("#showAll").click(function (){
                     view.setRows([0,1,2,3,4,5,6]);
@@ -197,7 +212,14 @@
                     title: "PieChart della media delle emozioni"
                 };
 
-                var chartPie = new google.visualization.PieChart(document.getElementById('piechart'));
+                var divPie = document.getElementById("piechart");
+                var chartPie_input = document.getElementById('pie');
+                var chartPie = new google.visualization.PieChart(divPie);
+
+                google.visualization.events.addListener(chartPie, 'ready', function () {
+                    divPie.innerHTML = '<img src="' + chartPie.getImageURI() + '">';
+                    chartPie_input.value = chartPie.getImageURI();
+                });
 
                 $("#showAll").click(function (){
                     view_p.setRows([0,1,2,3,4,5,6]);
