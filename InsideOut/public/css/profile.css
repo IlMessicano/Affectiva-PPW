@@ -15,7 +15,7 @@
 .btn-profile{
     margin: 2%;
     position:relative;
-    background-color: #90a8b3 !important;
+    background-color: #d3edfd !important;
     font-weight: bold !important;
 }
 .btn-profile:hover{
@@ -44,7 +44,7 @@
 .btn-delete{
     transition-duration: 0.4s;
     background-color: white;
-    color: red;
+    color: #e80008;
     border: 2px solid #f44336;
     padding: 10px 10px;
     text-align: center;

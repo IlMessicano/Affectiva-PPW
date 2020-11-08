@@ -61,72 +61,72 @@
                                     <input type="text" hidden id="imageUpload" name="data" value="{{$user->imgProfilo}}">
                                     <div class="row">
                                         <div class="col-3 center">
-                                            <img src="{{asset('img/avatar/Avatar01.png')}}" onclick="select(this)">
+                                            <img src="{{asset('img/avatar/Avatar01.png')}}" alt="Avatar01" onclick="select(this)">
                                         </div>
                                         <div class="col-3">
-                                            <img src="{{asset('img/avatar/Avatar02.png')}}" onclick="select(this)">
+                                            <img src="{{asset('img/avatar/Avatar02.png')}}" alt="Avatar02" onclick="select(this)">
                                         </div>
                                         <div class="col-3">
-                                            <img src="{{asset('img/avatar/Avatar03.png')}}" onclick="select(this)">
+                                            <img src="{{asset('img/avatar/Avatar03.png')}}" alt="Avatar03" onclick="select(this)">
                                         </div>
                                         <div class="col-3">
-                                            <img src="{{asset('img/avatar/Avatar04.png')}}" onclick="select(this)">
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-3">
-                                            <img src="{{asset('img/avatar/Avatar05.png')}}" onclick="select(this)">
-                                        </div>
-                                        <div class="col-3">
-                                            <img src="{{asset('img/avatar/Avatar06.png')}}" onclick="select(this)">
-                                        </div>
-                                        <div class="col-3">
-                                            <img src="{{asset('img/avatar/Avatar07.png')}}" onclick="select(this)">
-                                        </div>
-                                        <div class="col-3">
-                                            <img src="{{asset('img/avatar/Avatar08.png')}}" onclick="select(this)">
+                                            <img src="{{asset('img/avatar/Avatar04.png')}}" alt="Avatar04" onclick="select(this)">
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-3">
-                                            <img src="{{asset('img/avatar/Avatar09.png')}}" onclick="select(this)">
+                                            <img src="{{asset('img/avatar/Avatar05.png')}}" alt="Avatar05" onclick="select(this)">
                                         </div>
                                         <div class="col-3">
-                                            <img src="{{asset('img/avatar/Avatar10.png')}}" onclick="select(this)">
+                                            <img src="{{asset('img/avatar/Avatar06.png')}}" alt="Avatar06" onclick="select(this)">
                                         </div>
                                         <div class="col-3">
-                                            <img src="{{asset('img/avatar/Avatar11.png')}}" onclick="select(this)">
+                                            <img src="{{asset('img/avatar/Avatar07.png')}}" alt="Avatar07" onclick="select(this)">
                                         </div>
                                         <div class="col-3">
-                                            <img src="{{asset('img/avatar/Avatar12.png')}}" onclick="select(this)">
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-3">
-                                            <img src="{{asset('img/avatar/Avatar13.png')}}" onclick="select(this)">
-                                        </div>
-                                        <div class="col-3">
-                                            <img src="{{asset('img/avatar/Avatar14.png')}}" onclick="select(this)">
-                                        </div>
-                                        <div class="col-3">
-                                            <img src="{{asset('img/avatar/Avatar15.png')}}" onclick="select(this)">
-                                        </div>
-                                        <div class="col-3">
-                                            <img src="{{asset('img/avatar/Avatar16.png')}}" onclick="select(this)">
+                                            <img src="{{asset('img/avatar/Avatar08.png')}}" alt="Avatar08" onclick="select(this)">
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-3">
-                                            <img src="{{asset('img/avatar/Avatar17.png')}}" onclick="select(this)">
+                                            <img src="{{asset('img/avatar/Avatar09.png')}}" alt="Avatar09" onclick="select(this)">
                                         </div>
                                         <div class="col-3">
-                                            <img src="{{asset('img/avatar/Avatar18.png')}}" onclick="select(this)">
+                                            <img src="{{asset('img/avatar/Avatar10.png')}}" alt="Avatar10" onclick="select(this)">
                                         </div>
                                         <div class="col-3">
-                                            <img src="{{asset('img/avatar/Avatar19.png')}}" onclick="select(this)">
+                                            <img src="{{asset('img/avatar/Avatar11.png')}}" alt="Avatar11" onclick="select(this)">
                                         </div>
                                         <div class="col-3">
-                                            <img src="{{asset('img/avatar/Avatar20.png')}}" onclick="select(this)">
+                                            <img src="{{asset('img/avatar/Avatar12.png')}}" alt="Avatar12" onclick="select(this)">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-3">
+                                            <img src="{{asset('img/avatar/Avatar13.png')}}" alt="Avatar13" onclick="select(this)">
+                                        </div>
+                                        <div class="col-3">
+                                            <img src="{{asset('img/avatar/Avatar14.png')}}" alt="Avatar14" onclick="select(this)">
+                                        </div>
+                                        <div class="col-3">
+                                            <img src="{{asset('img/avatar/Avatar15.png')}}" alt="Avatar15" onclick="select(this)">
+                                        </div>
+                                        <div class="col-3">
+                                            <img src="{{asset('img/avatar/Avatar16.png')}}" alt="Avatar16" onclick="select(this)">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-3">
+                                            <img src="{{asset('img/avatar/Avatar17.png')}}" alt="Avatar17" onclick="select(this)">
+                                        </div>
+                                        <div class="col-3">
+                                            <img src="{{asset('img/avatar/Avatar18.png')}}" alt="Avatar18" onclick="select(this)">
+                                        </div>
+                                        <div class="col-3">
+                                            <img src="{{asset('img/avatar/Avatar19.png')}}" alt="Avatar19" onclick="select(this)">
+                                        </div>
+                                        <div class="col-3">
+                                            <img src="{{asset('img/avatar/Avatar20.png')}}" alt="Avatar20" onclick="select(this)">
                                         </div>
                                     </div>
                                 </div>
@@ -390,12 +390,12 @@
         <h2 style="color:#ff0000; margin-left: 2%">Elimina Account</h2>
         <div style="background-color:#ff0000; margin-left: 2%; height:1px; width:60%;"></div>
         <div id="deleteConfirm">
-            <button type="button" class="btn-edit" onclick="javascript:deleteCancel()">Annulla</button>
-            <a class=btn-delete href="{{ route('deleteUser') }} ">Conferma</a>
+            <button type="button" class="btn-edit" onclick="javascript:deleteCancel()"><b>Annulla</b></button>
+            <a class=btn-delete href="{{ route('deleteUser') }} "><b>Conferma</b></a>
         </div>
 
         <div id="deleteButton">
-            <button type="button" class="btn-delete" onclick="javascript:deleteConfirm()">Elimina</button>
+            <button type="button" class="btn-delete" onclick="javascript:deleteConfirm()"><b>Elimina</b></button>
         </div>
     </div>
 @endsection
