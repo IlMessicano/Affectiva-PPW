@@ -46,12 +46,12 @@ html, body{
 
 .col_left{
     background-color: #666666;
-    color: #cccccc!important;
+    color: #ffffff!important;
     height: 100%;
 }
 
 .col_left  .container-fluid{
-    color: #cccccc!important;
+    color: #ffffff!important;
 }
 
 @media (max-width:768px){
@@ -69,6 +69,7 @@ html, body{
 
     .btn_new{
         min-width: 40px!important;
+        background-color: #d3edfd;
     }
     .new_things{
         margin-top: 15%;
@@ -181,7 +182,7 @@ html, body{
     font-size: medium;
     padding-left:10%;
     margin:0;
-    color: #90a8b3;
+    color: #d3edfd;
 }
 
 .project_n{
@@ -243,7 +244,7 @@ html, body{
     font-size: medium;
     padding-left:10%;
     margin:0;
-    color: #90a8b3;
+    color: #d3edfd	;
 }
 
 .rotate{
