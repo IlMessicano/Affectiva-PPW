@@ -44,7 +44,7 @@ class TaskController extends Controller
         $task->nomeTask = $request->nome;
         $task->descrizione = $request->descrizione;
         $task->save();
-        $iframe=route('task',['id'=>$new_task->id]);
+        $iframe=route('task',['id'=>$task->id]);
         return redirect('home')->with ('iframe',$iframe);
     }
 
