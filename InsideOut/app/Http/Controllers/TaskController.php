@@ -35,7 +35,7 @@ class TaskController extends Controller
         $project->risultatiAnalisi = null;
         $project->save();
 
-        $iframe=route('task',['id'=>$new_task->id]);
+        $iframe=route('task',['id'=>$task->id]);
         return redirect('home')->with ('iframe',$iframe);
     }
 

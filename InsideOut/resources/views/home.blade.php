@@ -195,6 +195,9 @@ $share=\App\Http\Controllers\ShareController::getShareWithMe($id);
             </div>
         </div>
         @forelse($share as $share)
+            <?php
+            $shareproject = \App\Http\Controllers\ProjectController::getProjectbyId($share->progetto)
+            ?>
             <div class="row w-100 project_n">
                 <div class="col-5 offset-1 p_title" id="{{$share->progetto}}">
                     <div class="row">
@@ -202,7 +205,7 @@ $share=\App\Http\Controllers\ShareController::getShareWithMe($id);
                             <i class="fas fa-chevron-right" id="label_project_{{$share->progetto}}"></i>
                         </div>
                         <div class="col-6" style="padding-left: 5px">
-                            {{$share->nomeProgetto}}
+                            {{$shareproject->nome}}
                         </div>
                     </div>
                 </div>

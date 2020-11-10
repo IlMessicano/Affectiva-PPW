@@ -34,7 +34,7 @@ class UserController extends Controller
     public function destroy(){
         $id = Auth::user()->id;
         $user = DB::table('users')->where('id', $id)->delete();
-        return route('home');
+        return redirect() -> route('home');
     }
 
     public function editUser(Request $request)

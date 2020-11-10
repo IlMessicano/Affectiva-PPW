@@ -256,7 +256,7 @@
                 </div>
                 <div class="modal-body">
                     <div class="container-fluid h-100">
-                        <form method="post" action="{{route('modify_video')}}" target="_top">
+                        <form method="post" action="{{route('modify_task')}}" target="_top">
                             @csrf
                             <div class="modal_form">
                                 <div class="form-group row">
