@@ -251,11 +251,11 @@ $share=\App\Http\Controllers\ShareController::getShareWithMe($id);
 
 @section('content_center')
     @isset($iframe)
-    <iframe src="{{$iframe}}" id="content">
+    <iframe title="Visualizzazione" src="{{$iframe}}" id="content">
     @endisset
 
     @empty($iframe)
-    <iframe src="" id="content">
+    <iframe title="Visualizzazione" src="" id="content">
     @endempty
     </iframe>
 @endsection

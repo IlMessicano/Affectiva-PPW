@@ -45,7 +45,7 @@
 
                         <div class="form-group">
 
-                            <input id="email" type="email" placeholder="Email*" class="input form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                            <input title="Email" id="email" type="email" placeholder="Email*" class="input form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
 
                             @error('email')
                             <span class="invalid-feedback" role="alert">
@@ -56,7 +56,7 @@
                         </div>
 
                         <div class="form-group">
-                                <input id="nome" type="text" placeholder="Nome*" class="input form-control @error('nome') is-invalid @enderror" name="nome" value="{{ old('nome') }}" required autocomplete="nome" >
+                                <input title="Nome" id="nome" type="text" placeholder="Nome*" class="input form-control @error('nome') is-invalid @enderror" name="nome" value="{{ old('nome') }}" required autocomplete="nome" >
 
                                 @error('name')
                                     <span class="invalid-feedback" role="alert">
@@ -66,7 +66,7 @@
                         </div>
 
                         <div class="form-group">
-                            <input id="cognome" type="text" placeholder="Cognome*" class="input form-control @error('cognome') is-invalid @enderror" name="cognome" value="{{ old('cognome') }}" required autocomplete="cognome">
+                            <input title="Cognome" id="cognome" type="text" placeholder="Cognome*" class="input form-control @error('cognome') is-invalid @enderror" name="cognome" value="{{ old('cognome') }}" required autocomplete="cognome">
 
                             @error('cognome')
                             <span class="invalid-feedback" role="alert">
@@ -78,7 +78,7 @@
                         <div class="form-group">
                             <div class="input-group" id="picker" style="cursor:pointer;">
 
-                                <input placeholder="Data di nascita*" style="cursor:pointer;  background-color:white;" readonly type="text" id="dataNascita" class="input form-control data @error('dataNascita') is-invalid @enderror" name="dataNascita" value="{{ old('dataNascita') }}" required autocomplete="dataNascita">
+                                <input title="Data di nascita" placeholder="Data di nascita*" style="cursor:pointer;  background-color:white;" readonly type="text" id="dataNascita" class="input form-control data @error('dataNascita') is-invalid @enderror" name="dataNascita" value="{{ old('dataNascita') }}" required autocomplete="dataNascita">
 
                                 <div class="input-group-append">
                                     <div class="input-group-text btn"><i class="fa fa-calendar" aria-hidden="true"></i></div>
@@ -125,7 +125,7 @@
 
                         <div class="form-group">
 
-                                <input id="password" type="password" placeholder="Password*" class="input form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                                <input title="Password" id="password" type="password" placeholder="Password*" class="input form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
 
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">
@@ -136,7 +136,7 @@
                         </div>
 
                         <div class="form-group">
-                            <input id="password-confirm" type="password" placeholder="Conferma password*" class="input form-control" name="password_confirmation" required autocomplete="new-password">
+                            <input title="Conferma password" id="password-confirm" type="password" placeholder="Conferma password*" class="input form-control" name="password_confirmation" required autocomplete="new-password">
                         </div>
 
                         <div class="modal fade" id="exampleModal" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

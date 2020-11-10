@@ -1,23 +1,21 @@
 @extends('layouts.app')
 
-@section('content')
-<head>
-    <title>Affectiva RMX - Live Mode</title>
+@section('head')
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script type="text/javascript" src="https://download.affectiva.com/js/3.2.1/affdex.js"></script>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-</head>
+@endsection
 
-<body>
-<div class="container-fluid" >
+@section('content')
+<h1 class="text-center">LIVE MODE</h1>
+<div class="container-fluid h-100" >
     <div class="row">
         <a class="btn" style="margin: 1%" href="{{route('login')}}">Login</a>
     </div>
     <div class="row">
         <div class="col-md-12" style="text-align: center">
-            <h2>LIVE MODE</h2>
-            <button class="btn btn-success" id="start" onclick="onStart()">Start</button>
-            <button class="btn btn-danger" id="stop" onclick="onStop()">Stop</button>
+            <button class="btn" style="background-color:#185f36!important;color:white;" id="start" onclick="onStart()">Start</button>
+            <button class="btn" style="background-color: #9a221f !important;color:white;" id="stop" onclick="onStop()">Stop</button>
         </div>
     </div>
     <div class="row" style="display: flex; margin: auto; height:40%;">
@@ -176,6 +174,4 @@
     // always overwrite window.name, in case users try to set it manually
     window.name = "result"
 </script>
-
-</body>
 @endsection

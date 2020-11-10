@@ -382,3 +382,14 @@ html, body{
     background-color: #7a7a7a;
 }
 
+.modal-title{
+    color:#d3edfd!important;
+}
+
+.col-form-label{
+    color:#363f48!important;
+}
+
+.btn-danger{
+    background-color: #9a221f !important;
+}
