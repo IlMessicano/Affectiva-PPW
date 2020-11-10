@@ -41,8 +41,6 @@ class ShareController extends Controller
             $share= new Share;
             $share->proprietario= $request->proprietario;
             $share->progetto= $request->progetto;
-            $name = Progetto::find($share->progetto);
-            $share->nomeProgetto=$name->nome;
             $shareId= User::where('email',$request->share_email)->first();
             $share->collaboratore= $shareId->id;
             $share->created_at = now();

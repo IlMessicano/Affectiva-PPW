@@ -21,24 +21,8 @@
                         @enderror
                     </div>
                     <div style="position:relative; top:-60px;"class="form-group">
-                        <input type="password" name="password" placeholder="Password" class="form-control @error('password') is-invalid @enderror" required autocomplete="current-password">
+                        <input type="password" name="password" placeholder="Password" class="form-control @error('email') is-invalid @enderror" required autocomplete="current-password">
                     </div>
-                    <div class="form-group" style="position:relative; top:-60px;">
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-
-                            <label class="form-check-label" for="remember">
-                                {{ __('Remember Me') }}
-                            </label>
-                        </div>
-                    </div>
-                    @if (Route::has('password.request'))
-                        <div class="form-group" style="position:relative; top:-60px;text-align:right;">
-                            <a href="{{ route('password.request') }}">
-                                {{ __('Forgot Your Password?') }}
-                            </a>
-                        </div>
-                    @endif
                     <div class="form-group" style="position:relative; top:-60px;"><button type="submit"  class="btn btn-block" value="Accedi">Accedi</button></div>
                     <div class="form-group" style="position:relative; top:-60px;"><a class="btn btn-block" href="{{ route('register') }}">Registrati</a></div>
                 </form>

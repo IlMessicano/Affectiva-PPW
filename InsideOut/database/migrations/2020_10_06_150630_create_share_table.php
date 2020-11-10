@@ -15,7 +15,6 @@ class CreateShareTable extends Migration
     {
         Schema::create('condivisione', function (Blueprint $table) {
             $table->id();
-            $table->string('nomeProgetto');
             $table->foreignId('proprietario')->references('id')->on('users')->onDelete('cascade');
             $table->foreignId('collaboratore')->references('id')->on('users')->onDelete('cascade');
             $table->foreignId('progetto')->references('id')->on('progetto')->onDelete('cascade');

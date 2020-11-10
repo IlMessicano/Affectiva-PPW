@@ -21,7 +21,9 @@ class VideoController extends Controller
     {
         request()->validate([
             'nomeVideo' => 'required',
-            'nomeVideo.*' => 'mimes:mp4,txt,avi'
+            'nomeVideo.*' => 'mimes:mp4'
+        ],[
+            'nomeVideo.*.mimes' => 'Formato errato! È possibile caricare solo .mp4'
         ]);
 
         if ($request->hasfile('nomeVideo')) {
@@ -84,24 +86,32 @@ class VideoController extends Controller
         return view('viewVideo')->with('content',$content);
     }
 
+    public static function deleteFile($id){
+        print_r($id);
+
+//        $video = DB::table('video')->select('pathVideo')->where('id', '=', $id)->get();
+//
+//        $video = str_replace('/', '', $video);
+//        $video = str_replace('{', '', $video);
+//        $video = str_replace('}', '', $video);
+//        $video = str_replace('(', '', $video);
+//        $video = str_replace(')', '', $video);
+//        $video = str_replace('[', '', $video);
+//        $video = str_replace(']', '', $video);
+//        $video = str_replace(':', '', $video);
+//        $video = str_replace('"', '', $video);
+//        $video = str_replace('pathVideo', '', $video);
+//
+//        unlink($video);
+    }
+
     public function destroy(Request $request)
     {
 
         $checked = $request->video;
-        $video = DB::table('video')->select('pathVideo')->where('id', '=', $checked)->get();
 
-        $video = str_replace('/', '', $video);
-        $video = str_replace('{', '', $video);
-        $video = str_replace('}', '', $video);
-        $video = str_replace('(', '', $video);
-        $video = str_replace(')', '', $video);
-        $video = str_replace('[', '', $video);
-        $video = str_replace(']', '', $video);
-        $video = str_replace(':', '', $video);
-        $video = str_replace('"', '', $video);
-        $video = str_replace('pathVideo', '', $video);
+       $this->deleteFile($checked);
 
-        unlink($video);
         Video::destroy($checked);
 
         $task = Task::find($request->task);
@@ -129,4 +139,11 @@ class VideoController extends Controller
         return asset($video->pathVideo);
     }
 
+
+    public static function check($task){
+
+        $check = DB::table('video')->where('task','=',$task)->exists();
+
+        return $check;
+    }
 }

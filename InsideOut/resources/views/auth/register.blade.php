@@ -6,6 +6,9 @@
 
 @section('content')
 
+<div class="row justify-content-end mt-4 w-100" style="position:absolute">
+    <div class="col-2"><a class="btn btn-block" href="{{ route('login') }}">Login</a></div>
+</div>
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">

@@ -90,7 +90,7 @@ $idAnalyze = []; $all_video =[];
                                     <div class="col-8">
                                         <p class="shared_name"><a href="{{route('profile',['id'=>$sharedWith->collaboratore])}}" target="_parent">{{$email->email}}</a></p>
                                     </div>
-                                    <div class="trash" id="{{$sharedWith->collaboratore}}" data-toggle="modal" data-target="#modal_delete_share">
+                                    <div class="trash" id="{{$sharedWith->id}}" data-toggle="modal" data-target="#modal_delete_share">
                                         <i class="far fa-trash-alt" style="color:#880400;"></i>
                                     </div>
                                 </div>

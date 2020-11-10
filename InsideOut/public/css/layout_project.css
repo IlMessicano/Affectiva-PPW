@@ -205,6 +205,7 @@ html, body{
 .p_title{
     overflow:hidden;
     text-overflow: ellipsis;
+    height: 1.5rem;
     cursor:pointer;
     font-weight: bold;
     border-radius: 10px;
@@ -266,6 +267,7 @@ html, body{
 .task_name{
     overflow:hidden;
     text-overflow: ellipsis;
+    height: 1.5rem;
 }
 
 .task_name:hover{
@@ -358,6 +360,7 @@ html, body{
 .video_name{
     overflow:hidden;
     text-overflow: ellipsis;
+    height: 1.5rem;
 }
 
 .video_name:hover{

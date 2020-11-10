@@ -35,6 +35,7 @@ $share=\App\Http\Controllers\ShareController::getShareWithMe($id);
                 $('#content').attr('src','http://127.0.0.1:8000/task/'+id);
                 $('#new_video').removeClass('disabled_video').attr('disabled',false);
                 $('#task').attr('value', id);
+                $('#delete_video_task').attr('value', id);
                 var name = $(this).text();
                 $('#task_video').text(name);
                 showVideo(id);
@@ -99,6 +100,13 @@ $share=\App\Http\Controllers\ShareController::getShareWithMe($id);
                         $('.progress').hide();
                         $(".custom-file-label").html("Seleziona Video...");
                     },
+                    error: function (jqXHR, exception) {
+                    console.log(jqXHR);
+                    $("#modal_new_video").modal('hide');
+                    $("#modal_error_msg").html(JSON.stringify(jqXHR.responseJSON.errors,["nomeVideo.0"]).replace("{\"nomeVideo.0\":[\"","").replace("\"]}",""));
+                    // $("#modal_error_msg").html('Impossibile analizzare il file. Errore: '+jqXHR.status);
+                    $("#modal_error").modal();
+                }
                 });
             });
 
@@ -357,6 +365,7 @@ $share=\App\Http\Controllers\ShareController::getShareWithMe($id);
                                 </div>
                             </div>
                             <div class="modal-footer">
+                                <p class="small text-white font-weight-bold">I VIDEO DEVONO ESSERE IN FORMATO .mp4</p>
                                 <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                                 <button class="btn" type="submit" id="submitVideo">Salva Video</button>
                             </div>
@@ -435,19 +444,40 @@ $share=\App\Http\Controllers\ShareController::getShareWithMe($id);
                 </div>
                 <div class="modal-body">
                     <div class="container-fluid h-100">
-                        <input type="hidden" id="delete_video_task">
                         <form method="post" id="delete_video_Form">
                             @csrf
                             <div class="elimina_allert text-center">
                             Sei sicuro di voler eliminare il Video: <br><span id="title_delete_video" class="font-weight-bold"></span>?
                             </div>
                             <input type="hidden" name="video" id="delete_video" value="">
+                            <input type="hidden" id="delete_video_task" name="task" value="">
                             <div class="modal-footer">
                                 <button type="button" class="btn" data-dismiss="modal">Annulla</button>
                                 <button type="submit" class="btn btn-danger">Elimina</button>
                             </div>
                         </form>
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modal_error" data-backdrop="false">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title font-weight-bold">ERRORE</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" >
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="container-fluid h-100">
+                        <p id="modal_error_msg" class="mt-5 mb-5 text-center w-100 text-danger">Erorre caricamento video</p>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button data-dismiss="modal" class="btn btn-danger">Chiudi</button>
                 </div>
             </div>
         </div>

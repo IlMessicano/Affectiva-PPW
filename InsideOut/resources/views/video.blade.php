@@ -21,7 +21,15 @@
 
 
 <?php
-    $video=\App\Http\Controllers\VideoController::getVideo($id);
+    $check=\App\Http\Controllers\VideoController::check($id);
+
+    $video =\App\Http\Controllers\VideoController::getVideo($id);
+
+    if($check==1){
+        $task = \App\Http\Controllers\TaskController::getTaskbyId($video[0]->task);
+        $project = \App\Http\Controllers\ProjectController::getProjectbyId($task->progetto);
+        $proprietario = $project->utente;
+    }
 ?>
 
     @forelse($video as $video)
@@ -32,9 +40,11 @@
             <div class="col-6 video_name" id="{{$video->id}}">
                 {{$video->nomeVideo}}
             </div>
+            @if(Auth::user()->id == $proprietario)
             <div class="col-1 trash_video" id="{{$video->id}}" data-toggle="modal" data-target="#modal_delete_video">
                 <i class="far fa-trash-alt" style="color:#880400;"></i>
             </div>
+            @endif
         </div>
     @empty
         <div class="col-12 text-center">Nessun video per questo Task</div>
